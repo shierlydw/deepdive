@@ -1,0 +1,2573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shierly Dewi - Senior UX Designer</title>
+  <meta name="description" content="Senior UX Designer with 8 years across financial services, banking, insurance, and enterprise B2B. Based in Kuala Lumpur.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&family=Geist:wght@400;500;600&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════ */
+    :root {
+      --bg:           #080808;
+      --bg-card:      #090F10;
+      --bg-card-hover:#0D1618;
+      --border:       rgba(98,210,224,0.07);
+      --border-hover: rgba(98,210,224,0.2);
+      --ink:          #E8F8FF;
+      --ink-2:        rgba(232,248,255,0.5);
+      --ink-3:        rgba(232,248,255,0.28);
+      --accent:       #62d2e0;
+      --accent-dim:   rgba(98,210,224,0.09);
+
+      --display: 'Inter', system-ui, sans-serif;
+      --accent-font: 'Inter Tight', system-ui, sans-serif;
+      --body:    'Inter', system-ui, sans-serif;
+
+      --ease:     cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+      --r: 16px;
+      --r-lg: 22px;
+
+      /* ── Spacing scale — 4px base unit, token = multiplier ── */
+      --space-0:  0px;
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-5:  20px;
+      --space-6:  24px;
+      --space-8:  32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+      --space-24: 96px;
+      --space-32: 128px;
+    }
+
+    /* ═══════════════════════════════════════
+       RESET
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    ul { list-style: none; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ═══════════════════════════════════════
+       BACKGROUND SYSTEM - DEEP UNDERWATER
+    ═══════════════════════════════════════ */
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Light shaft from top-right — like surface light penetrating deep water */
+    .underwater-light {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 65% 55% at 92% -5%,
+          rgba(98,210,224,0.22) 0%,
+          rgba(46,161,173,0.14) 35%,
+          rgba(8,40,55,0.06) 65%,
+          transparent 80%),
+        radial-gradient(ellipse 40% 30% at 75% 0%,
+          rgba(98,210,224,0.10) 0%,
+          transparent 60%);
+      animation: lightShift 20s ease-in-out infinite alternate;
+    }
+    @keyframes lightShift {
+      0%   { opacity: 0.8; transform: translateX(0) scaleX(1); }
+      50%  { opacity: 1;   transform: translateX(-18px) scaleX(1.04); }
+      100% { opacity: 0.85; transform: translateX(8px) scaleX(0.97); }
+    }
+
+    /* Foreground speckles — float on top of hero content */
+    #speckle-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .noise-grain {
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23grain)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      animation: grainShift 0.4s steps(1) infinite;
+    }
+    @keyframes grainShift {
+      0%  { transform: translate(0,0); }
+      25% { transform: translate(-3px, 2px); }
+      50% { transform: translate(2px, -3px); }
+      75% { transform: translate(-2px, -2px); }
+    }
+
+    /* ═══════════════════════════════════════
+       LAYOUT WRAPPER
+    ═══════════════════════════════════════ */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100svh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    @media (min-width: 768px) { .container { padding: 0 3rem; } }
+
+    /* ═══════════════════════════════════════
+       NAVIGATION - pill style, right-aligned
+    ═══════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: flex-end;
+      padding: 1.25rem 2rem;
+      pointer-events: none;
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(18, 24, 24, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+      pointer-events: auto;
+      transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .nav.scrolled .nav-pill {
+      background: rgba(8,8,8,0.9);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-right: var(--space-3);
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--accent-font);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding: var(--space-1) var(--space-3);
+      border: 1px solid rgba(232,248,255,0.14);
+      border-radius: 100px;
+      transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+    }
+    .nav-links a:hover { color: var(--ink); border-color: rgba(232,248,255,0.3); }
+    .nav-links a.active { color: var(--ink); border-color: var(--accent); background: rgba(98,210,224,0.08); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-1) var(--space-3);
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--accent-font);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--accent);
+      border-radius: 100px;
+      white-space: nowrap;
+      transition: background 0.2s var(--ease), color 0.2s var(--ease);
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--accent); color: var(--bg); }
+
+    /* ── Mobile hamburger + bottom-sheet menu — mirrors case study pattern ── */
+    .main-hamburger { display: none; }
+    @media (max-width: 767px) {
+      .nav-pill { display: none; }
+      .main-hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 44px; height: 44px;
+        padding: 10px;
+        cursor: pointer;
+        background: rgba(18,24,24,0.72);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 100px;
+        pointer-events: auto;
+      }
+      .main-hamburger span {
+        display: block;
+        width: 20px; height: 1.5px;
+        background: var(--ink);
+      }
+    }
+
+    .main-menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: #0E0E0F;
+      display: none;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .main-menu-overlay.open { display: flex; transform: translateY(0); }
+
+    .main-menu-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-5) var(--space-4);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .main-menu-mark {
+      font-family: var(--accent-font);
+      font-size: 0.8125rem;
+      color: var(--ink-2);
+      letter-spacing: 0.06em;
+    }
+    .main-menu-close {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink);
+      cursor: pointer;
+      background: none; border: none;
+    }
+
+    .main-menu-list {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-6) var(--space-4);
+      gap: var(--space-8);
+    }
+    .main-menu-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .main-menu-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      border: 1px solid rgba(232,248,255,0.35);
+      border-radius: 100px;
+      font-family: var(--accent-font);
+      font-size: 0.6875rem;
+      color: var(--ink-2);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    .main-menu-label {
+      font-family: 'Onest', 'Inter', system-ui, sans-serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero {
+      min-height: 82svh;
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-start;
+      text-align: left;
+      padding: 0 2rem;
+      position: relative;
+      background-image:
+        linear-gradient(to bottom,
+          rgba(8,8,8,0)    0%,
+          rgba(8,8,8,0)    65%,
+          rgba(8,8,8,0.7)  85%,
+          rgba(8,8,8,1)    100%),
+        url('assets/images/img_11.jpg');
+      background-size: cover;
+      background-position: top center;
+      background-repeat: no-repeat;
+    }
+
+    /* Scroll cue — fades out once user scrolls */
+
+    .hero-inner {
+      max-width: 1000px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-top: var(--space-24);
+      padding-bottom: var(--space-16);
+    }
+
+    /* Combined hero display — greeting + name same block, same size */
+    .hero-display {
+      font-family: 'Onest', 'Inter', system-ui, sans-serif;
+      font-size: clamp(56px, 8vw, 112px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.9s var(--ease-out) 0.1s forwards;
+    }
+
+    .hero-display .greeting-line {
+      display: block;
+    }
+
+    .hero-display .name-line {
+      display: block;
+    }
+
+    .hero-display strong {
+      font-weight: 500;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.8em;
+      background: #FFFFFF;
+      margin-left: 4px;
+      vertical-align: middle;
+      border-radius: 2px;
+      animation: blink 0.75s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .hero-statement {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      font-weight: 400;
+      font-style: normal;
+      color: rgba(232,248,255,0.82);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0;
+      margin-top: auto;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.8s var(--ease-out) 0.35s forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 0.8; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-display, .hero-statement {
+        animation: none;
+        opacity: 0.8;
+        transform: none;
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       WORK SECTION
+    ═══════════════════════════════════════ */
+    .work {
+      padding: 0 0 8rem;
+    }
+
+    /* ═══════════════════════════════════════
+       CASE STUDY CARDS - expand on hover
+    ═══════════════════════════════════════ */
+    .work { padding: 0 0 8rem; }
+
+    .cs-row {
+      display: flex;
+      gap: 12px;
+      height: 480px;
+    }
+
+    @media (max-width: 768px) {
+      .cs-row { flex-direction: column; height: auto; gap: 12px; }
+    }
+
+    .cs-card {
+      flex: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: flex 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+                  background 0.5s var(--ease);
+      text-decoration: none;
+      min-width: 0;
+    }
+
+    /* Progressively darker collapsed backgrounds */
+    .cs-card--1 { background: rgba(20,35,32,0.45); }
+    .cs-card--2 { background: rgba(14,26,24,0.45); }
+    .cs-card--3 { background: rgba(10,20,18,0.45); }
+
+    .cs-card { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid transparent; }
+    .cs-card:hover { flex: 2.8; background: #F4F1EA; backdrop-filter: none; -webkit-backdrop-filter: none; border-color: transparent; }
+
+    @media (max-width: 768px) {
+      .cs-card { min-height: 200px; flex: none; }
+      .cs-card:hover { flex: none; }
+    }
+
+    /* ── Collapsed state — title centred ── */
+    .cs-collapsed {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      transition: opacity 0.25s var(--ease);
+    }
+    .cs-card:hover .cs-collapsed {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cs-collapsed-tag {
+      font-family: var(--accent-font);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-3);
+      opacity: 0.8;
+    }
+
+    .cs-collapsed-title {
+      font-family: var(--display);
+      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    /* ── Expanded state — cream, full content ── */
+    .cs-expanded {
+      position: absolute;
+      inset: 0;
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease) 0.22s;
+      min-width: 260px;
+    }
+    .cs-card:hover .cs-expanded {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cs-exp-tag {
+      font-family: var(--accent-font);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2EA1AD;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .cs-exp-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: #2EA1AD;
+      flex-shrink: 0;
+    }
+
+    .cs-exp-title {
+      font-family: var(--display);
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+      color: #1A1A1A;
+      margin-bottom: 1.25rem;
+    }
+
+    .cs-exp-desc {
+      font-family: var(--body);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: #4A4A4A;
+      flex: 1;
+    }
+
+    .cs-exp-outcomes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .cs-exp-outcome {
+      font-family: var(--accent-font);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: var(--space-1) var(--space-3);
+      background: transparent;
+      border: 1px solid rgba(46,161,173,0.35);
+      color: #2EA1AD;
+      border-radius: 6px;
+    }
+
+    .cs-exp-divider {
+      height: 1px;
+      background: #D8D4CC;
+      margin: 1.5rem 0 1.25rem;
+      flex-shrink: 0;
+    }
+
+    /* Split button — two segments divided by a vertical hairline, like "GET YOUR MATCHDAY BOX | €19,99" */
+    .cs-exp-cta {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid #D8D4CC;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .cs-exp-cta-label {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      font-family: var(--accent-font);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1A1A1A;
+      background: #F4F1EA;
+      transition: background 0.2s var(--ease), color 0.2s var(--ease);
+    }
+
+    .cs-exp-arrow {
+      width: 48px;
+      flex-shrink: 0;
+      border-left: 1px solid #D8D4CC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1A1A1A;
+      background: #F4F1EA;
+      transition: background 0.2s var(--ease), color 0.2s var(--ease);
+    }
+
+    /* Default state once card expands — #222222 */
+    .cs-card:hover .cs-exp-cta-label,
+    .cs-card:hover .cs-exp-arrow { background: #222222; color: #F4F1EA; }
+
+    /* Direct hover on the button itself — lightens to #626262 */
+    .cs-exp-cta:hover .cs-exp-cta-label,
+    .cs-exp-cta:hover .cs-exp-arrow { background: #626262; }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    }
+    .reveal.d1 { transition-delay: 0.08s; }
+    .reveal.d2 { transition-delay: 0.16s; }
+    .reveal.d3 { transition-delay: 0.24s; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    .footer {
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-icons {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .footer-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-2);
+      transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease);
+      cursor: pointer;
+    }
+    .footer-icon-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--ink);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .footer-copy {
+      font-family: var(--accent-font);
+      font-size: 0.8125rem;
+      color: var(--ink-3);
+    }
+
+    /* ── Floating scroll-to-top ─────────── */
+    .fab-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 150;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border-hover);
+      background: rgba(8, 14, 18, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s var(--ease-out),
+                  transform 0.4s var(--ease-out),
+                  border-color 0.2s var(--ease),
+                  box-shadow 0.2s var(--ease);
+      pointer-events: none;
+    }
+    .fab-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .fab-top:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(45,219,184,0.18);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+<div class="underwater-light" aria-hidden="true"></div>
+<div class="noise-grain" aria-hidden="true"></div>
+<canvas id="speckle-canvas" aria-hidden="true"></canvas>
+
+<div class="page">
+
+  <!-- ═══════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════ -->
+  <nav class="nav" id="main-nav" aria-label="Main navigation">
+    <div class="nav-pill">
+      <ul class="nav-links" role="list">
+        <li><a href="#work" class="active">Work</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <a href="mailto:shierlydewi@gmail.com" class="nav-cta">Get in touch</a>
+    </div>
+    <button class="main-hamburger" onclick="openMainMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile bottom-sheet menu -->
+  <div class="main-menu-overlay" id="main-menu-overlay">
+    <div class="main-menu-top">
+      <span class="main-menu-mark">s_d</span>
+      <button class="main-menu-close" onclick="closeMainMenu()" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M4 4l10 10M14 4 4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="main-menu-list">
+      <a href="#work" class="main-menu-item" onclick="closeMainMenu()">
+        <span class="main-menu-num">001</span>
+        <span class="main-menu-label">Work</span>
+      </a>
+      <a href="about.html" class="main-menu-item">
+        <span class="main-menu-num">002</span>
+        <span class="main-menu-label">About</span>
+      </a>
+      <a href="mailto:shierlydewi@gmail.com" class="main-menu-item">
+        <span class="main-menu-num">003</span>
+        <span class="main-menu-label">Get in Touch</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="hero" aria-labelledby="hero-name">
+    <div class="hero-inner">
+      <div class="hero-display" aria-label="Hello. I'm Shierly Dewi.">
+        <span class="greeting-line" id="hero-greeting"><span class="typewriter-cursor"></span></span>
+        <span class="name-line" id="hero-name">I'm <strong>Shierly Dewi.</strong></span>
+      </div>
+      <p class="hero-statement">
+        I make things easier for people, whether it's a first-time insurance buyer, a wealth investor, or someone just trying to pay a bill. A Senior UX Designer with 8 years across insurance, wealth management, retail banking, enterprise telco, and design systems in Southeast Asia.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       WORK
+  ═══════════════════════════════════════ -->
+  <section id="work" class="work">
+    <div class="container">
+      <div class="cs-row reveal">
+
+        <!-- Card 1: Multigenerational Family Banking -->
+        <a class="cs-card cs-card--1" href="#" onclick="openCS('family-banking'); return false;" aria-label="Multigenerational Family Banking case study">
+
+          <div class="cs-collapsed">
+            <h2 class="cs-collapsed-title">Multigenerational Family Banking</h2>
+          </div>
+
+          <div class="cs-expanded">
+            <span class="cs-exp-tag">Banking · Fintech</span>
+            <h2 class="cs-exp-title">Multigenerational Family Banking</h2>
+            <p class="cs-exp-desc">Reimagining digital banking for multi-generational households - from children and teens to caretaker adults and older dependents - managing shared and individual finances in one platform.</p>
+            <div class="cs-exp-outcomes">
+              <span class="cs-exp-outcome">User research · 5 interviews</span>
+              <span class="cs-exp-outcome">1 week sprint</span>
+            </div>
+            <div class="cs-exp-divider"></div>
+            <div class="cs-exp-cta">
+              <span class="cs-exp-cta-label">View case study</span>
+              <span class="cs-exp-arrow">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+        </a>
+
+        <!-- Card 2: MetLife Onboarding -->
+        <a class="cs-card cs-card--2" href="case-study-metlife.html" aria-label="MetLife 360Health Onboarding case study">
+
+          <div class="cs-collapsed">
+            <h2 class="cs-collapsed-title">MetLife 360Health Onboarding</h2>
+          </div>
+
+          <div class="cs-expanded">
+            <span class="cs-exp-tag">Insurance · Mobile</span>
+            <h2 class="cs-exp-title">MetLife 360Health Onboarding Migration</h2>
+            <p class="cs-exp-desc">Redesigned registration and login for 376,000 users across three account types during a full platform security migration. Shipped August 2024. Won Insurance Asia App of the Year.</p>
+            <div class="cs-exp-outcomes">
+              <span class="cs-exp-outcome">40% → 81% completion</span>
+              <span class="cs-exp-outcome">Steps 7 → 4</span>
+            </div>
+            <div class="cs-exp-divider"></div>
+            <div class="cs-exp-cta">
+              <span class="cs-exp-cta-label">View case study</span>
+              <span class="cs-exp-arrow">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+        </a>
+
+        <!-- Card 3: Design System Ops -->
+        <a class="cs-card cs-card--3" href="#" aria-label="Design System Ops case study">
+
+          <div class="cs-collapsed">
+            <h2 class="cs-collapsed-title">Design System Ops</h2>
+          </div>
+
+          <div class="cs-expanded">
+            <span class="cs-exp-tag">Design Systems</span>
+            <h2 class="cs-exp-title">Design System Ops</h2>
+            <p class="cs-exp-desc">Built and governed a scalable component library and token architecture for MetLife's regional digital products - enabling consistent delivery across mobile, web, and third-party platforms.</p>
+            <div class="cs-exp-outcomes">
+              <span class="cs-exp-outcome">Multi-platform</span>
+              <span class="cs-exp-outcome">Token architecture</span>
+            </div>
+            <div class="cs-exp-divider"></div>
+            <div class="cs-exp-cta">
+              <span class="cs-exp-cta-label">View case study</span>
+              <span class="cs-exp-arrow">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© 2026 Designed & Developed by Shierly Dewi</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating scroll-to-top -->
+  <button class="fab-top" id="fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M8 12.5V3.5M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+</div><!-- /page -->
+
+<!-- ═══════════════════════════════════════
+     CASE STUDY OVERLAY - Family Banking
+═══════════════════════════════════════ -->
+<div id="cs-overlay" style="display:none;position:fixed;inset:0;z-index:300;overflow-y:auto;background:#F9F8F6;">
+  <style>
+    #cs-overlay {
+      font-family: 'Geist', 'Inter', system-ui, sans-serif; color: #1A1A1A; -webkit-font-smoothing: antialiased;
+      display: flex; flex-direction: column;
+      /* ── Grid tokens — density-named tiers ──
+         xs Compact  (0-639,    iPhone 16/17 Pro 402):  4 cols, margin 16, gutter 16
+         sm Cozy     (640-767,  iPad mini 8.3 744):     6 cols, margin 24, gutter 16
+         md Medium   (768-1023, iPad Pro 11 834):       8 cols, margin 32, gutter 24
+         lg Expanded (1024-1279, Desktop 1200):        12 cols, margin 40, gutter 24
+         xl Wide     (1280-1535, Large desktop 1440):  12 cols, margin 64, gutter 32
+         2xl Ultra   (1536+,    Very large desktop 1920): 12 cols, margin 80, gutter 32 */
+      --margin: 16px;
+      --gutter: 16px;
+      --cols: 4;
+    }
+    @media (min-width: 640px)  { #cs-overlay { --margin: 24px; --gutter: 16px; --cols: 6;  } }
+    @media (min-width: 768px)  { #cs-overlay { --margin: 32px; --gutter: 24px; --cols: 8;  } }
+    @media (min-width: 1024px) { #cs-overlay { --margin: 40px; --gutter: 24px; --cols: 12; } }
+    @media (min-width: 1280px) { #cs-overlay { --margin: 64px; --gutter: 32px; --cols: 12; } }
+    @media (min-width: 1536px) { #cs-overlay { --margin: 80px; --gutter: 32px; --cols: 12; } }
+
+    .cso-wrap { display: flex; flex: 1; min-height: 0; }
+    @media (min-width: 1024px) {
+      .cso-wrap { padding-top: 64px; }
+    }
+    .cso-sidebar { width: 170px; flex-shrink: 0; position: sticky; top: 76px; height: calc(100svh - 76px); overflow-y: auto; padding: var(--space-10) 0 var(--space-10) var(--space-6); display: flex; flex-direction: column; background: #F9F8F6; }
+    @media (min-width: 1024px) {
+      .cso-sidebar { top: 88px; height: calc(100svh - 88px); }
+    }
+    .cso-logo { display: none; }
+
+    /* Timeline navigation */
+    .cso-nav { display: flex; flex-direction: column; padding-left: 0.25rem; }
+    .cso-nav-item {
+      position: relative;
+      padding: 0 0 var(--space-10) var(--space-6);
+      font-size: 0.875rem;
+      color: #B0AEA8;
+      cursor: pointer;
+      transition: color 0.25s;
+      line-height: 1;
+      font-weight: 400;
+      user-select: none;
+    }
+    .cso-nav-item:last-child { padding-bottom: 0; }
+    .cso-nav-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 1px;
+      width: 9px; height: 9px;
+      border-radius: 2px;
+      background: #C4C2BC;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .cso-nav-item::after {
+      content: '';
+      position: absolute;
+      left: 4px; top: 15px;
+      width: 1px;
+      height: calc(100% - 15px);
+      background: #DEDCD6;
+    }
+    .cso-nav-item:last-child::after { display: none; }
+    .cso-nav-item:hover { color: #6A6862; }
+    .cso-nav-item:hover::before { background: #8A8A8A; }
+    .cso-nav-item.active { color: #1A1A1A; font-weight: 500; }
+    .cso-nav-item.active::before { background: #1A1A1A; transform: scale(1.2); }
+
+    /* ── Mobile hamburger and close ── */
+    .cso-hamburger { display: none; }
+
+    /* ── Scroll mask — subtle white scrim so scrolling headings don't clash with fixed nav ── */
+    .cso-scroll-mask {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 76px;
+      background: rgba(255,255,255,0.8);
+      border-bottom: 1px solid rgba(34,34,34,0.3);
+      z-index: 22;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s var(--ease);
+    }
+    .cso-scroll-mask.visible { opacity: 1; }
+    .cso-mobile-close { display: none; }
+    @media (max-width: 767px) {
+      .cso-hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 44px; height: 44px;
+        margin: var(--space-4) 0 0 var(--margin);
+        padding: 10px;
+        cursor: pointer;
+      }
+      .cso-hamburger span {
+        display: block;
+        width: 22px; height: 1.5px;
+        background: #1A1A1A;
+        transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+      }
+
+      .cso-mobile-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: var(--space-4);
+        right: var(--margin);
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        border: 1px solid #E0DDD5;
+        background: #F9F8F6;
+        color: #1A1A1A;
+        cursor: pointer;
+        z-index: 30;
+        transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+      }
+      .cso-mobile-close:hover { background: #EFEDE7; border-color: #C4C2BC; }
+    }
+
+    /* ── Desktop centered pill-chain nav — Home / About / Get in Touch, 1024px+ ── */
+    .cso-desktop-nav { display: none; }
+    @media (min-width: 1024px) {
+      .cso-desktop-nav {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: var(--space-5);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 25;
+      }
+      .cso-dn-item {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px 10px;
+        margin-right: 32px;
+        border: 1.5px solid #1A1A1A;
+        border-radius: 100px;
+        font-family: 'Geist', 'Inter', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #1A1A1A;
+        background: #F9F8F6;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: background 0.2s var(--ease), color 0.2s var(--ease);
+      }
+      .cso-dn-item:last-child { margin-right: 0; }
+      .cso-dn-item::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 32px;
+        height: 1.5px;
+        background: #1A1A1A;
+        transform: translateY(-50%);
+      }
+      .cso-dn-item:last-child::after { display: none; }
+      .cso-dn-item:hover { background: #1A1A1A; color: #F9F8F6; }
+    }
+
+    /* ── Mobile bottom-sheet menu ── */
+    .cso-menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: #1A1A1A;
+      display: none;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .cso-menu-overlay.open { display: flex; transform: translateY(0); }
+
+    .cso-menu-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-5) var(--margin);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .cso-menu-mark {
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.06em;
+    }
+    .cso-menu-close {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      background: none; border: none;
+    }
+
+    .cso-menu-list {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-6) var(--margin);
+      gap: var(--space-8);
+    }
+    .cso-menu-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      cursor: pointer;
+    }
+    .cso-menu-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 100px;
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.6875rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    .cso-menu-label {
+      font-family: 'Onest', 'Inter', system-ui, sans-serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    /* ── Section layout: column-span grid, not a fixed sidebar ──
+       xs/sm (0-767): 1 column, heading and body stack
+       md (768+):  heading is a tight fixed width, body takes the rest
+       lg+ (1024+): heading fixed width slightly wider, body takes the rest */
+    .cso-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: 1px solid #E0DDD5;
+      column-gap: var(--gutter);
+    }
+    @media (min-width: 768px) {
+      .cso-section { grid-template-columns: 130px 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .cso-section { grid-template-columns: 150px 1fr; }
+    }
+
+    .cso-heading-col {
+      padding: 24px var(--gutter) 24px 16px;
+      position: sticky; top: 76px; height: fit-content;
+    }
+    @media (min-width: 1024px) {
+      .cso-heading-col { top: 88px; }
+    }
+    /* Headline Large — section titles, Geist w/ Inter Tight fallback */
+    .cso-heading { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 400; letter-spacing: -0.02em; color: #1A1A1A;
+      font-size: 56px; line-height: 64px; }
+
+    /* Headline Medium — smaller headline use, Geist w/ Inter Tight fallback */
+    .cso-heading-md { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 400; letter-spacing: -0.02em; color: #1A1A1A;
+      font-size: 32px; line-height: 40px; }
+
+    .cso-body { padding: 24px var(--margin) 32px var(--margin); min-width: 0; }
+    @media (min-width: 768px) {
+      .cso-body { padding-top: 96px; }
+    }
+    /* Title Large — pull quotes, weight medium per spec */
+    .cso-pull { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 500; color: #1A1A1A; margin-bottom: 2rem;
+      font-size: 16px; line-height: 24px; }
+    @media (min-width: 768px)  { .cso-pull { font-size: 24px; line-height: 32px; } }
+    /* Body Medium — flat 16/24 regular across every tier, per spec */
+    .cso-text { font-family: 'Geist', system-ui, sans-serif; font-size: 16px; line-height: 24px; font-weight: 400; color: #4A4A4A; margin-bottom: 1.25rem; }
+    .cso-text strong { font-weight: 600; color: #1A1A1A; }
+    /* Label — 12/18 regular, flat (single size sufficient on Desktop per spec) */
+    .cso-label { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 11px; line-height: 18px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: #222222; margin-bottom: var(--space-3); display: block; }
+    /* Title Medium — sub-headings, weight bold per spec, flat across tiers */
+    .cso-sub { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 500; letter-spacing: -0.01em; color: #1A1A1A; margin: var(--space-12) 0 var(--space-5);
+      font-size: 24px; line-height: 32px; }
+    .cso-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin: var(--space-8) 0; }
+    .cso-card { background: #EFEDE7; border-radius: 0; padding: var(--space-6); }
+    .cso-card-label { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 11px; line-height: 18px; font-weight: 400; color: #222222; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: var(--space-3); display: block; }
+    .cso-card-val { font-size: 1rem; font-weight: 500; color: #1A1A1A; line-height: 1.5; }
+    .cso-insight { background: #EFEDE7; border-radius: 0; padding: 1.5rem; }
+    .cso-insight-q { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: 0.5rem; }
+    .cso-insight-a { font-size: 0.875rem; color: #4A4A4A; line-height: 1.65; }
+
+    /* Full-width two-column insight rows — label left, description right */
+    .cso-insight-rows { display: flex; flex-direction: column; gap: var(--space-4); }
+    .cso-insight-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: var(--space-6);
+      background: #EFEDE7;
+      padding: var(--space-6);
+      border-radius: 0;
+    }
+    .cso-insight-label { font-size: 1rem; font-weight: 700; color: #1A1A1A; }
+    .cso-insight-desc { font-size: 1rem; color: #1A1A1A; line-height: 1.6; }
+
+    /* Research Method — heading + description side by side, matching reference */
+    .cso-method-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--space-4) var(--space-6);
+      margin-top: var(--space-12);
+      margin-bottom: var(--space-6);
+    }
+    .cso-method-header .cso-text { max-width: 420px; flex: 1; min-width: 240px; }
+
+    /* Highlighter — marker-style band behind key phrases, not a full block */
+    .cso-highlight {
+      background: rgba(129, 211, 218, 0.55);
+      color: inherit;
+      padding: 0.05em 0.15em;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      border-radius: 2px;
+    }
+
+    .cso-diagram-wrap {
+      background: #FFFFFF;
+      padding: var(--space-6);
+    }
+    @media (max-width: 640px) {
+      .cso-insight-row { grid-template-columns: 1fr; gap: var(--space-2); }
+    }
+
+    /* Interview Questions intro title — Title Large */
+    .cso-iq-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-4) var(--space-6); margin-bottom: var(--space-3); }
+    .cso-iq-label { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: 32px; line-height: 40px; font-weight: 400; color: #1A1A1A; letter-spacing: -0.02em; margin: 0; white-space: nowrap; }
+    .cso-iq-title { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: 32px; line-height: 40px; font-weight: 400; color: #1A1A1A; letter-spacing: -0.02em; margin: 0; }
+
+    /* Accordion */
+    .cso-accordion { display: flex; flex-direction: column; margin-top: var(--space-8); border-top: 1px solid #E0DDD5; }
+    .cso-acc-item { border-bottom: 1px solid #E0DDD5; }
+    .cso-acc-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-6) 0;
+      text-align: left;
+    }
+    .cso-acc-title {
+      font-family: 'Geist', 'Inter Tight', system-ui, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: #1A1A1A;
+      letter-spacing: -0.01em;
+    }
+    .cso-acc-icon {
+      width: 40px;
+      height: 40px;
+      color: #8A8A8A;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s var(--ease);
+      margin-left: var(--space-4);
+    }
+    .cso-acc-item.open .cso-acc-icon { transform: rotate(45deg); }
+
+    .cso-acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease);
+    }
+    .cso-acc-item.open .cso-acc-body { max-height: 4000px; }
+    .cso-acc-intro { font-size: 1rem; color: #4A4A4A; line-height: 1.6; padding-bottom: var(--space-6); max-width: 640px; }
+
+    .cso-qa-table { display: flex; flex-direction: column; padding-bottom: var(--space-8); }
+    .cso-qa-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-6);
+      padding: var(--space-5) 0;
+      border-top: 1px solid #E0DDD5;
+    }
+    .cso-qa-headrow {
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #222222;
+      border-top: none;
+      padding-top: 0;
+      padding-bottom: var(--space-3);
+    }
+    .cso-qa-q { font-size: 0.875rem; font-weight: 700; color: #1A1A1A; line-height: 1.5; }
+    .cso-qa-q em { font-weight: 400; font-style: italic; }
+    .cso-qa-a { font-size: 0.875rem; color: #1A1A1A; line-height: 1.7; }
+    .cso-qa-r { font-size: 0.875rem; color: #8A8A8A; line-height: 1.6; }
+    @media (max-width: 768px) {
+      .cso-qa-row { grid-template-columns: 1fr; gap: var(--space-2); }
+      .cso-qa-headrow { display: none; }
+      .cso-acc-title { font-size: 24px; }
+    }
+
+    .cso-roles { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-4); margin: var(--space-8) 0; }
+    .cso-role { background: #EFEDE7; border-radius: 0; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); border: 1.5px solid transparent; min-height: 320px; }
+    .cso-role.sel { background: rgba(46,161,173,0.08); border-color: #2EA1AD; }
+    .cso-role.sel .cso-role-front { background: rgba(46,161,173,0.08); }
+
+    /* Reveal mechanic — hover cross-fades to an illustration, same card footprint */
+    .cso-role-flip { min-height: 320px; padding: 0; position: relative; overflow: hidden; }
+    .cso-role-flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+    }
+    .cso-role-front, .cso-role-back {
+      position: absolute;
+      inset: 0;
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      transition: opacity 0.4s var(--ease);
+    }
+    .cso-role-front {
+      background: #EFEDE7;
+      opacity: 1;
+    }
+    .cso-role-back {
+      justify-content: flex-end;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+    }
+    .cso-role-flip:hover .cso-role-front { opacity: 0; }
+    .cso-role-flip:hover .cso-role-back { opacity: 1; }
+    .cso-role-back-label {
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1A1A1A;
+      background: rgba(255,255,255,0.85);
+      padding: 4px 10px;
+      align-self: flex-start;
+    }
+    .cso-role-name { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; }
+    .cso-role-sub { font-size: 0.875rem; color: #8A8A8A; line-height: 1.5; }
+    .cso-role-jlabel { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; color: #8A8A8A; text-transform: uppercase; letter-spacing: 0.08em; }
+    .cso-role-job { font-size: 0.875rem; color: #4A4A4A; line-height: 1.5; }
+    .cso-role-acc { display: inline-flex; align-items: center; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: #1A1A1A; margin-top: auto; padding: var(--space-1) var(--space-3); background: #FFFFFF; border-radius: 0; align-self: flex-start; }
+    .cso-sel-badge { background: #FFFFFF; color: #1A1A1A; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.06em; padding: var(--space-1) var(--space-2); border-radius: 0; display: inline-block; text-transform: uppercase; }
+    .cso-persona { background: #EFEDE7; border-radius: 0; padding: var(--space-8); margin-bottom: var(--space-8); }
+    .cso-persona-hdr { display: flex; align-items: flex-start; gap: var(--space-5); margin-bottom: var(--space-6); }
+    .cso-persona-av { width: 52px; height: 52px; border-radius: 50%; background: #E0DDD5; display: flex; align-items: center; justify-content: center; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.02em; color: #4A4A4A; flex-shrink: 0; }
+    .cso-persona-q { font-size: 1rem; font-style: italic; color: #1A1A1A; line-height: 1.6; }
+    .cso-persona-name { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; color: #8A8A8A; letter-spacing: 0.06em; margin-top: 0.5rem; }
+    .cso-persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+    .cso-ptitle { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #8A8A8A; margin-bottom: 0.75rem; display: block; }
+    .cso-plist { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .cso-plist li { font-size: 0.875rem; color: #4A4A4A; line-height: 1.55; padding-left: 1rem; position: relative; }
+    .cso-plist li::before { content: '·'; position: absolute; left: 0; color: #2EA1AD; font-weight: 700; }
+    .cso-plist.pain li::before { color: #E07070; }
+    .cso-exec { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-8); row-gap: var(--space-6); margin-top: var(--space-8); }
+    .cso-exec-card { background: none; border-radius: 0; padding: 0; border-top: 1px solid #D8D4C8; padding-top: var(--space-5); }
+    .cso-exec-t { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: var(--space-3); }
+    .cso-exec-b { font-size: 0.875rem; color: #4A4A4A; line-height: 1.65; }
+    .cso-theme { margin-bottom: 3rem; }
+    .cso-theme-hdr { display: grid; grid-template-columns: 200px 1fr; gap: var(--space-6); margin-bottom: var(--space-6); padding-bottom: var(--space-6); border-bottom: 1px solid #E0DDD5; }
+    .cso-theme-card { background: #EFEDE7; border: 0.5px solid rgba(0,0,0,0.15); border-radius: 0; padding: var(--space-5); }
+    .cso-theme-t { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: 0.5rem; }
+    .cso-theme-q { font-size: 0.875rem; color: #4A4A4A; line-height: 1.55; }
+    .cso-ideas { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .cso-idea { background: #FEF799; border: 0.5px solid rgba(0,0,0,0.15); border-radius: 0; padding: var(--space-5); }
+    .cso-idea-t { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: var(--space-2); }
+    .cso-idea-d { font-size: 0.875rem; color: #4A4A4A; line-height: 1.55; }
+    .cso-hero-sol { background: none; color: #1A1A1A; border-radius: 0; padding: 2.5rem 0 0; margin: 2rem 0; border-top: 1px solid #D8D4C8; }
+    .cso-hero-sol .lbl { display: inline-flex; align-items: center; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: #1A1A1A; padding: var(--space-1) var(--space-3); background: #FFFFFF; border-radius: 0; margin-bottom: 0.75rem; }
+    .cso-hero-sol h3 { font-size: 24px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 0.5rem; color: #1A1A1A; }
+    .cso-hero-sol p { font-size: 1rem; color: #4A4A4A; opacity: 1; line-height: 1.65; }
+    .cso-stories { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-6); row-gap: var(--space-6); margin-top: var(--space-8); }
+    @media (max-width:767px) { .cso-stories { grid-template-columns: 1fr; } }
+    .cso-story { background: #EFEDE7; border-radius: 0; padding: var(--space-6); }
+    .cso-story-role { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: 0.75rem; display: block; }
+    .cso-story-text { font-size: 0.875rem; color: #4A4A4A; line-height: 1.7; }
+    .cso-story-text strong { font-weight: 600; color: #1A1A1A; }
+    .cso-story-video-wrap { margin-top: 1.25rem; display: flex; justify-content: center; }
+    .cso-story-video-wrap video { width: 100%; max-width: 220px; border-radius: 12px; border: 0.5px solid rgba(0,0,0,0.15); display: block; background: #000; margin: 0 auto; }
+    .cso-divider { border: none; border-top: 1px solid #E0DDD5; margin: var(--space-10) 0; }
+    .cso-carousel { position: relative; margin-top: var(--space-6); margin-bottom: 45px; }
+    .cso-carousel-viewport { overflow: hidden; border: 0.5px solid rgba(0,0,0,0.15); background: #F4F2ED; position: relative; aspect-ratio: 1420 / 912; }
+    .cso-carousel-track { display: flex; height: 100%; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .cso-carousel-slide { flex: 0 0 100%; height: 100%; position: relative; }
+    .cso-carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cso-carousel-caption { font-size: 0.8125rem; color: #8A8A8A; margin-top: var(--space-3); text-align: center; }
+    .cso-carousel-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: var(--space-4); }
+    .cso-carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: #D8D4C8; border: none; padding: 0; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease; }
+    .cso-carousel-dot.active { background: #2EA1AD; transform: scale(1.3); }
+    .cso-carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.92); border: 0.5px solid rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2; transition: background 0.15s ease; }
+    .cso-carousel-arrow:hover { background: #FFFFFF; }
+    .cso-carousel-arrow.prev { left: 12px; }
+    .cso-carousel-arrow.next { right: 12px; }
+    .cso-carousel-overlay { position: absolute; left: 0; right: 0; bottom: 0; height: 35px; background: rgba(0,0,0,0.75); display: flex; align-items: center; padding: 0 1rem; pointer-events: none; }
+    .cso-carousel-overlay p { color: #FFFFFF; font-size: 12px; line-height: 1.5; margin: 0; }
+
+    .cso-sol-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-8); row-gap: var(--space-6); margin-top: var(--space-8); margin-bottom: var(--space-8); }
+    .cso-sol-card { background: none; border-radius: 0; padding: 0; border-top: 1px solid #D8D4C8; padding-top: var(--space-5); }
+    .cso-sol-t { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: 1rem; }
+    .cso-sol-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .cso-sol-card li { font-size: 0.875rem; color: #4A4A4A; padding-left: 1rem; position: relative; line-height: 1.55; }
+    .cso-sol-card li::before { content: '·'; position: absolute; left: 0; color: #2EA1AD; font-weight: 700; }
+    /* Large split button — "Next case study", same pattern as homepage card CTAs, scaled up */
+    .cso-next-cta {
+      display: flex;
+      align-items: stretch;
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      cursor: pointer;
+      max-width: 480px;
+    }
+    .cso-next-cta-label {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: var(--space-5) var(--space-6);
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #F9F8F6;
+      background: #222222;
+      transition: background 0.2s var(--ease);
+    }
+    .cso-next-cta-arrow {
+      width: 64px;
+      flex-shrink: 0;
+      border-left: 1px solid rgba(255,255,255,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #F9F8F6;
+      background: #222222;
+      transition: background 0.2s var(--ease);
+    }
+    .cso-next-cta:hover .cso-next-cta-label,
+    .cso-next-cta:hover .cso-next-cta-arrow { background: #626262; }
+    @media (max-width:767px) { .cso-sidebar { display:none; } .cso-heading-col { padding:24px var(--margin) 12px; } .cso-body { padding:12px var(--margin) 32px; } .cso-roles, .cso-grid2, .cso-exec, .cso-persona-grid, .cso-sol-grid, .cso-ideas, .cso-theme-hdr { grid-template-columns:1fr; } }
+
+    /* ── Mobile horizontal stepper — desktop timeline rotated 90° ── */
+    .cso-mobile-stepper {
+      display: none;
+    }
+    @media (max-width: 767px) {
+      .cso-mobile-stepper {
+        display: flex;
+        align-items: flex-start;
+        gap: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: var(--space-4) var(--margin) var(--space-3);
+        position: sticky;
+        top: 76px;
+        z-index: 20;
+        background: #F9F8F6;
+        border-bottom: 1px solid #E0DDD5;
+      }
+      .cso-mobile-stepper::-webkit-scrollbar { display: none; }
+
+      .cso-mstep {
+        position: relative;
+        flex-shrink: 0;
+        padding: 20px var(--space-4) 0 0;
+        font-size: 0.875rem;
+        color: #B0AEA8;
+        cursor: pointer;
+        transition: color 0.25s;
+        white-space: nowrap;
+        min-width: 68px;
+      }
+      .cso-mstep:last-child { padding-right: 0; }
+
+      /* Dot */
+      .cso-mstep::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 3px;
+        width: 9px; height: 9px;
+        border-radius: 2px;
+        background: #C4C2BC;
+        transition: background 0.25s, transform 0.25s;
+      }
+      /* Connecting line — horizontal now */
+      .cso-mstep::after {
+        content: '';
+        position: absolute;
+        left: 13px; top: 7px;
+        height: 1px;
+        width: calc(100% - 13px);
+        background: #DEDCD6;
+      }
+      .cso-mstep:last-child::after { display: none; }
+
+      .cso-mstep:hover { color: #6A6862; }
+      .cso-mstep:hover::before { background: #8A8A8A; }
+      .cso-mstep.active { color: #1A1A1A; font-weight: 500; }
+      .cso-mstep.active::before { background: #1A1A1A; transform: scale(1.2); }
+    }
+  </style>
+
+  <div class="cso-scroll-mask" id="cso-scroll-mask" aria-hidden="true"></div>
+
+  <button class="cso-hamburger" onclick="openCsoMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <button class="cso-mobile-close" onclick="closeCS()" aria-label="Close case study">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <!-- Desktop centered pill-chain nav — Home / About / Get in Touch, 1024px+ -->
+  <nav class="cso-desktop-nav" aria-label="Primary">
+    <span class="cso-dn-item" onclick="closeCS()">Home</span>
+    <span class="cso-dn-item" onclick="window.location.href='about.html'">About</span>
+    <span class="cso-dn-item" onclick="window.location.href='mailto:shierlydewi@gmail.com'">Get in Touch</span>
+  </nav>
+
+  <!-- Mobile bottom-sheet menu -->
+  <div class="cso-menu-overlay" id="cso-menu-overlay">
+    <div class="cso-menu-top">
+      <span class="cso-menu-mark">s_d</span>
+      <button class="cso-menu-close" onclick="closeCsoMenu()" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M4 4l10 10M14 4 4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="cso-menu-list">
+      <div class="cso-menu-item" onclick="closeCsoMenu(); closeCS();">
+        <span class="cso-menu-num">001</span>
+        <span class="cso-menu-label">Home</span>
+      </div>
+      <div class="cso-menu-item" onclick="window.location.href='about.html'">
+        <span class="cso-menu-num">002</span>
+        <span class="cso-menu-label">About</span>
+      </div>
+      <div class="cso-menu-item" onclick="window.location.href='mailto:shierlydewi@gmail.com'">
+        <span class="cso-menu-num">003</span>
+        <span class="cso-menu-label">Get in Touch</span>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile horizontal stepper — desktop timeline rotated 90°, only visible below md -->
+  <nav class="cso-mobile-stepper" aria-label="Case study sections">
+    <span class="cso-mstep active" onclick="csoScroll('cso-intro')">Intro</span>
+    <span class="cso-mstep" onclick="csoScroll('cso-scope')">Scope</span>
+    <span class="cso-mstep" onclick="csoScroll('cso-research')">Research</span>
+    <span class="cso-mstep" onclick="csoScroll('cso-insight')">Insight</span>
+    <span class="cso-mstep" onclick="csoScroll('cso-ideation')">Ideation</span>
+    <span class="cso-mstep" onclick="csoScroll('cso-prototype')">Prototype</span>
+  </nav>
+
+  <div class="cso-wrap">
+    <aside class="cso-sidebar">
+      <span class="cso-logo" onclick="closeCS()">s_d</span>
+      <nav class="cso-nav">
+        <span class="cso-nav-item active" onclick="csoScroll('cso-intro')">Intro</span>
+        <span class="cso-nav-item" onclick="csoScroll('cso-scope')">Scope</span>
+        <span class="cso-nav-item" onclick="csoScroll('cso-research')">Research</span>
+        <span class="cso-nav-item" onclick="csoScroll('cso-insight')">Insight</span>
+        <span class="cso-nav-item" onclick="csoScroll('cso-ideation')">Ideation</span>
+        <span class="cso-nav-item" onclick="csoScroll('cso-prototype')">Prototype</span>
+      </nav>
+    </aside>
+
+    <main style="flex:1;min-width:0">
+
+      <!-- INTRO -->
+      <div class="cso-section" id="cso-intro">
+        <div class="cso-heading-col"><h2 class="cso-heading">Intro</h2></div>
+        <div class="cso-body">
+          <p class="cso-pull">"Your challenge is to envision how a core banking app could meaningfully support the family or household ecosystem in managing their shared and individual financial responsibilities."</p>
+          <div class="cso-grid2">
+            <div class="cso-card"><span class="cso-card-label">Duration</span><span class="cso-card-val">1 week</span></div>
+            <div class="cso-card"><span class="cso-card-label">Artifacts</span><span class="cso-card-val">1 user journey prototype<br>1 presentation</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCOPE — merged: reimagining framing + roles breakdown, one step -->
+      <div class="cso-section" id="cso-scope">
+        <div class="cso-heading-col"><h2 class="cso-heading">Scope</h2></div>
+        <div class="cso-body">
+          <p class="cso-pull">"Reimagining digital banking experience this time, focusing on <u>multi-generational</u> needs and <u>shared family</u> or <u>household finances</u>"</p>
+          <div class="cso-grid2">
+            <div class="cso-card"><span class="cso-card-label">Multi-generational</span><span class="cso-card-val">The full multi-generational spectrum covers multiple roles</span></div>
+            <div class="cso-card"><span class="cso-card-label">Household finances</span><span class="cso-card-val">This covers shared and individual financial responsibilities.</span></div>
+          </div>
+          <p class="cso-text">The brief spans an entire family ecosystem, too broad to serve well in one week.</p>
+          <p class="cso-text"><strong>My action plan is to scope deliberately, map each role, then commit to the one with high value.</strong></p>
+
+          <hr class="cso-divider">
+
+          <p class="cso-text" style="font-size:1rem;color:#1A1A1A;font-weight:500;margin-bottom:2rem">How many users are within the multigenerational ecosystem?</p>
+          <div class="cso-roles">
+            <div class="cso-role cso-role-flip">
+              <div class="cso-role-flip-inner">
+                <div class="cso-role-front">
+                  <span class="cso-role-name">Child &amp; Teen <span style="font-weight:400;color:#8A8A8A">(&lt;18yrs)</span></span>
+                  <p class="cso-role-sub">The young dependent. Under 18.</p>
+                  <span class="cso-role-jlabel">Job</span>
+                  <p class="cso-role-job">Build first money habits, parent manages on their behalf.</p>
+                  <span class="cso-role-acc">Junior Savings Account</span>
+                </div>
+                <div class="cso-role-back" style="background-image:url('assets/images/img_12.jpg')">
+                  <span class="cso-role-back-label">Child &amp; Teen</span>
+                </div>
+              </div>
+            </div>
+            <div class="cso-role cso-role-flip">
+              <div class="cso-role-flip-inner">
+                <div class="cso-role-front">
+                  <span class="cso-role-name">Young Adult <span style="font-weight:400;color:#8A8A8A">(&gt;18yrs)</span></span>
+                  <p class="cso-role-sub">Between uni age and early work.</p>
+                  <span class="cso-role-jlabel">Job</span>
+                  <p class="cso-role-job">Move to full independence.</p>
+                  <span class="cso-role-acc">Own Basic Savings / Current</span>
+                </div>
+                <div class="cso-role-back" style="background-image:url('assets/images/img_13.jpg')">
+                  <span class="cso-role-back-label">Young Adult</span>
+                </div>
+              </div>
+            </div>
+            <div class="cso-role sel cso-role-flip">
+              <div class="cso-role-flip-inner">
+                <div class="cso-role-front">
+                  <span class="cso-sel-badge">Selected</span>
+                  <span class="cso-role-name">Caretaker Adult</span>
+                  <p class="cso-role-sub">Primary user and account holder, caring in both directions.</p>
+                  <span class="cso-role-jlabel">Job</span>
+                  <p class="cso-role-job">Manages upward, downward, and sharing of household finance.</p>
+                  <span class="cso-role-acc">Digital Wallet Account</span>
+                </div>
+                <div class="cso-role-back" style="background-image:url('assets/images/img_14.jpg')">
+                  <span class="cso-role-back-label">Caretaker Adult</span>
+                </div>
+              </div>
+            </div>
+            <div class="cso-role cso-role-flip">
+              <div class="cso-role-flip-inner">
+                <div class="cso-role-front">
+                  <span class="cso-role-name">Spouse / Partner</span>
+                  <p class="cso-role-sub">Shares household finances alongside the hub.</p>
+                  <span class="cso-role-jlabel">Job</span>
+                  <p class="cso-role-job">Shared/pooled everyday spending.</p>
+                  <span class="cso-role-acc">Shared pot</span>
+                </div>
+                <div class="cso-role-back" style="background-image:url('assets/images/img_15.jpg')">
+                  <span class="cso-role-back-label">Spouse / Partner</span>
+                </div>
+              </div>
+            </div>
+            <div class="cso-role cso-role-flip">
+              <div class="cso-role-flip-inner">
+                <div class="cso-role-front">
+                  <span class="cso-role-name">Sibling / Co-caregiver</span>
+                  <p class="cso-role-sub">Shares responsibility for Older Dependent.</p>
+                  <span class="cso-role-jlabel">Job</span>
+                  <p class="cso-role-job">Coordinate care/support.</p>
+                  <span class="cso-role-acc">Edge case</span>
+                </div>
+                <div class="cso-role-back" style="background-image:url('assets/images/img_16.jpg')">
+                  <span class="cso-role-back-label">Sibling / Co-caregiver</span>
+                </div>
+              </div>
+            </div>
+            <div class="cso-role cso-role-flip">
+              <div class="cso-role-flip-inner">
+                <div class="cso-role-front">
+                  <span class="cso-role-name">Older Dependent <span style="font-weight:400;color:#8A8A8A">(&gt;60yrs)</span></span>
+                  <p class="cso-role-sub">Owns their own money, receives care from children.</p>
+                  <span class="cso-role-jlabel">Job</span>
+                  <p class="cso-role-job">Access finance facilities and complete jobs to be done.</p>
+                  <span class="cso-role-acc">Basic Savings, Senior Savings</span>
+                </div>
+                <div class="cso-role-back" style="background-image:url('assets/images/img_17.jpg')">
+                  <span class="cso-role-back-label">Older Dependent</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESEARCH -->
+      <div class="cso-section" id="cso-research">
+        <div class="cso-heading-col"><h2 class="cso-heading">Research</h2></div>
+        <div class="cso-body">
+          <p class="cso-pull">Design is the search for a good fit between a form, and it's context.</p>
+          <p class="cso-text">What makes a problem what it is: human needs, technical constraints, conflicting requirements, habits, edge cases, and relationships. Bad design appears where those forces remain unresolved. Good design appears where those misfits have been worked through carefully. <span style="font-size:0.875rem;color:#8A8A8A">Christopher Alexander, Notes on the Synthesis of Form (1964), via Karri Saarinen, 2026</span></p>
+          <p class="cso-pull" style="margin-top:2rem">In here, my aim is to first shape the problem. Before I can work on the <strong>form</strong>, I must know the <strong>fit</strong>.</p>
+
+          <div class="cso-insight-rows" style="margin-top:2.5rem">
+            <div class="cso-insight-row">
+              <p class="cso-insight-label">A behavior</p>
+              <p class="cso-insight-desc">How does the user interact with digital tools to manage their finances?</p>
+            </div>
+            <div class="cso-insight-row">
+              <p class="cso-insight-label">A theory or hypothesis</p>
+              <p class="cso-insight-desc">How do people pool or separate money with their children / parent? Do they avoid a shared pot if they do?</p>
+            </div>
+            <div class="cso-insight-row">
+              <p class="cso-insight-label">User Preference</p>
+              <p class="cso-insight-desc">Do users have a preferred method of money distribution?</p>
+            </div>
+          </div>
+
+          <div class="cso-method-header">
+            <h3 class="cso-heading-md" style="margin:0">Research Method</h3>
+            <p class="cso-text" style="margin:0">Within UX research, there are various methods to collect data. Below is a map of various methods.</p>
+          </div>
+
+          <div class="cso-diagram-wrap">
+            <img src="assets/images/img_1.jpg" alt="A Landscape of User Research Methods framework by Christian Rohrer, 2022 — mapping research methods by behavioral vs attitudinal and qualitative vs quantitative axes" style="width:100%;height:auto;display:block;border-radius:0;" />
+          </div>
+
+          <p class="cso-text" style="margin-top:1.5rem">The diagram below categorises the methods into how the product is being used when testing. Because the users will not be using the product during the study, we will focus on Decontextualised methods of focus groups, interviews, and surveys.</p>
+          <p class="cso-text">Keeping in mind the limited time box, <mark class="cso-highlight">I will focus towards recruiting 3 to 5 users that passes as the Caretaker Adult. The methodology I will use is Interview, Qualitative (Direct). The questions would focus towards the "Why" and "How to fix".</mark></p>
+        </div>
+      </div>
+
+      <!-- INTERVIEW QUESTIONS -->
+      <div class="cso-section" id="cso-interview">
+        <div class="cso-heading-col"></div>
+        <div class="cso-body">
+          <div class="cso-iq-row">
+            <p class="cso-iq-label">Interview Questions</p>
+            <h3 class="cso-iq-title">Title: How money moves in your family?</h3>
+          </div>
+          <p class="cso-text">We're conducting an interview to understand how you invest and interact with financial platforms. Your feedback will help us design a more intuitive financial experience.</p>
+
+          <div class="cso-accordion">
+
+            <!-- PART 1 -->
+            <div class="cso-acc-item">
+              <button class="cso-acc-header" onclick="toggleAccordion(this)">
+                <span class="cso-acc-title">Part 1: User Screener</span>
+                <span class="cso-acc-icon">
+                  <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                    <path d="M22 11v22M11 22h22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="cso-acc-body">
+                <p class="cso-acc-intro">Recruit the candidates who support children and aging elderly. Are we speaking to the right user?</p>
+                <div class="cso-qa-table">
+                  <div class="cso-qa-row cso-qa-headrow">
+                    <span>Questions</span><span>Answers</span><span>Rationale, Purpose</span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">a) Do you currently provide financial support to any children or younger dependents?</span>
+                    <span class="cso-qa-a">Yes, regularly<br>Yes, occasionally<br>No</span>
+                    <span class="cso-qa-r"></span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">b) If yes, How do you support your children? <em>Select one or more</em></span>
+                    <span class="cso-qa-a">Give cash regularly<br>Transfer money to them<br>Pay their bills directly<br>Cover medical or care costs<br>Buy groceries and essentials<br>Help manage their accounts or banking</span>
+                    <span class="cso-qa-r">Financial support can mean differently for children of different ages</span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">c) Do you currently provide financial support to an Older Dependent or older relative?</span>
+                    <span class="cso-qa-a">Yes, regularly<br>Yes, occasionally<br>No</span>
+                    <span class="cso-qa-r"></span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">d) How do you support your parent / older relative? <em>Select one or more</em></span>
+                    <span class="cso-qa-a">Give cash regularly<br>Transfer money to them<br>Pay their bills directly<br>Cover medical or care costs<br>Buy groceries and essentials<br>Help manage their accounts or banking</span>
+                    <span class="cso-qa-r">Financial support can mean differently for Older Dependent or aging relative, or in-laws</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PART 2 -->
+            <div class="cso-acc-item">
+              <button class="cso-acc-header" onclick="toggleAccordion(this)">
+                <span class="cso-acc-title">Part 2: Behavior, Motivations</span>
+                <span class="cso-acc-icon">
+                  <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                    <path d="M22 11v22M11 22h22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="cso-acc-body">
+                <p class="cso-acc-intro">What is the current state of user habits? Understand their current preference. How do they currently use their banking apps? How does other financial channels play a role in managing one's finances.</p>
+                <div class="cso-qa-table">
+                  <div class="cso-qa-row cso-qa-headrow">
+                    <span>Questions</span><span>Answers</span><span>Rationale, Purpose</span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">1. How do you budget your finance for your children?</span>
+                    <span class="cso-qa-a">I budget a base amount monthly, with minor variables<br>I budget a base amount monthly, with high variables<br>I don't have a set budget, as the amount varies monthly</span>
+                    <span class="cso-qa-r">Depending on the type financial support, and/or family situation (i.e. age), the amount can be consistent or varies each time</span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">2. What is your preferred method to support your children? <em>Select one or more</em></span>
+                    <span class="cso-qa-a">Transfer money to individual account<br>Joint account or cash pooling<br>e-Wallet<br>Debit or prepaid card<br>Credit card<br>Pay their bills directly<br>None of the above</span>
+                    <span class="cso-qa-r">How much agency do parents provide to their children? What are the factors of the current method? Choice by default or certain preferences, motivations?</span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">3. Why are they your go-to choice? <em>Scale: 1 = Not important, 5 = Very important</em></span>
+                    <span class="cso-qa-a">Ease of use · Trust &amp; reliability · Parental Control · Security · Fraud and Scam Prevention · Mobile app design · Speed &amp; convenience · Usable everywhere · Cross-Border Payments · Financial Features · Mobility and Tolls · Shared pool money · Separate funds for purpose · Weekly or monthly auto-deductions</span>
+                    <span class="cso-qa-r">How much agency do parents provide to their children? What are the factors of the current method? Omnichannel touchpoints</span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">4. How do you budget your finance for your Older Dependent?</span>
+                    <span class="cso-qa-a">I budget a base amount monthly, with minor variables<br>I budget a base amount monthly, with high variables<br>I don't set a budget, as the amount varies monthly</span>
+                    <span class="cso-qa-r">Depending on the type financial support, and/or family situation (i.e. age), the amount can be consistent or varies each time</span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">5. What is your preferred method to support your Older Dependent/relative? <em>Select one or more</em></span>
+                    <span class="cso-qa-a">Transfer money to individual account<br>Joint account<br>E-Wallet or cash pooling<br>Debit or prepaid card<br>Credit card<br>Pay their bills directly<br>None of the above</span>
+                    <span class="cso-qa-r">How much agency do parents provide to their children. What are the factors of the current method? Omnichannel touchpoints</span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">6. Why are they your go-to choice? <em>Scale: 1 = Not important, 5 = Very important</em></span>
+                    <span class="cso-qa-a">Ease of use · Trust &amp; reliability · Parental Control · Security · Fraud and Scam Prevention · Mobile app design · Speed &amp; convenience · Usable everywhere · Cross-Border Payments · Financial Features · Mobility and Tolls · Shared pool money · Separate funds for purpose · Weekly or monthly auto-deductions</span>
+                    <span class="cso-qa-r">Choice by default or certain preferences, motivations? What matters most? Market &amp; Feature Benchmark</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PART 3 -->
+            <div class="cso-acc-item">
+              <button class="cso-acc-header" onclick="toggleAccordion(this)">
+                <span class="cso-acc-title">Part 3: Pain Points</span>
+                <span class="cso-acc-icon">
+                  <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                    <path d="M22 11v22M11 22h22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="cso-acc-body">
+                <p class="cso-acc-intro">What is the current state of user habits? Understand their current preference. How do they currently use their banking apps? How do other financial channels play a role in managing one's finances.</p>
+                <div class="cso-qa-table">
+                  <div class="cso-qa-row cso-qa-headrow">
+                    <span>Questions</span><span>Answers</span><span>Rationale, Purpose</span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">7. What challenges do you face when managing your family finances? <em>Scale: 1 = Not important, 5 = Very important</em></span>
+                    <span class="cso-qa-a">Budgeting and Tracking · Debt Management · Emergency Fund Planning · Education Planning · Retirement Planning · Rising Cost of Living &amp; Inflation · Poor Communication · Different Financial Goals</span>
+                    <span class="cso-qa-r"></span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">8. How many institutions are you currently trying to manage?</span>
+                    <span class="cso-qa-a">Enter value</span>
+                    <span class="cso-qa-r"></span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">9. If we could ease your financial management, what are some ways the banking app could assist?</span>
+                    <span class="cso-qa-a">Debt Pay down Progress · Unified Categorization · Salary Splitter · Virtual Wallets · Low-Balance Predictions · Smart Bill Calendar · Auto-Sweep Rules · Different Financial Goals · Other: ______</span>
+                    <span class="cso-qa-r">How to reduce the load of users managing multiple financial assets. Do they need automated budgeting feature? Do they require investment aggregation features</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PART 4 -->
+            <div class="cso-acc-item">
+              <button class="cso-acc-header" onclick="toggleAccordion(this)">
+                <span class="cso-acc-title">Part 4: Appendix (Optional)</span>
+                <span class="cso-acc-icon">
+                  <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                    <path d="M22 11v22M11 22h22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="cso-acc-body">
+                <p class="cso-acc-intro">Where does the user currently stand in their wealth situation?</p>
+                <div class="cso-qa-table">
+                  <div class="cso-qa-row cso-qa-headrow">
+                    <span>Questions</span><span>Answers</span><span>Rationale, Purpose</span>
+                  </div>
+                  <div class="cso-qa-row">
+                    <span class="cso-qa-q">10. Which of the following best describes your current financial stage?</span>
+                    <span class="cso-qa-a">
+                      Stage 1: My income barely covers my day to day essentials, and I am focused on cutting costs.<br><br>
+                      Stage 2: I can comfortably pay my basic bills and repay my debts, but I have little left to save.<br><br>
+                      Stage 3: I have consistent control over my finances, a growing emergency fund, and I routinely save/invest.<br><br>
+                      Stage 4: My investments are growing steadily, and I am actively tracking my progress toward clear long term goals.<br><br>
+                      Stage 5: I no longer rely solely on my employment income to cover my daily living expenses.<br><br>
+                      Stage 6: I have surplus wealth that allows me to live generously, fund large goals, or pursue passions freely.<br><br>
+                      Stage 7: I am focused on long term estate planning, building trusts, and passing wealth to the next generation.<br><br>
+                      Prefer not to say
+                    </span>
+                    <span class="cso-qa-r">Removes Income sensitivity. Do they need automated budgeting feature?</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INSIGHT -->
+      <div class="cso-section" id="cso-insight">
+        <div class="cso-heading-col"><h2 class="cso-heading">Insight</h2></div>
+        <div class="cso-body">
+          <p class="cso-text" style="margin-bottom:0.25rem">Method: Remote interview (audio)</p>
+          <p class="cso-text" style="margin-bottom:0.25rem">Sample size: 2</p>
+          <p class="cso-text" style="margin-bottom:2rem">Duration: 20-25 mins</p>
+
+          <span class="cso-card-label" style="display:block;margin-bottom:0.5rem">A note on sample size</span>
+          <p class="cso-text" style="margin-bottom:2.5rem">I opened the session for 3 days. Finding the right people, Malaysians who support family financially was hard, and money is a sensitive thing to ask my peers and strangers about. So I landed with depth over numbers: two of in-depth interview, treated as early, directional findings.</p>
+
+          <h3 class="cso-heading-md" style="margin:0 0 2rem 0">User Persona</h3>
+
+          <div class="cso-persona">
+            <div class="cso-persona-hdr">
+              <div class="cso-persona-av">HK</div>
+              <div>
+                <p class="cso-persona-q">"Must not cause me to take additional steps from my current behavior, is there incentive for me to do that?"</p>
+                <p class="cso-persona-name">Henry K (Mid 50s)</p>
+              </div>
+            </div>
+            <div class="cso-persona-grid">
+              <div>
+                <span class="cso-ptitle">Behavior</span>
+                <ul class="cso-plist">
+                  <li>Scheduled for baseline amount and ad-hoc for variables</li>
+                  <li>Provides allowance to children on weekly basis</li>
+                  <li>Manages expenses mainly through bank accounts, joint account with his spouse, and e-wallet for children</li>
+                  <li>Won't change behaviour without a clear reason or incentive</li>
+                </ul>
+              </div>
+              <div>
+                <span class="cso-ptitle">Profile</span>
+                <ul class="cso-plist">
+                  <li>Full time employee in private sector, steady salary income</li>
+                  <li>2 children studying in university dependent for academic support and a portion of living cost</li>
+                  <li>1 Older Dependent fixed amount support with occasional ad-hoc transfer</li>
+                  <li>Shares financial responsibility with his spouse</li>
+                </ul>
+              </div>
+              <div>
+                <span class="cso-ptitle">Preference</span>
+                <ul class="cso-plist">
+                  <li>"Keeping it secure doesn't necessarily translate to speed and automation, <u>I value security above anything else</u>"</li>
+                  <li>He manages across a few channels and is fine with it, aims to not add on more fragmentation/new channels</li>
+                </ul>
+              </div>
+              <div>
+                <span class="cso-ptitle">Pain Points</span>
+                <ul class="cso-plist pain">
+                  <li>Mild pain point, does not see major issues with services offered by banks and other financial services</li>
+                  <li>Does not seek new features, <u>only enhancements towards convenience, speed, and security</u></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="cso-persona">
+            <div class="cso-persona-hdr">
+              <div class="cso-persona-av">SJ</div>
+              <div>
+                <p class="cso-persona-q">"Even though we give them the indication, they will not be able to remember"</p>
+                <p class="cso-persona-name">Shibu J (Early 40s)</p>
+              </div>
+            </div>
+            <div class="cso-persona-grid">
+              <div>
+                <span class="cso-ptitle">Behavior</span>
+                <ul class="cso-plist">
+                  <li>Supports children on a needs basis, provides daily budget, supervised credit card, not a fixed allowance</li>
+                  <li>Supports parents on fixed amount transferred, foreign currency exchange</li>
+                  <li>Manages more than 10 facilities</li>
+                </ul>
+              </div>
+              <div>
+                <span class="cso-ptitle">Profile</span>
+                <ul class="cso-plist">
+                  <li>Full time employee in private sector, expat working abroad</li>
+                  <li>2 young children in their primary school</li>
+                  <li>Parents are Older Dependent fixed amount support with occasional ad-hoc transfer</li>
+                  <li>Sole provider to his family</li>
+                </ul>
+              </div>
+              <div>
+                <span class="cso-ptitle">Preference</span>
+                <ul class="cso-plist">
+                  <li><u>Uses e-wallets deliberately as a buffer, reduce digital footprints on low-risk facilities</u></li>
+                  <li>Selects institutions on practical criteria, speed of transfer, convenience, exchange rate ranks 3rd</li>
+                  <li>Sees himself as the steward of his growing wealth</li>
+                </ul>
+              </div>
+              <div>
+                <span class="cso-ptitle">Pain Points</span>
+                <ul class="cso-plist pain">
+                  <li>Children accessed saved card details and made accidental in app purchases</li>
+                  <li><u>Elderly parents struggle with digital banking, remembering password, prolonged login inactivity, surprise minimum-balance charges</u></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="cso-heading-md">Executive Summary</h3>
+          <div class="cso-exec">
+            <div class="cso-exec-card"><p class="cso-exec-t">Elderly parents' digital banking struggles</p><p class="cso-exec-b">From forgetting minimum balances to password confusion - digital tools fail elderly parents, creating ongoing friction in family financial support.</p></div>
+            <div class="cso-exec-card"><p class="cso-exec-t">Security drives channel selection</p><p class="cso-exec-b">Participants actively choose channels that limit exposure - eWallets as buffers, avoiding cash for elderly parents.</p></div>
+            <div class="cso-exec-card"><p class="cso-exec-t">Multi-channel financial fragmentation</p><p class="cso-exec-b">Participants manage numerous institutions simultaneously. Fragmentation is accepted as necessary - not a problem to solve.</p></div>
+            <div class="cso-exec-card"><p class="cso-exec-t">High inertia without clear incentives</p><p class="cso-exec-b">"It must not cause me additional steps." They won't switch without clear monetary incentives or convenience gains.</p></div>
+            <div class="cso-exec-card"><p class="cso-exec-t">Dual transfer: scheduled + ad-hoc</p><p class="cso-exec-b">Regular scheduled transfers combined with ad-hoc payments - a universal mental model for family money flows.</p></div>
+            <div class="cso-exec-card"><p class="cso-exec-t">Gradual financial independence</p><p class="cso-exec-b">Participants deliberately structure support to build independence - transitioning from joint to individual accounts over time.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IDEATION -->
+      <div class="cso-section" id="cso-ideation">
+        <div class="cso-heading-col"><h2 class="cso-heading">Ideation</h2></div>
+        <div class="cso-body">
+          <h3 class="cso-sub" style="margin-top:0">Feature Ideation</h3>
+          <div class="cso-theme">
+            <div class="cso-theme-hdr">
+              <div class="cso-theme-card"><p class="cso-theme-t">Theme 1: Security</p><p class="cso-theme-q">How might we protect aging adults and their families from elder fraud, scams, and money mistakes?</p></div>
+              <div class="cso-ideas">
+                <div class="cso-idea"><p class="cso-idea-t">Security Hub</p><p class="cso-idea-d">Up-to-date articles and features related to security</p></div>
+                <div class="cso-idea"><p class="cso-idea-t">Is this a scam? AI Checker</p><p class="cso-idea-d">Screenshot a SMS or paste a message/number - check if it's risky</p></div>
+                <div class="cso-idea"><p class="cso-idea-t">Safety Net</p><p class="cso-idea-d">Trusted Contact Person as proxy to help elderly, or be reachable</p></div>
+                <div class="cso-idea"><p class="cso-idea-t">Security Score</p><p class="cso-idea-d">Self-checking awareness - help promote existing features</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="cso-theme">
+            <div class="cso-theme-hdr" style="border-bottom:none;padding-bottom:0">
+              <div class="cso-theme-card"><p class="cso-theme-t">Theme 2: Convenience, Speed</p><p class="cso-theme-q">How might we ease daily financial tasks for the Caretaker Adult?</p></div>
+              <div class="cso-ideas">
+                <div class="cso-idea"><p class="cso-idea-t">Automate Repeat Transactions</p><p class="cso-idea-d">Save as favourite on the success page</p></div>
+                <div class="cso-idea"><p class="cso-idea-t">Budget Tracker</p><p class="cso-idea-d">Show balance in a meter - estimate how much remains</p></div>
+                <div class="cso-idea"><p class="cso-idea-t">Payment Reminders</p><p class="cso-idea-d">Remind users to make monthly payments</p></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="cso-sub" style="margin-top:0">Landscape Analysis</h3>
+          <div class="cso-carousel" id="cso-landscape-carousel">
+            <div class="cso-carousel-viewport">
+              <div class="cso-carousel-track" id="cso-carousel-track">
+                <div class="cso-carousel-slide"><img src="assets/images/img_1.png" alt="Carefull homepage hero — Financial safety, for you and a loved one"><div class="cso-carousel-overlay"><p>3rd party layer as security protection with a focus towards the elderly.</p></div></div>
+                <div class="cso-carousel-slide"><img src="assets/images/img_2.png" alt="Carefull product page — Catch what others miss, works with all of your accounts"><div class="cso-carousel-overlay"><p>3rd party layer as security protection with a focus towards the elderly.</p></div></div>
+                <div class="cso-carousel-slide"><img src="assets/images/img_3.png" alt="Scam detection alert UI pattern — Likely scam warning with report and block actions"><div class="cso-carousel-overlay"><p>Google's "Circle to Search" can now instantly tell you if a text message is a scam.</p></div></div>
+                <div class="cso-carousel-slide"><img src="assets/images/img_4.png" alt="Bank of America Elder Financial Care page — trusted contact, power of attorney, and elder resources"><div class="cso-carousel-overlay"><p>Bank of America Security Meter in our Mobile Banking app.</p></div></div>
+                <div class="cso-carousel-slide"><img src="assets/images/img_5.png" alt="Bank of America Security Center — security preferences meter and protection level"><div class="cso-carousel-overlay" style="height:auto;padding:0.75rem 1rem;align-items:flex-start"><p>Elderly user needs: Service for Elderly, Legacy planning, Joint account planning, Trusted Contact</p></div></div>
+              </div>
+            </div>
+            <button class="cso-carousel-arrow prev" aria-label="Previous image" onclick="csoCarouselNav(-1)">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 3 4 7l5 4" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="cso-carousel-arrow next" aria-label="Next image" onclick="csoCarouselNav(1)">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l5 4-5 4" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="cso-carousel-dots" id="cso-carousel-dots">
+              <button class="cso-carousel-dot active" onclick="csoCarouselGo(0)" aria-label="Go to image 1"></button>
+              <button class="cso-carousel-dot" onclick="csoCarouselGo(1)" aria-label="Go to image 2"></button>
+              <button class="cso-carousel-dot" onclick="csoCarouselGo(2)" aria-label="Go to image 3"></button>
+              <button class="cso-carousel-dot" onclick="csoCarouselGo(3)" aria-label="Go to image 4"></button>
+              <button class="cso-carousel-dot" onclick="csoCarouselGo(4)" aria-label="Go to image 5"></button>
+            </div>
+          </div>
+          <h3 class="cso-heading-md">Solution</h3>
+
+          <div class="cso-hero-sol"><span class="lbl">Selected Solution</span><h3>Trusted Contact Person (Safety Net)</h3><p>As a proxy to help elderly, guard activities, or be reachable. A caretaker adult nominates a trusted contact to receive alerts about suspicious transactions on an elderly parent's account - oversight without removing autonomy.</p>
+            <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid #D8D4C8">
+              <p style="font-size:0.875rem;font-weight:600;color:#1A1A1A;margin-bottom:0.75rem">Why I selected this solution</p>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem">
+                <li style="font-size:0.875rem;color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>I chose the elderly segment, where the unmet gap is widest.</li>
+                <li style="font-size:0.875rem;color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>The bank has invested well in the young and digitally savvy. Youth savings accounts, allowance tools, shared savings pots, bill splitting, expense tracking. The day-to-day money management space is well served.</li>
+                <li style="font-size:0.875rem;color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Malaysian banks do offer security features. Fund locking, account kill switches, transfer limits, ATM cash-out controls. These are useful, but they all assume one thing: that the account holder can act on their own. For an elderly user who forgets a password, misses a minimum balance, or gets talked into a transfer, self-protection is not enough.</li>
+                <li style="font-size:0.875rem;color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>None of these features involve a second, consented person. That is the gap.</li>
+              </ul>
+            </div>
+          </div>
+          <h3 class="cso-heading-md" style="margin-top:var(--space-12)">Customer Journey</h3>
+          <div style="margin-top:var(--space-6);border:0.5px solid rgba(0,0,0,0.15);overflow:hidden">
+            <img src="assets/images/img_6.png" alt="Customer journey map across Awareness, Consideration, Onboarding, Experience, and Loyalty stages, showing touchpoints, pain points, thoughts/feelings, and opportunities" style="width:100%;height:auto;display:block">
+          </div>
+        </div>
+      </div>
+
+      <!-- PROTOTYPE -->
+      <div class="cso-section" id="cso-prototype">
+        <div class="cso-heading-col"><h2 class="cso-heading">Prototype</h2></div>
+        <div class="cso-body">
+          <p class="cso-text" style="margin-bottom:2rem">Four user stories define the SafetyNet prototype - covering both the Older Dependent and Caretaker Adult perspectives across new and registered user states.</p>
+          <div class="cso-stories">
+            <div class="cso-story"><div><span class="cso-story-role">1 - Older Dependent (New User)</span><div class="cso-story-video-wrap" id="cso-story-video-1">
+              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_7.png">
+                <source src="assets/videos/video_1.mp4" type="video/mp4">
+              </video>
+            </div></div></div>
+            <div class="cso-story"><div><span class="cso-story-role">2 - Caretaker Adult (New User)</span><div class="cso-story-video-wrap" id="cso-story-video-2">
+              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_8.png">
+                <source src="assets/videos/video_2.mp4" type="video/mp4">
+              </video>
+            </div></div></div>
+            <div class="cso-story"><div><span class="cso-story-role">3 - Older Dependent (Registered User)</span><div class="cso-story-video-wrap" id="cso-story-video-3">
+              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_9.png">
+                <source src="assets/videos/video_3.mp4" type="video/mp4">
+              </video>
+            </div></div></div>
+            <div class="cso-story"><div><span class="cso-story-role">4 - Caretaker Adult (Registered User)</span><div class="cso-story-video-wrap" id="cso-story-video-4">
+              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_10.png">
+                <source src="assets/videos/video_4.mp4" type="video/mp4">
+              </video>
+            </div></div></div>
+          </div>
+          <div style="margin-top:var(--space-16);padding-top:var(--space-8);border-top:1px solid #E0DDD5">
+            <p style="font-size:0.875rem;color:#8A8A8A;font-family:'Inter Tight',sans-serif;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1.25rem">End of case study</p>
+            <a class="cso-next-cta" onclick="closeCS()">
+              <span class="cso-next-cta-label">Next case study</span>
+              <span class="cso-next-cta-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  /* ═══════════════════════════════════════════
+     UNDERWATER PARTICLE ENGINE
+     - Cursor-reactive, three tiers, slow drift
+  ═══════════════════════════════════════════ */
+  const canvas = document.getElementById('particle-canvas');
+  const ctx    = canvas.getContext('2d');
+  let particles = [], W, H;
+
+  // Live cursor position
+  const mouse = { x: -9999, y: -9999, active: false };
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouse.active = true;
+  }, { passive: true });
+  window.addEventListener('touchmove', e => {
+    const t = e.touches[0];
+    mouse.x = t.clientX;
+    mouse.y = t.clientY;
+    mouse.active = true;
+  }, { passive: true });
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); initParticles(); }, { passive: true });
+
+  function rand(min, max) { return min + Math.random() * (max - min); }
+
+  function initParticles() {
+    particles = [];
+
+    // ── Tier 1: Fine suspended sediment - very dense, almost invisible, slow drift
+    for (let i = 0; i < 260; i++) {
+      particles.push({
+        x:    rand(0, W),  y: rand(0, H),
+        ox:   0,           oy: 0,           // cursor offset accumulator
+        r:    rand(0.2, 0.7),
+        baseVx: rand(-0.018, 0.018),
+        baseVy: rand(-0.012, 0.012),
+        a:    rand(0.08, 0.28),
+        phase: rand(0, Math.PI * 2),
+        speed: rand(0.004, 0.01),
+        tier: 1,
+      });
+    }
+
+    // ── Tier 2: Mid-size particles - like marine snow / suspended minerals
+    for (let i = 0; i < 90; i++) {
+      particles.push({
+        x:    rand(0, W),  y: rand(0, H),
+        ox:   0,           oy: 0,
+        r:    rand(0.5, 1.4),
+        baseVx: rand(-0.03, 0.03),
+        baseVy: rand(-0.025, 0.025),
+        a:    rand(0.12, 0.38),
+        phase: rand(0, Math.PI * 2),
+        speed: rand(0.006, 0.014),
+        tier: 2,
+      });
+    }
+
+    // ── Tier 3: Rare bright particles - catch light like plankton or refraction
+    // Clustered near top-right where light enters
+    for (let i = 0; i < 28; i++) {
+      const zone = Math.random();
+      particles.push({
+        x:    zone > 0.4 ? rand(W * 0.5, W) : rand(0, W),
+        y:    zone > 0.4 ? rand(0, H * 0.5) : rand(0, H),
+        ox:   0,  oy: 0,
+        r:    rand(0.8, 2.0),
+        baseVx: rand(-0.02, 0.02),
+        baseVy: rand(-0.015, 0.015),
+        a:    rand(0.25, 0.65),
+        phase: rand(0, Math.PI * 2),
+        speed: rand(0.008, 0.018),
+        tier: 3,
+      });
+    }
+  }
+  initParticles();
+
+  const CURSOR_RADIUS  = 140;   // influence zone px
+  const PUSH_STRENGTH  = 0.55;  // how hard cursor pushes
+  const DAMPING        = 0.92;  // how quickly offset decays back
+  const MAX_OFFSET     = 60;    // cap displacement
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    particles.forEach(p => {
+      // Natural drift
+      p.x += p.baseVx;
+      p.y += p.baseVy;
+
+      // Soft wrap
+      if (p.x < -4)  p.x = W + 4;
+      if (p.x > W+4) p.x = -4;
+      if (p.y < -4)  p.y = H + 4;
+      if (p.y > H+4) p.y = -4;
+
+      // Cursor repulsion
+      if (mouse.active) {
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < CURSOR_RADIUS && dist > 0.5) {
+          const force  = (1 - dist / CURSOR_RADIUS) * PUSH_STRENGTH;
+          const nx     = dx / dist;
+          const ny     = dy / dist;
+          p.ox += nx * force;
+          p.oy += ny * force;
+        }
+      }
+
+      // Clamp and decay offset
+      p.ox = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, p.ox)) * DAMPING;
+      p.oy = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, p.oy)) * DAMPING;
+
+      const drawX = p.x + p.ox;
+      const drawY = p.y + p.oy;
+
+      // Subtle pulse - very gentle, barely noticeable
+      p.phase += p.speed;
+      const pulse = 0.85 + 0.15 * Math.sin(p.phase);
+      const alpha = p.a * pulse;
+
+      // All tiers: clean plain dots, no glow
+      ctx.beginPath();
+      ctx.arc(drawX, drawY, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.tier === 3
+        ? `rgba(200,238,248,${alpha})`   // tier 3 slightly brighter white-blue
+        : `rgba(190,225,240,${alpha})`   // tier 1 & 2 very subtle
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  /* ═══════════════════════════════════════════
+     FOREGROUND SPECKLES - float over hero
+  ═══════════════════════════════════════════ */
+  const sc    = document.getElementById('speckle-canvas');
+  const sCtx  = sc.getContext('2d');
+  let speckles = [], sW, sH;
+
+  function sResize() {
+    sW = sc.width  = window.innerWidth;
+    sH = sc.height = window.innerHeight;
+  }
+  sResize();
+  window.addEventListener('resize', () => { sResize(); initSpeckles(); }, { passive: true });
+
+  function initSpeckles() {
+    speckles = [];
+    const count = Math.floor(sW / 8); // density scales with width
+
+    for (let i = 0; i < count; i++) {
+      // Concentrate in top 70% - sparse toward bottom
+      const yBias = Math.pow(Math.random(), 1.4);
+      speckles.push({
+        x:     Math.random() * sW,
+        y:     yBias * sH * 0.72,
+        r:     Math.random() * 1.2 + 0.3,
+        vx:    (Math.random() - 0.5) * 0.09,
+        vy:    (Math.random() - 0.5) * 0.055,
+        a:     Math.random() * 0.55 + 0.2,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.007 + 0.003,
+        ox: 0, oy: 0,
+      });
+    }
+  }
+  initSpeckles();
+
+  const S_RADIUS   = 100;
+  const S_PUSH     = 0.4;
+  const S_DAMPING  = 0.88;
+
+  function drawSpeckles() {
+    sCtx.clearRect(0, 0, sW, sH);
+
+    speckles.forEach(s => {
+      // Natural drift
+      s.x += s.vx;
+      s.y += s.vy;
+
+      // Soft wrap - only within top portion
+      if (s.x < 0)   s.x = sW;
+      if (s.x > sW)  s.x = 0;
+      if (s.y < 0)   s.y = sH * 0.72;
+      if (s.y > sH * 0.72) s.y = 0;
+
+      // Cursor repulsion
+      if (mouse.active) {
+        const dx   = s.x - mouse.x;
+        const dy   = s.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < S_RADIUS && dist > 0.5) {
+          const force = (1 - dist / S_RADIUS) * S_PUSH;
+          s.ox += (dx / dist) * force;
+          s.oy += (dy / dist) * force;
+        }
+      }
+      s.ox *= S_DAMPING;
+      s.oy *= S_DAMPING;
+
+      const drawX = s.x + s.ox;
+      const drawY = s.y + s.oy;
+
+      // Gentle twinkle
+      s.phase += s.speed;
+      const alpha = s.a * (0.6 + 0.4 * Math.sin(s.phase));
+
+      // Fade out toward bottom edge of zone
+      const edgeFade = 1 - Math.max(0, (s.y - sH * 0.5) / (sH * 0.22));
+
+      sCtx.beginPath();
+      sCtx.arc(drawX, drawY, s.r, 0, Math.PI * 2);
+      sCtx.fillStyle = `rgba(255,255,255,${alpha * edgeFade})`;
+      sCtx.fill();
+    });
+
+    requestAnimationFrame(drawSpeckles);
+  }
+  drawSpeckles();
+
+  /* ── Typewriter greeting ─────────────────── */
+  const greetings = [
+    { text: 'Hello.',       pause: 1600 },  // English
+    { text: 'Apa khabar.',  pause: 1800 },  // Bahasa Melayu
+    { text: '你好.',         pause: 1600 },  // Mandarin
+    { text: 'Halo.',        pause: 1500 },  // Bahasa Indonesia
+    { text: 'Hello.',       pause: 99999 }, // settle on English
+  ];
+
+  const greetingEl = document.getElementById('hero-greeting');
+  let greetIdx = 0, charIdx = 0, isDeleting = false, typeTimer;
+
+  const TYPE_SPEED   = 85;
+  const DELETE_SPEED = 45;
+  const PAUSE_BEFORE_DELETE = greetings[0].pause;
+
+  function getPhrase() { return greetings[Math.min(greetIdx, greetings.length - 1)].text; }
+  function getPause()   { return greetings[Math.min(greetIdx, greetings.length - 1)].pause; }
+
+  function updateGreeting() {
+    const phrase  = getPhrase();
+    const display = phrase.slice(0, charIdx);
+
+    greetingEl.innerHTML = display + '<span class="typewriter-cursor"></span>';
+
+    if (!isDeleting) {
+      if (charIdx < phrase.length) {
+        charIdx++;
+        typeTimer = setTimeout(updateGreeting, TYPE_SPEED + Math.random() * 40);
+      } else {
+        // Finished typing - pause then decide
+        const pause = getPause();
+        if (pause > 9000) return; // last phrase - stay
+        typeTimer = setTimeout(() => {
+          isDeleting = true;
+          updateGreeting();
+        }, pause);
+      }
+    } else {
+      if (charIdx > 0) {
+        charIdx--;
+        typeTimer = setTimeout(updateGreeting, DELETE_SPEED);
+      } else {
+        // Finished deleting - move to next greeting
+        isDeleting = false;
+        greetIdx++;
+        charIdx = 0;
+        typeTimer = setTimeout(updateGreeting, 320);
+      }
+    }
+  }
+
+  // Start after page load animation settles
+  setTimeout(updateGreeting, 800);
+
+  /* ── Case study overlay toggle ─────── */
+  function openCS() {
+    document.getElementById('cs-overlay').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    document.getElementById('cs-overlay').scrollTop = 0;
+  }
+  function closeCS() {
+    document.getElementById('cs-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  function openCsoMenu() {
+    document.getElementById('cso-menu-overlay').classList.add('open');
+  }
+  function closeCsoMenu() {
+    document.getElementById('cso-menu-overlay').classList.remove('open');
+  }
+  function openMainMenu() {
+    document.getElementById('main-menu-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMainMenu() {
+    document.getElementById('main-menu-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function toggleAccordion(btn) {
+    const item = btn.closest('.cso-acc-item');
+    item.classList.toggle('open');
+  }
+  function csoScroll(id) {
+    const el = document.getElementById(id);
+    if (el) document.getElementById('cs-overlay').scrollTo({ top: el.offsetTop - 20, behavior: 'smooth' });
+  }
+  let csoCarouselIndex = 0;
+  function csoCarouselUpdate() {
+    const track = document.getElementById('cso-carousel-track');
+    const dots = document.querySelectorAll('#cso-carousel-dots .cso-carousel-dot');
+    if (!track) return;
+    track.style.transform = `translateX(-${csoCarouselIndex * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === csoCarouselIndex));
+  }
+  function csoCarouselGo(i) {
+    csoCarouselIndex = i;
+    csoCarouselUpdate();
+  }
+  function csoCarouselNav(dir) {
+    const track = document.getElementById('cso-carousel-track');
+    if (!track) return;
+    const total = track.children.length;
+    csoCarouselIndex = (csoCarouselIndex + dir + total) % total;
+    csoCarouselUpdate();
+  }
+  const csoOverlay = document.getElementById('cs-overlay');
+  const csoScrollMask = document.getElementById('cso-scroll-mask');
+  csoOverlay.addEventListener('scroll', () => {
+    if (csoScrollMask) csoScrollMask.classList.toggle('visible', csoOverlay.scrollTop > 4);
+
+    const ids = ['cso-intro','cso-scope','cso-research','cso-insight','cso-ideation','cso-prototype'];
+    let current = ids[0];
+    ids.forEach(id => { const el = document.getElementById(id); if (el && el.offsetTop - 80 <= csoOverlay.scrollTop) current = id; });
+    document.querySelectorAll('.cso-nav-item').forEach(n => n.classList.toggle('active', n.textContent.trim().toLowerCase() === current.replace('cso-','')));
+
+    // Mobile stepper — same active sync, plus keep active step scrolled into view
+    const activeLabel = current.replace('cso-','');
+    document.querySelectorAll('.cso-mstep').forEach(n => {
+      const isActive = n.textContent.trim().toLowerCase() === activeLabel;
+      n.classList.toggle('active', isActive);
+      if (isActive) n.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    });
+  }, { passive: true });
+
+  /* ── Nav scroll + scroll cue + FAB ─────── */
+  const nav    = document.getElementById('main-nav');
+  const fabTop = document.getElementById('fab-top');
+
+  window.addEventListener('scroll', () => {
+    const y          = window.scrollY;
+    const docH       = document.documentElement.scrollHeight;
+    const winH       = window.innerHeight;
+    const nearBottom = y + winH >= docH - 200;
+
+    nav.classList.toggle('scrolled', y > 60);
+    if (fabTop) fabTop.classList.toggle('visible', nearBottom);
+  }, { passive: true });
+
+  /* ── Scroll reveal ──────────────────────── */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -24px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
+
+  /* ── Active nav on scroll ───────────────── */
+  const workSection = document.getElementById('work');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const workObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      navLinks.forEach(a => a.classList.toggle('active', e.isIntersecting && a.getAttribute('href') === '#work'));
+    });
+  }, { threshold: 0.1 });
+  workObs.observe(workSection);
+</script>
+
+</body>
+</html>
