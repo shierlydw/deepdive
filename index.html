@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shierly Dewi - Senior UX Designer</title>
   <meta name="description" content="Senior UX Designer with 8 years across financial services, banking, insurance, and enterprise B2B. Based in Kuala Lumpur.">
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMwRTFBMTgiLz48dGV4dCB4PSIzMiIgeT0iNDMiIGZvbnQtZmFtaWx5PSJHZWlzdCxJbnRlcixzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzZGRDBEQSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+c2Q8L3RleHQ+PC9zdmc+">
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMwRTFBMTgiLz48dGV4dCB4PSIzMiIgeT0iNDMiIGZvbnQtZmFtaWx5PSJHZWlzdCxJbnRlcixzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzZGRDBEQSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+c2Q8L3RleHQ+PC9zdmc+">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Shierly Dewi — Senior UX Designer">
+  <meta property="og:description" content="Senior UX Designer with 8 years across financial services, banking, insurance, and enterprise B2B. Based in Kuala Lumpur.">
+  <meta property="og:site_name" content="Shierly Dewi">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Shierly Dewi — Senior UX Designer">
+  <meta name="twitter:description" content="Senior UX Designer with 8 years across financial services, banking, insurance, and enterprise B2B. Based in Kuala Lumpur.">
+
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +22,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&family=Geist:wght@400;500;600&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+
+    /* ── Type scale — 9 steps, fluid ─────────────────────────── */
+    :root {
+      --fs-display: clamp(56px, 8vw, 112px);
+      --fs-h1:      clamp(40px, 5.6vw, 64px);
+      --fs-h2:      clamp(28px, 3.5vw, 48px);
+      --fs-h3:      clamp(22px, 2.6vw, 32px);
+      --fs-h4:      clamp(18px, 1.9vw, 24px);
+      --fs-body-lg: clamp(13px, 1.2vw, 16px);
+      --fs-body:    clamp(12px, 1.05vw, 14px);
+      --fs-nav:     18px;
+      --fs-small:   clamp(11px, 1vw, 14px);
+      --fs-micro:   clamp(10px, 0.8vw, 12px);
+    }
+
     /* ═══════════════════════════════════════
        TOKENS
     ═══════════════════════════════════════ */
@@ -63,12 +88,13 @@
       background: var(--bg);
       color: var(--ink);
       font-family: var(--body);
-      font-size: 1rem;
+      font-size: var(--fs-body);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-    img { display: block; max-width: 100%; height: auto; }
+    img { display: block; max-width: 100%; height: auto; -webkit-user-drag: none; user-select: none; }
+    video { -webkit-user-drag: none; user-select: none; }
     a { color: inherit; text-decoration: none; }
     button { cursor: pointer; border: none; background: none; font-family: inherit; }
     ul { list-style: none; }
@@ -169,7 +195,7 @@
       right: 0;
       z-index: 100;
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       padding: 1.25rem 2rem;
       pointer-events: none;
     }
@@ -177,67 +203,63 @@
     .nav-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0;
-      background: rgba(18, 24, 24, 0.72);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+      gap: var(--space-6);
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
       pointer-events: auto;
-      transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
-    }
-    .nav.scrolled .nav-pill {
-      background: rgba(8,8,8,0.9);
-      border-color: rgba(255,255,255,0.08);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: var(--space-2);
+      gap: var(--space-6);
       margin-right: var(--space-3);
     }
 
     .nav-links a {
       display: inline-flex;
       align-items: center;
-      font-family: var(--accent-font);
-      font-size: 0.6875rem;
+      font-family: 'Geist', var(--accent-font);
+      font-size: var(--fs-body);
       font-weight: 500;
-      color: var(--ink-2);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      text-transform: none;
       white-space: nowrap;
-      padding: var(--space-1) var(--space-3);
-      border: 1px solid rgba(232,248,255,0.14);
-      border-radius: 100px;
-      transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      transition: opacity 0.2s var(--ease);
     }
-    .nav-links a:hover { color: var(--ink); border-color: rgba(232,248,255,0.3); }
-    .nav-links a.active { color: var(--ink); border-color: var(--accent); background: rgba(98,210,224,0.08); }
+    .nav-links a:hover { opacity: 0.55; }
+    .nav-links a.active { color: #FFFFFF; }
 
     .nav-cta {
       display: inline-flex;
       align-items: center;
-      padding: var(--space-1) var(--space-3);
-      background: transparent;
-      color: var(--ink);
-      font-family: var(--accent-font);
-      font-size: 0.6875rem;
+      padding: 0;
+      background: none;
+      color: #FFFFFF;
+      font-family: 'Geist', var(--accent-font);
+      font-size: var(--fs-body);
       font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: 1px solid var(--accent);
-      border-radius: 100px;
+      letter-spacing: 0;
+      text-transform: none;
+      border: none;
+      border-radius: 0;
       white-space: nowrap;
-      transition: background 0.2s var(--ease), color 0.2s var(--ease);
+      transition: opacity 0.2s var(--ease);
       text-decoration: none;
     }
-    .nav-cta:hover { background: var(--accent); color: var(--bg); }
+    .nav-cta:hover { opacity: 0.55; background: none; color: #FFFFFF; }
 
     /* ── Mobile hamburger + bottom-sheet menu — mirrors case study pattern ── */
     .main-hamburger { display: none; }
+    @media (max-width: 1023px) {
+      .nav-links a, .nav-cta { font-size: var(--fs-small); }
+    }
     @media (max-width: 767px) {
       .nav-pill { display: none; }
       .main-hamburger {
@@ -283,7 +305,7 @@
     }
     .main-menu-mark {
       font-family: var(--accent-font);
-      font-size: 0.8125rem;
+      font-size: var(--fs-small);
       color: var(--ink-2);
       letter-spacing: 0.06em;
     }
@@ -316,14 +338,14 @@
       border: 1px solid rgba(232,248,255,0.35);
       border-radius: 100px;
       font-family: var(--accent-font);
-      font-size: 0.6875rem;
+      font-size: var(--fs-micro);
       color: var(--ink-2);
       letter-spacing: 0.04em;
       flex-shrink: 0;
     }
     .main-menu-label {
       font-family: 'Onest', 'Inter', system-ui, sans-serif;
-      font-size: 2rem;
+      font-size: var(--fs-h3);
       font-weight: 400;
       color: var(--ink);
       letter-spacing: -0.02em;
@@ -346,7 +368,7 @@
           rgba(8,8,8,0)    65%,
           rgba(8,8,8,0.7)  85%,
           rgba(8,8,8,1)    100%),
-        url('assets/images/img_11.jpg');
+        url('assets/images/img_1.jpg');
       background-size: cover;
       background-position: top center;
       background-repeat: no-repeat;
@@ -366,7 +388,7 @@
     /* Combined hero display — greeting + name same block, same size */
     .hero-display {
       font-family: 'Onest', 'Inter', system-ui, sans-serif;
-      font-size: clamp(56px, 8vw, 112px);
+      font-size: var(--fs-display);
       font-weight: 300;
       line-height: 1.0;
       letter-spacing: -0.03em;
@@ -406,12 +428,12 @@
 
     .hero-statement {
       font-family: 'Inter', system-ui, sans-serif;
-      font-size: clamp(1rem, 2vw, 1.125rem);
+      font-size: var(--fs-h4);
       font-weight: 400;
       font-style: normal;
       color: rgba(232,248,255,0.82);
-      line-height: 1.7;
-      max-width: 600px;
+      line-height: 1.5;
+      max-width: min(100%, 46ch);
       margin: 0;
       margin-top: auto;
       opacity: 0;
@@ -466,9 +488,9 @@
     }
 
     /* Progressively darker collapsed backgrounds */
-    .cs-card--1 { background: rgba(20,35,32,0.45); }
+    .cs-card--1 { background: rgba(14,26,24,0.45); }
     .cs-card--2 { background: rgba(14,26,24,0.45); }
-    .cs-card--3 { background: rgba(10,20,18,0.45); }
+    .cs-card--3 { background: rgba(20,35,32,0.45); }
 
     .cs-card { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid transparent; }
     .cs-card:hover { flex: 2.8; background: #F4F1EA; backdrop-filter: none; -webkit-backdrop-filter: none; border-color: transparent; }
@@ -497,7 +519,7 @@
 
     .cs-collapsed-tag {
       font-family: var(--accent-font);
-      font-size: 0.6875rem;
+      font-size: var(--fs-micro);
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -508,7 +530,7 @@
 
     .cs-collapsed-title {
       font-family: var(--display);
-      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      font-size: var(--fs-h4);
       font-weight: 500;
       line-height: 1.25;
       letter-spacing: -0.02em;
@@ -534,7 +556,7 @@
 
     .cs-exp-tag {
       font-family: var(--accent-font);
-      font-size: 0.6875rem;
+      font-size: var(--fs-micro);
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -556,7 +578,7 @@
 
     .cs-exp-title {
       font-family: var(--display);
-      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-size: var(--fs-h3);
       font-weight: 500;
       line-height: 1.2;
       letter-spacing: -0.025em;
@@ -566,7 +588,7 @@
 
     .cs-exp-desc {
       font-family: var(--body);
-      font-size: 0.9375rem;
+      font-size: var(--fs-body);
       line-height: 1.7;
       color: #4A4A4A;
       flex: 1;
@@ -581,7 +603,7 @@
 
     .cs-exp-outcome {
       font-family: var(--accent-font);
-      font-size: 0.6875rem;
+      font-size: var(--fs-micro);
       font-weight: 500;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -615,7 +637,7 @@
       align-items: center;
       padding: var(--space-3) var(--space-4);
       font-family: var(--accent-font);
-      font-size: 0.75rem;
+      font-size: var(--fs-micro);
       font-weight: 500;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -701,7 +723,7 @@
 
     .footer-copy {
       font-family: var(--accent-font);
-      font-size: 0.8125rem;
+      font-size: var(--fs-small);
       color: var(--ink-3);
     }
 
@@ -709,27 +731,25 @@
     .fab-top {
       position: fixed;
       bottom: 2rem;
-      right: 2rem;
+      left: 2rem;
       z-index: 150;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1px solid var(--border-hover);
-      background: rgba(8, 14, 18, 0.8);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: none;
+      background: #1A1A1A;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent);
+      color: #F4F1EA;
       cursor: pointer;
       opacity: 0;
       transform: translateY(12px);
       transition: opacity 0.4s var(--ease-out),
                   transform 0.4s var(--ease-out),
-                  border-color 0.2s var(--ease),
-                  box-shadow 0.2s var(--ease);
+                  background 0.2s var(--ease);
       pointer-events: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
     .fab-top.visible {
       opacity: 1;
@@ -737,9 +757,48 @@
       pointer-events: auto;
     }
     .fab-top:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 20px rgba(45,219,184,0.18);
+      background: #2E2A27;
     }
+
+  
+    /* ═══ Mobile / touch refinements ═══════════════════════════ */
+
+    /* Hamburger sits on the left, aligned with the card edge */
+    @media (max-width: 767px) {
+      .nav { justify-content: flex-start; }
+    }
+
+    /* No hover on touch, so show the expanded face outright and let
+       every tap fall through to the wrapping <a> — whole card is the target. */
+    @media (hover: none) {
+      .cs-card .cs-collapsed { display: none; }
+      .cs-card .cs-expanded {
+        position: relative;
+        inset: auto;
+        opacity: 1;
+        pointer-events: auto;
+        transition: none;
+      }
+      /* nothing inside the card is separately interactive — every tap is the card */
+      .cs-card .cs-expanded * { pointer-events: none; }
+      .cs-card {
+        min-height: 0;
+        background: #F4F1EA;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-color: transparent;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .cs-card:active { transform: scale(0.985); }
+    }
+
+  
+    /* ═══ Navigation — one size everywhere ═══════════════════════
+       Doubled selectors so these beat the per-breakpoint overrides
+       further up without needing !important. */
+    .nav .nav-links a,
+    .nav .nav-cta { font-size: var(--fs-nav); }
 
   </style>
 </head>
@@ -760,9 +819,9 @@
     <div class="nav-pill">
       <ul class="nav-links" role="list">
         <li><a href="#work" class="active">Work</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="https://www.linkedin.com/in/shierlydc/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
       </ul>
-      <a href="mailto:shierlydewi@gmail.com" class="nav-cta">Get in touch</a>
+      <a href="mailto:shierlydewi@gmail.com" class="nav-cta">Email</a>
     </div>
     <button class="main-hamburger" onclick="openMainMenu()" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -784,13 +843,13 @@
         <span class="main-menu-num">001</span>
         <span class="main-menu-label">Work</span>
       </a>
-      <a href="about.html" class="main-menu-item">
+      <a href="https://www.linkedin.com/in/shierlydc/" target="_blank" rel="noopener noreferrer" class="main-menu-item">
         <span class="main-menu-num">002</span>
-        <span class="main-menu-label">About</span>
+        <span class="main-menu-label">LinkedIn</span>
       </a>
       <a href="mailto:shierlydewi@gmail.com" class="main-menu-item">
         <span class="main-menu-num">003</span>
-        <span class="main-menu-label">Get in Touch</span>
+        <span class="main-menu-label">Email</span>
       </a>
     </nav>
   </div>
@@ -817,8 +876,36 @@
     <div class="container">
       <div class="cs-row reveal">
 
-        <!-- Card 1: Multigenerational Family Banking -->
-        <a class="cs-card cs-card--1" href="#" onclick="openCS('family-banking'); return false;" aria-label="Multigenerational Family Banking case study">
+        <!-- Card 1: Scaling Design System (real work — leads) -->
+        <a class="cs-card cs-card--3" href="#work" data-cs="design-system" aria-label="Scaling Design System to Support Asia Expansion case study">
+
+          <div class="cs-collapsed">
+            <h2 class="cs-collapsed-title">Scaling Design System to Support Asia Expansion</h2>
+          </div>
+
+          <div class="cs-expanded">
+            <span class="cs-exp-tag">Design Systems · Asia Expansion</span>
+            <h2 class="cs-exp-title">Scaling Design System to Support Asia Expansion</h2>
+            <p class="cs-exp-desc">Driving consistency across products and streamlining operations - unifying a fragmented design system across Australia, Bangladesh, Nepal, South Korea, and Malaysia.</p>
+            <div class="cs-exp-outcomes">
+              <span class="cs-exp-outcome">70+ components launched</span>
+              <span class="cs-exp-outcome">80% adoption rate</span>
+            </div>
+            <div class="cs-exp-divider"></div>
+            <div class="cs-exp-cta">
+              <span class="cs-exp-cta-label">View case study</span>
+              <span class="cs-exp-arrow">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+        </a>
+
+        <!-- Card 2: Multigenerational Family Banking -->
+        <a class="cs-card cs-card--1" href="#work" data-cs="family-banking" aria-label="Multigenerational Family Banking case study">
 
           <div class="cs-collapsed">
             <h2 class="cs-collapsed-title">Multigenerational Family Banking</h2>
@@ -845,8 +932,9 @@
 
         </a>
 
-        <!-- Card 2: MetLife Onboarding -->
-        <a class="cs-card cs-card--2" href="case-study-metlife.html" aria-label="MetLife 360Health Onboarding case study">
+        <!-- Card 3: MetLife 360Health — HIDDEN until the case study page exists.
+             To bring it back, delete the hidden attribute and inline display:none below. -->
+        <a class="cs-card cs-card--2" hidden style="display:none" href="case-study-metlife.html" aria-label="MetLife 360Health Onboarding case study">
 
           <div class="cs-collapsed">
             <h2 class="cs-collapsed-title">MetLife 360Health Onboarding</h2>
@@ -873,33 +961,6 @@
 
         </a>
 
-        <!-- Card 3: Design System Ops -->
-        <a class="cs-card cs-card--3" href="#" aria-label="Design System Ops case study">
-
-          <div class="cs-collapsed">
-            <h2 class="cs-collapsed-title">Design System Ops</h2>
-          </div>
-
-          <div class="cs-expanded">
-            <span class="cs-exp-tag">Design Systems</span>
-            <h2 class="cs-exp-title">Design System Ops</h2>
-            <p class="cs-exp-desc">Built and governed a scalable component library and token architecture for MetLife's regional digital products - enabling consistent delivery across mobile, web, and third-party platforms.</p>
-            <div class="cs-exp-outcomes">
-              <span class="cs-exp-outcome">Multi-platform</span>
-              <span class="cs-exp-outcome">Token architecture</span>
-            </div>
-            <div class="cs-exp-divider"></div>
-            <div class="cs-exp-cta">
-              <span class="cs-exp-cta-label">View case study</span>
-              <span class="cs-exp-arrow">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-            </div>
-          </div>
-
-        </a>
 
       </div>
     </div>
@@ -928,7 +989,7 @@
 <!-- ═══════════════════════════════════════
      CASE STUDY OVERLAY - Family Banking
 ═══════════════════════════════════════ -->
-<div id="cs-overlay" style="display:none;position:fixed;inset:0;z-index:300;overflow-y:auto;background:#F9F8F6;">
+<div id="cs-overlay" style="display:none;position:fixed;inset:0;-webkit-overflow-scrolling:touch;z-index:300;overflow-y:auto;background:#F9F8F6;">
   <style>
     #cs-overlay {
       font-family: 'Geist', 'Inter', system-ui, sans-serif; color: #1A1A1A; -webkit-font-smoothing: antialiased;
@@ -954,7 +1015,8 @@
     @media (min-width: 1024px) {
       .cso-wrap { padding-top: 64px; }
     }
-    .cso-sidebar { width: 170px; flex-shrink: 0; position: sticky; top: 76px; height: calc(100svh - 76px); overflow-y: auto; padding: var(--space-10) 0 var(--space-10) var(--space-6); display: flex; flex-direction: column; background: #F9F8F6; }
+    .cso-sidebar { width: 170px; flex-shrink: 0; position: sticky; top: 76px; height: calc(100svh - 76px); overflow-y: auto; padding: var(--space-10) 0 var(--space-10) var(--space-6); display: flex; flex-direction: column; background: #F9F8F6; transition: top 0.25s ease, height 0.25s ease; }
+    .cso-sidebar.cso-nav-hidden { top: 0; height: 100svh; }
     @media (min-width: 1024px) {
       .cso-sidebar { top: 88px; height: calc(100svh - 88px); }
     }
@@ -965,7 +1027,7 @@
     .cso-nav-item {
       position: relative;
       padding: 0 0 var(--space-10) var(--space-6);
-      font-size: 0.875rem;
+      font-size: var(--fs-small);
       color: #B0AEA8;
       cursor: pointer;
       transition: color 0.25s;
@@ -1001,18 +1063,7 @@
     .cso-hamburger { display: none; }
 
     /* ── Scroll mask — subtle white scrim so scrolling headings don't clash with fixed nav ── */
-    .cso-scroll-mask {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 76px;
-      background: rgba(255,255,255,0.8);
-      border-bottom: 1px solid rgba(34,34,34,0.3);
-      z-index: 22;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s var(--ease);
-    }
-    .cso-scroll-mask.visible { opacity: 1; }
+    .cso-scroll-mask { display: none; }
     .cso-mobile-close { display: none; }
     @media (max-width: 767px) {
       .cso-hamburger {
@@ -1021,10 +1072,17 @@
         justify-content: center;
         gap: 5px;
         width: 44px; height: 44px;
-        margin: var(--space-4) 0 0 var(--margin);
+        position: fixed;
+        top: var(--space-4);
+        left: var(--margin);
+        z-index: 30;
         padding: 10px;
         cursor: pointer;
+        background: #F9F8F6;
+        border-radius: 50%;
+        transition: opacity 0.25s ease, transform 0.25s ease;
       }
+      .cso-hamburger.cso-nav-hidden { opacity: 0; transform: translateY(-8px); pointer-events: none; }
       .cso-hamburger span {
         display: block;
         width: 22px; height: 1.5px;
@@ -1051,7 +1109,7 @@
       .cso-mobile-close:hover { background: #EFEDE7; border-color: #C4C2BC; }
     }
 
-    /* ── Desktop centered pill-chain nav — Home / About / Get in Touch, 1024px+ ── */
+    /* ── Desktop centered pill-chain nav — Home / LinkedIn / Email, 1024px+ ── */
     .cso-desktop-nav { display: none; }
     @media (min-width: 1024px) {
       .cso-desktop-nav {
@@ -1062,38 +1120,27 @@
         left: 50%;
         transform: translateX(-50%);
         z-index: 25;
+        transition: opacity 0.25s ease, transform 0.25s ease;
       }
+      .cso-desktop-nav.cso-nav-hidden { opacity: 0; transform: translateX(-50%) translateY(-8px); pointer-events: none; }
       .cso-dn-item {
         position: relative;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 2px 10px;
-        margin-right: 32px;
-        border: 1.5px solid #1A1A1A;
-        border-radius: 100px;
+        padding: 0;
+        margin-right: 40px;
         font-family: 'Geist', 'Inter', system-ui, sans-serif;
-        font-size: 14px;
-        font-weight: 400;
+        font-size: var(--fs-body);
+        font-weight: 500;
         color: #1A1A1A;
-        background: #F9F8F6;
+        background: none;
         white-space: nowrap;
         cursor: pointer;
-        transition: background 0.2s var(--ease), color 0.2s var(--ease);
+        transition: opacity 0.2s var(--ease);
       }
       .cso-dn-item:last-child { margin-right: 0; }
-      .cso-dn-item::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 100%;
-        width: 32px;
-        height: 1.5px;
-        background: #1A1A1A;
-        transform: translateY(-50%);
-      }
-      .cso-dn-item:last-child::after { display: none; }
-      .cso-dn-item:hover { background: #1A1A1A; color: #F9F8F6; }
+      .cso-dn-item:hover { opacity: 0.55; }
     }
 
     /* ── Mobile bottom-sheet menu ── */
@@ -1118,7 +1165,7 @@
     }
     .cso-menu-mark {
       font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 0.875rem;
+      font-size: var(--fs-small);
       color: rgba(255,255,255,0.55);
       letter-spacing: 0.06em;
     }
@@ -1150,14 +1197,14 @@
       border: 1px solid rgba(255,255,255,0.35);
       border-radius: 100px;
       font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 0.6875rem;
+      font-size: var(--fs-micro);
       color: rgba(255,255,255,0.6);
       letter-spacing: 0.04em;
       flex-shrink: 0;
     }
     .cso-menu-label {
       font-family: 'Onest', 'Inter', system-ui, sans-serif;
-      font-size: 2rem;
+      font-size: var(--fs-h3);
       font-weight: 400;
       color: #fff;
       letter-spacing: -0.02em;
@@ -1182,17 +1229,19 @@
     .cso-heading-col {
       padding: 24px var(--gutter) 24px 16px;
       position: sticky; top: 76px; height: fit-content;
+      transition: top 0.25s ease;
     }
+    .cso-heading-col.cso-nav-hidden { top: 0; }
     @media (min-width: 1024px) {
       .cso-heading-col { top: 88px; }
     }
     /* Headline Large — section titles, Geist w/ Inter Tight fallback */
     .cso-heading { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 400; letter-spacing: -0.02em; color: #1A1A1A;
-      font-size: 56px; line-height: 64px; }
+      font-size: var(--fs-h1); line-height: 64px; }
 
     /* Headline Medium — smaller headline use, Geist w/ Inter Tight fallback */
     .cso-heading-md { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 400; letter-spacing: -0.02em; color: #1A1A1A;
-      font-size: 32px; line-height: 40px; }
+      font-size: var(--fs-h3); line-height: 40px; }
 
     .cso-body { padding: 24px var(--margin) 32px var(--margin); min-width: 0; }
     @media (min-width: 768px) {
@@ -1200,23 +1249,23 @@
     }
     /* Title Large — pull quotes, weight medium per spec */
     .cso-pull { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 500; color: #1A1A1A; margin-bottom: 2rem;
-      font-size: 16px; line-height: 24px; }
-    @media (min-width: 768px)  { .cso-pull { font-size: 24px; line-height: 32px; } }
+      font-size: var(--fs-body); line-height: 24px; }
+    @media (min-width: 768px)  { .cso-pull { font-size: var(--fs-h4); line-height: 32px; } }
     /* Body Medium — flat 16/24 regular across every tier, per spec */
-    .cso-text { font-family: 'Geist', system-ui, sans-serif; font-size: 16px; line-height: 24px; font-weight: 400; color: #4A4A4A; margin-bottom: 1.25rem; }
+    .cso-text { font-family: 'Geist', system-ui, sans-serif; font-size: var(--fs-body); line-height: 24px; font-weight: 400; color: #4A4A4A; margin-bottom: 1.25rem; }
     .cso-text strong { font-weight: 600; color: #1A1A1A; }
     /* Label — 12/18 regular, flat (single size sufficient on Desktop per spec) */
-    .cso-label { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 11px; line-height: 18px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: #222222; margin-bottom: var(--space-3); display: block; }
+    .cso-label { font-family: 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); line-height: 18px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: #222222; margin-bottom: var(--space-3); display: block; }
     /* Title Medium — sub-headings, weight bold per spec, flat across tiers */
     .cso-sub { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 500; letter-spacing: -0.01em; color: #1A1A1A; margin: var(--space-12) 0 var(--space-5);
-      font-size: 24px; line-height: 32px; }
+      font-size: var(--fs-h4); line-height: 32px; }
     .cso-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin: var(--space-8) 0; }
     .cso-card { background: #EFEDE7; border-radius: 0; padding: var(--space-6); }
-    .cso-card-label { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 11px; line-height: 18px; font-weight: 400; color: #222222; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: var(--space-3); display: block; }
-    .cso-card-val { font-size: 1rem; font-weight: 500; color: #1A1A1A; line-height: 1.5; }
+    .cso-card-label { font-family: 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); line-height: 18px; font-weight: 400; color: #222222; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: var(--space-3); display: block; }
+    .cso-card-val { font-size: var(--fs-body); font-weight: 500; color: #1A1A1A; line-height: 1.5; }
     .cso-insight { background: #EFEDE7; border-radius: 0; padding: 1.5rem; }
-    .cso-insight-q { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: 0.5rem; }
-    .cso-insight-a { font-size: 0.875rem; color: #4A4A4A; line-height: 1.65; }
+    .cso-insight-q { font-size: var(--fs-small); font-weight: 600; color: #1A1A1A; margin-bottom: 0.5rem; }
+    .cso-insight-a { font-size: var(--fs-small); color: #4A4A4A; line-height: 1.65; }
 
     /* Full-width two-column insight rows — label left, description right */
     .cso-insight-rows { display: flex; flex-direction: column; gap: var(--space-4); }
@@ -1228,8 +1277,8 @@
       padding: var(--space-6);
       border-radius: 0;
     }
-    .cso-insight-label { font-size: 1rem; font-weight: 700; color: #1A1A1A; }
-    .cso-insight-desc { font-size: 1rem; color: #1A1A1A; line-height: 1.6; }
+    .cso-insight-label { font-size: var(--fs-body); font-weight: 700; color: #1A1A1A; }
+    .cso-insight-desc { font-size: var(--fs-body); color: #1A1A1A; line-height: 1.6; }
 
     /* Research Method — heading + description side by side, matching reference */
     .cso-method-header {
@@ -1262,8 +1311,8 @@
 
     /* Interview Questions intro title — Title Large */
     .cso-iq-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-4) var(--space-6); margin-bottom: var(--space-3); }
-    .cso-iq-label { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: 32px; line-height: 40px; font-weight: 400; color: #1A1A1A; letter-spacing: -0.02em; margin: 0; white-space: nowrap; }
-    .cso-iq-title { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: 32px; line-height: 40px; font-weight: 400; color: #1A1A1A; letter-spacing: -0.02em; margin: 0; }
+    .cso-iq-label { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-h3); line-height: 40px; font-weight: 400; color: #1A1A1A; letter-spacing: -0.02em; margin: 0; white-space: nowrap; }
+    .cso-iq-title { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-h3); line-height: 40px; font-weight: 400; color: #1A1A1A; letter-spacing: -0.02em; margin: 0; }
 
     /* Accordion */
     .cso-accordion { display: flex; flex-direction: column; margin-top: var(--space-8); border-top: 1px solid #E0DDD5; }
@@ -1281,7 +1330,7 @@
     }
     .cso-acc-title {
       font-family: 'Geist', 'Inter Tight', system-ui, sans-serif;
-      font-size: 24px;
+      font-size: var(--fs-h4);
       font-weight: 500;
       color: #1A1A1A;
       letter-spacing: -0.01em;
@@ -1305,7 +1354,7 @@
       transition: max-height 0.4s var(--ease);
     }
     .cso-acc-item.open .cso-acc-body { max-height: 4000px; }
-    .cso-acc-intro { font-size: 1rem; color: #4A4A4A; line-height: 1.6; padding-bottom: var(--space-6); max-width: 640px; }
+    .cso-acc-intro { font-size: var(--fs-body); color: #4A4A4A; line-height: 1.6; padding-bottom: var(--space-6); max-width: 640px; }
 
     .cso-qa-table { display: flex; flex-direction: column; padding-bottom: var(--space-8); }
     .cso-qa-row {
@@ -1317,7 +1366,7 @@
     }
     .cso-qa-headrow {
       font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 0.75rem;
+      font-size: var(--fs-micro);
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1326,14 +1375,14 @@
       padding-top: 0;
       padding-bottom: var(--space-3);
     }
-    .cso-qa-q { font-size: 0.875rem; font-weight: 700; color: #1A1A1A; line-height: 1.5; }
+    .cso-qa-q { font-size: var(--fs-small); font-weight: 700; color: #1A1A1A; line-height: 1.5; }
     .cso-qa-q em { font-weight: 400; font-style: italic; }
-    .cso-qa-a { font-size: 0.875rem; color: #1A1A1A; line-height: 1.7; }
-    .cso-qa-r { font-size: 0.875rem; color: #8A8A8A; line-height: 1.6; }
+    .cso-qa-a { font-size: var(--fs-small); color: #1A1A1A; line-height: 1.7; }
+    .cso-qa-r { font-size: var(--fs-small); color: #8A8A8A; line-height: 1.6; }
     @media (max-width: 768px) {
       .cso-qa-row { grid-template-columns: 1fr; gap: var(--space-2); }
       .cso-qa-headrow { display: none; }
-      .cso-acc-title { font-size: 24px; }
+      .cso-acc-title { font-size: var(--fs-h4); }
     }
 
     .cso-roles { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-4); margin: var(--space-8) 0; }
@@ -1373,7 +1422,7 @@
     .cso-role-flip:hover .cso-role-back { opacity: 1; }
     .cso-role-back-label {
       font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 0.75rem;
+      font-size: var(--fs-micro);
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: #1A1A1A;
@@ -1381,45 +1430,45 @@
       padding: 4px 10px;
       align-self: flex-start;
     }
-    .cso-role-name { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; }
-    .cso-role-sub { font-size: 0.875rem; color: #8A8A8A; line-height: 1.5; }
-    .cso-role-jlabel { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; color: #8A8A8A; text-transform: uppercase; letter-spacing: 0.08em; }
-    .cso-role-job { font-size: 0.875rem; color: #4A4A4A; line-height: 1.5; }
-    .cso-role-acc { display: inline-flex; align-items: center; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: #1A1A1A; margin-top: auto; padding: var(--space-1) var(--space-3); background: #FFFFFF; border-radius: 0; align-self: flex-start; }
-    .cso-sel-badge { background: #FFFFFF; color: #1A1A1A; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.06em; padding: var(--space-1) var(--space-2); border-radius: 0; display: inline-block; text-transform: uppercase; }
+    .cso-role-name { font-size: var(--fs-small); font-weight: 600; color: #1A1A1A; }
+    .cso-role-sub { font-size: var(--fs-small); color: #8A8A8A; line-height: 1.5; }
+    .cso-role-jlabel { font-family: 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); color: #8A8A8A; text-transform: uppercase; letter-spacing: 0.08em; }
+    .cso-role-job { font-size: var(--fs-small); color: #4A4A4A; line-height: 1.5; }
+    .cso-role-acc { display: inline-flex; align-items: center; font-family: 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: #1A1A1A; margin-top: auto; padding: var(--space-1) var(--space-3); background: #FFFFFF; border-radius: 0; align-self: flex-start; }
+    .cso-sel-badge { background: #FFFFFF; color: #1A1A1A; font-family: 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); font-weight: 500; letter-spacing: 0.06em; padding: var(--space-1) var(--space-2); border-radius: 0; display: inline-block; text-transform: uppercase; }
     .cso-persona { background: #EFEDE7; border-radius: 0; padding: var(--space-8); margin-bottom: var(--space-8); }
     .cso-persona-hdr { display: flex; align-items: flex-start; gap: var(--space-5); margin-bottom: var(--space-6); }
-    .cso-persona-av { width: 52px; height: 52px; border-radius: 50%; background: #E0DDD5; display: flex; align-items: center; justify-content: center; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.02em; color: #4A4A4A; flex-shrink: 0; }
-    .cso-persona-q { font-size: 1rem; font-style: italic; color: #1A1A1A; line-height: 1.6; }
-    .cso-persona-name { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; color: #8A8A8A; letter-spacing: 0.06em; margin-top: 0.5rem; }
+    .cso-persona-av { width: 52px; height: 52px; border-radius: 50%; background: #E0DDD5; display: flex; align-items: center; justify-content: center; font-family: 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-small); font-weight: 600; letter-spacing: 0.02em; color: #4A4A4A; flex-shrink: 0; }
+    .cso-persona-q { font-size: var(--fs-body); font-style: italic; color: #1A1A1A; line-height: 1.6; }
+    .cso-persona-name { font-family: 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); color: #8A8A8A; letter-spacing: 0.06em; margin-top: 0.5rem; }
     .cso-persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
-    .cso-ptitle { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #8A8A8A; margin-bottom: 0.75rem; display: block; }
+    .cso-ptitle { font-family: 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #8A8A8A; margin-bottom: 0.75rem; display: block; }
     .cso-plist { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-    .cso-plist li { font-size: 0.875rem; color: #4A4A4A; line-height: 1.55; padding-left: 1rem; position: relative; }
+    .cso-plist li { font-size: var(--fs-small); color: #4A4A4A; line-height: 1.55; padding-left: 1rem; position: relative; }
     .cso-plist li::before { content: '·'; position: absolute; left: 0; color: #2EA1AD; font-weight: 700; }
     .cso-plist.pain li::before { color: #E07070; }
     .cso-exec { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-8); row-gap: var(--space-6); margin-top: var(--space-8); }
     .cso-exec-card { background: none; border-radius: 0; padding: 0; border-top: 1px solid #D8D4C8; padding-top: var(--space-5); }
-    .cso-exec-t { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: var(--space-3); }
-    .cso-exec-b { font-size: 0.875rem; color: #4A4A4A; line-height: 1.65; }
+    .cso-exec-t { font-size: var(--fs-small); font-weight: 600; color: #1A1A1A; margin-bottom: var(--space-3); }
+    .cso-exec-b { font-size: var(--fs-small); color: #4A4A4A; line-height: 1.65; }
     .cso-theme { margin-bottom: 3rem; }
     .cso-theme-hdr { display: grid; grid-template-columns: 200px 1fr; gap: var(--space-6); margin-bottom: var(--space-6); padding-bottom: var(--space-6); border-bottom: 1px solid #E0DDD5; }
     .cso-theme-card { background: #EFEDE7; border: 0.5px solid rgba(0,0,0,0.15); border-radius: 0; padding: var(--space-5); }
-    .cso-theme-t { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: 0.5rem; }
-    .cso-theme-q { font-size: 0.875rem; color: #4A4A4A; line-height: 1.55; }
+    .cso-theme-t { font-size: var(--fs-small); font-weight: 600; color: #1A1A1A; margin-bottom: 0.5rem; }
+    .cso-theme-q { font-size: var(--fs-small); color: #4A4A4A; line-height: 1.55; }
     .cso-ideas { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
     .cso-idea { background: #FEF799; border: 0.5px solid rgba(0,0,0,0.15); border-radius: 0; padding: var(--space-5); }
-    .cso-idea-t { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: var(--space-2); }
-    .cso-idea-d { font-size: 0.875rem; color: #4A4A4A; line-height: 1.55; }
+    .cso-idea-t { font-size: var(--fs-small); font-weight: 600; color: #1A1A1A; margin-bottom: var(--space-2); }
+    .cso-idea-d { font-size: var(--fs-small); color: #4A4A4A; line-height: 1.55; }
     .cso-hero-sol { background: none; color: #1A1A1A; border-radius: 0; padding: 2.5rem 0 0; margin: 2rem 0; border-top: 1px solid #D8D4C8; }
-    .cso-hero-sol .lbl { display: inline-flex; align-items: center; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: #1A1A1A; padding: var(--space-1) var(--space-3); background: #FFFFFF; border-radius: 0; margin-bottom: 0.75rem; }
-    .cso-hero-sol h3 { font-size: 24px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 0.5rem; color: #1A1A1A; }
-    .cso-hero-sol p { font-size: 1rem; color: #4A4A4A; opacity: 1; line-height: 1.65; }
+    .cso-hero-sol .lbl { display: inline-flex; align-items: center; font-family: 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: #1A1A1A; padding: var(--space-1) var(--space-3); background: #FFFFFF; border-radius: 0; margin-bottom: 0.75rem; }
+    .cso-hero-sol h3 { font-size: var(--fs-h4); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 0.5rem; color: #1A1A1A; }
+    .cso-hero-sol p { font-size: var(--fs-body); color: #4A4A4A; opacity: 1; line-height: 1.65; }
     .cso-stories { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-6); row-gap: var(--space-6); margin-top: var(--space-8); }
     @media (max-width:767px) { .cso-stories { grid-template-columns: 1fr; } }
     .cso-story { background: #EFEDE7; border-radius: 0; padding: var(--space-6); }
-    .cso-story-role { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: 0.75rem; display: block; }
-    .cso-story-text { font-size: 0.875rem; color: #4A4A4A; line-height: 1.7; }
+    .cso-story-role { font-size: var(--fs-small); font-weight: 600; color: #1A1A1A; margin-bottom: 0.75rem; display: block; }
+    .cso-story-text { font-size: var(--fs-small); color: #4A4A4A; line-height: 1.7; }
     .cso-story-text strong { font-weight: 600; color: #1A1A1A; }
     .cso-story-video-wrap { margin-top: 1.25rem; display: flex; justify-content: center; }
     .cso-story-video-wrap video { width: 100%; max-width: 220px; border-radius: 12px; border: 0.5px solid rgba(0,0,0,0.15); display: block; background: #000; margin: 0 auto; }
@@ -1429,7 +1478,7 @@
     .cso-carousel-track { display: flex; height: 100%; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
     .cso-carousel-slide { flex: 0 0 100%; height: 100%; position: relative; }
     .cso-carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .cso-carousel-caption { font-size: 0.8125rem; color: #8A8A8A; margin-top: var(--space-3); text-align: center; }
+    .cso-carousel-caption { font-size: var(--fs-small); color: #8A8A8A; margin-top: var(--space-3); text-align: center; }
     .cso-carousel-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: var(--space-4); }
     .cso-carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: #D8D4C8; border: none; padding: 0; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease; }
     .cso-carousel-dot.active { background: #2EA1AD; transform: scale(1.3); }
@@ -1438,13 +1487,13 @@
     .cso-carousel-arrow.prev { left: 12px; }
     .cso-carousel-arrow.next { right: 12px; }
     .cso-carousel-overlay { position: absolute; left: 0; right: 0; bottom: 0; height: 35px; background: rgba(0,0,0,0.75); display: flex; align-items: center; padding: 0 1rem; pointer-events: none; }
-    .cso-carousel-overlay p { color: #FFFFFF; font-size: 12px; line-height: 1.5; margin: 0; }
+    .cso-carousel-overlay p { color: #FFFFFF; font-size: var(--fs-micro); line-height: 1.5; margin: 0; }
 
     .cso-sol-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-8); row-gap: var(--space-6); margin-top: var(--space-8); margin-bottom: var(--space-8); }
     .cso-sol-card { background: none; border-radius: 0; padding: 0; border-top: 1px solid #D8D4C8; padding-top: var(--space-5); }
-    .cso-sol-t { font-size: 0.875rem; font-weight: 600; color: #1A1A1A; margin-bottom: 1rem; }
+    .cso-sol-t { font-size: var(--fs-small); font-weight: 600; color: #1A1A1A; margin-bottom: 1rem; }
     .cso-sol-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-    .cso-sol-card li { font-size: 0.875rem; color: #4A4A4A; padding-left: 1rem; position: relative; line-height: 1.55; }
+    .cso-sol-card li { font-size: var(--fs-small); color: #4A4A4A; padding-left: 1rem; position: relative; line-height: 1.55; }
     .cso-sol-card li::before { content: '·'; position: absolute; left: 0; color: #2EA1AD; font-weight: 700; }
     /* Large split button — "Next case study", same pattern as homepage card CTAs, scaled up */
     .cso-next-cta {
@@ -1462,7 +1511,7 @@
       align-items: center;
       padding: var(--space-5) var(--space-6);
       font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 0.875rem;
+      font-size: var(--fs-small);
       font-weight: 500;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1503,14 +1552,16 @@
         z-index: 20;
         background: #F9F8F6;
         border-bottom: 1px solid #E0DDD5;
+        transition: top 0.25s ease;
       }
+      .cso-mobile-stepper.cso-nav-hidden { top: 0; }
       .cso-mobile-stepper::-webkit-scrollbar { display: none; }
 
       .cso-mstep {
         position: relative;
         flex-shrink: 0;
         padding: 20px var(--space-4) 0 0;
-        font-size: 0.875rem;
+        font-size: var(--fs-small);
         color: #B0AEA8;
         cursor: pointer;
         transition: color 0.25s;
@@ -1545,24 +1596,55 @@
       .cso-mstep.active { color: #1A1A1A; font-weight: 500; }
       .cso-mstep.active::before { background: #1A1A1A; transform: scale(1.2); }
     }
+  
+    /* ═══ Banking case study — body copy at 16px ═══════════════
+       Scoped to this overlay only; the rest of the site keeps the
+       global scale. Running text and its immediate sub-heads sit on
+       --fs-body; navigation, captions and meta stay on --fs-small. */
+    #cs-overlay { --fs-body: clamp(14px, 1.2vw, 16px); }
+    #cs-overlay .cso-insight-q,
+    #cs-overlay .cso-insight-a,
+    #cs-overlay .cso-qa-q,
+    #cs-overlay .cso-qa-a,
+    #cs-overlay .cso-qa-r,
+    #cs-overlay .cso-plist li,
+    #cs-overlay .cso-exec-t,
+    #cs-overlay .cso-exec-b,
+    #cs-overlay .cso-theme-t,
+    #cs-overlay .cso-theme-q,
+    #cs-overlay .cso-idea-t,
+    #cs-overlay .cso-idea-d,
+    #cs-overlay .cso-story-text,
+    #cs-overlay .cso-sol-t,
+    #cs-overlay .cso-sol-card li { font-size: var(--fs-body); }
+
+  
+    /* Navigation — same size as the rest of the site */
+    #cs-overlay .cso-nav-item.cso-nav-item,
+    #cs-overlay .cso-mstep.cso-mstep { font-size: var(--fs-nav); }
+
+  
+    /* Overlay top nav — same 18px as the home page nav */
+    .cso-dn-item.cso-dn-item { font-size: var(--fs-nav); }
+
   </style>
 
-  <div class="cso-scroll-mask" id="cso-scroll-mask" aria-hidden="true"></div>
 
   <button class="cso-hamburger" onclick="openCsoMenu()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
-  <button class="cso-mobile-close" onclick="closeCS()" aria-label="Close case study">
+
+  <button class="fab-top" id="cso-fab-top" onclick="document.getElementById('cs-overlay').scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M8 12.5V3.5M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </button>
 
-  <!-- Desktop centered pill-chain nav — Home / About / Get in Touch, 1024px+ -->
+  <!-- Desktop centered pill-chain nav — Home / LinkedIn / Email, 1024px+ -->
   <nav class="cso-desktop-nav" aria-label="Primary">
     <span class="cso-dn-item" onclick="closeCS()">Home</span>
-    <span class="cso-dn-item" onclick="window.location.href='about.html'">About</span>
-    <span class="cso-dn-item" onclick="window.location.href='mailto:shierlydewi@gmail.com'">Get in Touch</span>
+    <span class="cso-dn-item" onclick="window.open('https://www.linkedin.com/in/shierlydc/','_blank','noopener')">LinkedIn</span>
+    <span class="cso-dn-item" onclick="window.location.href='mailto:shierlydewi@gmail.com'">Email</span>
   </nav>
 
   <!-- Mobile bottom-sheet menu -->
@@ -1580,13 +1662,13 @@
         <span class="cso-menu-num">001</span>
         <span class="cso-menu-label">Home</span>
       </div>
-      <div class="cso-menu-item" onclick="window.location.href='about.html'">
+      <div class="cso-menu-item" onclick="window.open('https://www.linkedin.com/in/shierlydc/','_blank','noopener')">
         <span class="cso-menu-num">002</span>
-        <span class="cso-menu-label">About</span>
+        <span class="cso-menu-label">LinkedIn</span>
       </div>
       <div class="cso-menu-item" onclick="window.location.href='mailto:shierlydewi@gmail.com'">
         <span class="cso-menu-num">003</span>
-        <span class="cso-menu-label">Get in Touch</span>
+        <span class="cso-menu-label">Email</span>
       </div>
     </nav>
   </div>
@@ -1642,7 +1724,7 @@
 
           <hr class="cso-divider">
 
-          <p class="cso-text" style="font-size:1rem;color:#1A1A1A;font-weight:500;margin-bottom:2rem">How many users are within the multigenerational ecosystem?</p>
+          <p class="cso-text" style="font-size: var(--fs-body);color:#1A1A1A;font-weight:500;margin-bottom:2rem">How many users are within the multigenerational ecosystem?</p>
           <div class="cso-roles">
             <div class="cso-role cso-role-flip">
               <div class="cso-role-flip-inner">
@@ -1653,7 +1735,7 @@
                   <p class="cso-role-job">Build first money habits, parent manages on their behalf.</p>
                   <span class="cso-role-acc">Junior Savings Account</span>
                 </div>
-                <div class="cso-role-back" style="background-image:url('assets/images/img_12.jpg')">
+                <div class="cso-role-back" style="background-image:url('assets/images/img_2.jpg')">
                   <span class="cso-role-back-label">Child &amp; Teen</span>
                 </div>
               </div>
@@ -1667,7 +1749,7 @@
                   <p class="cso-role-job">Move to full independence.</p>
                   <span class="cso-role-acc">Own Basic Savings / Current</span>
                 </div>
-                <div class="cso-role-back" style="background-image:url('assets/images/img_13.jpg')">
+                <div class="cso-role-back" style="background-image:url('assets/images/img_3.jpg')">
                   <span class="cso-role-back-label">Young Adult</span>
                 </div>
               </div>
@@ -1682,7 +1764,7 @@
                   <p class="cso-role-job">Manages upward, downward, and sharing of household finance.</p>
                   <span class="cso-role-acc">Digital Wallet Account</span>
                 </div>
-                <div class="cso-role-back" style="background-image:url('assets/images/img_14.jpg')">
+                <div class="cso-role-back" style="background-image:url('assets/images/img_4.jpg')">
                   <span class="cso-role-back-label">Caretaker Adult</span>
                 </div>
               </div>
@@ -1696,7 +1778,7 @@
                   <p class="cso-role-job">Shared/pooled everyday spending.</p>
                   <span class="cso-role-acc">Shared pot</span>
                 </div>
-                <div class="cso-role-back" style="background-image:url('assets/images/img_15.jpg')">
+                <div class="cso-role-back" style="background-image:url('assets/images/img_5.jpg')">
                   <span class="cso-role-back-label">Spouse / Partner</span>
                 </div>
               </div>
@@ -1710,7 +1792,7 @@
                   <p class="cso-role-job">Coordinate care/support.</p>
                   <span class="cso-role-acc">Edge case</span>
                 </div>
-                <div class="cso-role-back" style="background-image:url('assets/images/img_16.jpg')">
+                <div class="cso-role-back" style="background-image:url('assets/images/img_6.jpg')">
                   <span class="cso-role-back-label">Sibling / Co-caregiver</span>
                 </div>
               </div>
@@ -1724,7 +1806,7 @@
                   <p class="cso-role-job">Access finance facilities and complete jobs to be done.</p>
                   <span class="cso-role-acc">Basic Savings, Senior Savings</span>
                 </div>
-                <div class="cso-role-back" style="background-image:url('assets/images/img_17.jpg')">
+                <div class="cso-role-back" style="background-image:url('assets/images/img_7.jpg')">
                   <span class="cso-role-back-label">Older Dependent</span>
                 </div>
               </div>
@@ -1738,7 +1820,7 @@
         <div class="cso-heading-col"><h2 class="cso-heading">Research</h2></div>
         <div class="cso-body">
           <p class="cso-pull">Design is the search for a good fit between a form, and it's context.</p>
-          <p class="cso-text">What makes a problem what it is: human needs, technical constraints, conflicting requirements, habits, edge cases, and relationships. Bad design appears where those forces remain unresolved. Good design appears where those misfits have been worked through carefully. <span style="font-size:0.875rem;color:#8A8A8A">Christopher Alexander, Notes on the Synthesis of Form (1964), via Karri Saarinen, 2026</span></p>
+          <p class="cso-text">What makes a problem what it is: human needs, technical constraints, conflicting requirements, habits, edge cases, and relationships. Bad design appears where those forces remain unresolved. Good design appears where those misfits have been worked through carefully. <span style="font-size: var(--fs-small);color:#8A8A8A">Christopher Alexander, Notes on the Synthesis of Form (1964), via Karri Saarinen, 2026</span></p>
           <p class="cso-pull" style="margin-top:2rem">In here, my aim is to first shape the problem. Before I can work on the <strong>form</strong>, I must know the <strong>fit</strong>.</p>
 
           <div class="cso-insight-rows" style="margin-top:2.5rem">
@@ -1762,7 +1844,7 @@
           </div>
 
           <div class="cso-diagram-wrap">
-            <img src="assets/images/img_1.jpg" alt="A Landscape of User Research Methods framework by Christian Rohrer, 2022 — mapping research methods by behavioral vs attitudinal and qualitative vs quantitative axes" style="width:100%;height:auto;display:block;border-radius:0;" />
+            <img src="assets/images/img_8.jpg" alt="A Landscape of User Research Methods framework by Christian Rohrer, 2022 — mapping research methods by behavioral vs attitudinal and qualitative vs quantitative axes" style="width:100%;height:auto;display:block;border-radius:0;" />
           </div>
 
           <p class="cso-text" style="margin-top:1.5rem">The diagram below categorises the methods into how the product is being used when testing. Because the users will not be using the product during the study, we will focus on Decontextualised methods of focus groups, interviews, and surveys.</p>
@@ -2088,11 +2170,11 @@
           <div class="cso-carousel" id="cso-landscape-carousel">
             <div class="cso-carousel-viewport">
               <div class="cso-carousel-track" id="cso-carousel-track">
-                <div class="cso-carousel-slide"><img src="assets/images/img_1.png" alt="Carefull homepage hero — Financial safety, for you and a loved one"><div class="cso-carousel-overlay"><p>3rd party layer as security protection with a focus towards the elderly.</p></div></div>
-                <div class="cso-carousel-slide"><img src="assets/images/img_2.png" alt="Carefull product page — Catch what others miss, works with all of your accounts"><div class="cso-carousel-overlay"><p>3rd party layer as security protection with a focus towards the elderly.</p></div></div>
-                <div class="cso-carousel-slide"><img src="assets/images/img_3.png" alt="Scam detection alert UI pattern — Likely scam warning with report and block actions"><div class="cso-carousel-overlay"><p>Google's "Circle to Search" can now instantly tell you if a text message is a scam.</p></div></div>
-                <div class="cso-carousel-slide"><img src="assets/images/img_4.png" alt="Bank of America Elder Financial Care page — trusted contact, power of attorney, and elder resources"><div class="cso-carousel-overlay"><p>Bank of America Security Meter in our Mobile Banking app.</p></div></div>
-                <div class="cso-carousel-slide"><img src="assets/images/img_5.png" alt="Bank of America Security Center — security preferences meter and protection level"><div class="cso-carousel-overlay" style="height:auto;padding:0.75rem 1rem;align-items:flex-start"><p>Elderly user needs: Service for Elderly, Legacy planning, Joint account planning, Trusted Contact</p></div></div>
+                <div class="cso-carousel-slide"><img src="assets/images/img_9.jpg" alt="Carefull homepage hero — Financial safety, for you and a loved one"><div class="cso-carousel-overlay"><p>3rd party layer as security protection with a focus towards the elderly.</p></div></div>
+                <div class="cso-carousel-slide"><img src="assets/images/img_10.jpg" alt="Carefull product page — Catch what others miss, works with all of your accounts"><div class="cso-carousel-overlay"><p>3rd party layer as security protection with a focus towards the elderly.</p></div></div>
+                <div class="cso-carousel-slide"><img src="assets/images/img_11.jpg" alt="Scam detection alert UI pattern — Likely scam warning with report and block actions"><div class="cso-carousel-overlay"><p>Google's "Circle to Search" can now instantly tell you if a text message is a scam.</p></div></div>
+                <div class="cso-carousel-slide"><img src="assets/images/img_12.png" alt="Bank of America Elder Financial Care page — trusted contact, power of attorney, and elder resources"><div class="cso-carousel-overlay"><p>Bank of America Security Meter in our Mobile Banking app.</p></div></div>
+                <div class="cso-carousel-slide"><img src="assets/images/img_13.png" alt="Bank of America Security Center — security preferences meter and protection level"><div class="cso-carousel-overlay" style="height:auto;padding:0.75rem 1rem;align-items:flex-start"><p>Elderly user needs: Service for Elderly, Legacy planning, Joint account planning, Trusted Contact</p></div></div>
               </div>
             </div>
             <button class="cso-carousel-arrow prev" aria-label="Previous image" onclick="csoCarouselNav(-1)">
@@ -2113,18 +2195,18 @@
 
           <div class="cso-hero-sol"><span class="lbl">Selected Solution</span><h3>Trusted Contact Person (Safety Net)</h3><p>As a proxy to help elderly, guard activities, or be reachable. A caretaker adult nominates a trusted contact to receive alerts about suspicious transactions on an elderly parent's account - oversight without removing autonomy.</p>
             <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid #D8D4C8">
-              <p style="font-size:0.875rem;font-weight:600;color:#1A1A1A;margin-bottom:0.75rem">Why I selected this solution</p>
+              <p style="font-size: var(--fs-small);font-weight:600;color:#1A1A1A;margin-bottom:0.75rem">Why I selected this solution</p>
               <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem">
-                <li style="font-size:0.875rem;color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>I chose the elderly segment, where the unmet gap is widest.</li>
-                <li style="font-size:0.875rem;color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>The bank has invested well in the young and digitally savvy. Youth savings accounts, allowance tools, shared savings pots, bill splitting, expense tracking. The day-to-day money management space is well served.</li>
-                <li style="font-size:0.875rem;color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Malaysian banks do offer security features. Fund locking, account kill switches, transfer limits, ATM cash-out controls. These are useful, but they all assume one thing: that the account holder can act on their own. For an elderly user who forgets a password, misses a minimum balance, or gets talked into a transfer, self-protection is not enough.</li>
-                <li style="font-size:0.875rem;color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>None of these features involve a second, consented person. That is the gap.</li>
+                <li style="font-size: var(--fs-small);color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>I chose the elderly segment, where the unmet gap is widest.</li>
+                <li style="font-size: var(--fs-small);color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>The bank has invested well in the young and digitally savvy. Youth savings accounts, allowance tools, shared savings pots, bill splitting, expense tracking. The day-to-day money management space is well served.</li>
+                <li style="font-size: var(--fs-small);color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Malaysian banks do offer security features. Fund locking, account kill switches, transfer limits, ATM cash-out controls. These are useful, but they all assume one thing: that the account holder can act on their own. For an elderly user who forgets a password, misses a minimum balance, or gets talked into a transfer, self-protection is not enough.</li>
+                <li style="font-size: var(--fs-small);color:#4A4A4A;line-height:1.6;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>None of these features involve a second, consented person. That is the gap.</li>
               </ul>
             </div>
           </div>
           <h3 class="cso-heading-md" style="margin-top:var(--space-12)">Customer Journey</h3>
           <div style="margin-top:var(--space-6);border:0.5px solid rgba(0,0,0,0.15);overflow:hidden">
-            <img src="assets/images/img_6.png" alt="Customer journey map across Awareness, Consideration, Onboarding, Experience, and Loyalty stages, showing touchpoints, pain points, thoughts/feelings, and opportunities" style="width:100%;height:auto;display:block">
+            <img src="assets/images/img_14.jpg" alt="Customer journey map across Awareness, Consideration, Onboarding, Experience, and Loyalty stages, showing touchpoints, pain points, thoughts/feelings, and opportunities" style="width:100%;height:auto;display:block">
           </div>
         </div>
       </div>
@@ -2136,29 +2218,29 @@
           <p class="cso-text" style="margin-bottom:2rem">Four user stories define the SafetyNet prototype - covering both the Older Dependent and Caretaker Adult perspectives across new and registered user states.</p>
           <div class="cso-stories">
             <div class="cso-story"><div><span class="cso-story-role">1 - Older Dependent (New User)</span><div class="cso-story-video-wrap" id="cso-story-video-1">
-              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_7.png">
+              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_15.jpg">
                 <source src="assets/videos/video_1.mp4" type="video/mp4">
               </video>
             </div></div></div>
             <div class="cso-story"><div><span class="cso-story-role">2 - Caretaker Adult (New User)</span><div class="cso-story-video-wrap" id="cso-story-video-2">
-              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_8.png">
+              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_16.jpg">
                 <source src="assets/videos/video_2.mp4" type="video/mp4">
               </video>
             </div></div></div>
             <div class="cso-story"><div><span class="cso-story-role">3 - Older Dependent (Registered User)</span><div class="cso-story-video-wrap" id="cso-story-video-3">
-              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_9.png">
+              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_17.jpg">
                 <source src="assets/videos/video_3.mp4" type="video/mp4">
               </video>
             </div></div></div>
             <div class="cso-story"><div><span class="cso-story-role">4 - Caretaker Adult (Registered User)</span><div class="cso-story-video-wrap" id="cso-story-video-4">
-              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_10.png">
+              <video controls controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/img_18.png">
                 <source src="assets/videos/video_4.mp4" type="video/mp4">
               </video>
             </div></div></div>
           </div>
           <div style="margin-top:var(--space-16);padding-top:var(--space-8);border-top:1px solid #E0DDD5">
-            <p style="font-size:0.875rem;color:#8A8A8A;font-family:'Inter Tight',sans-serif;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1.25rem">End of case study</p>
-            <a class="cso-next-cta" onclick="closeCS()">
+            <p style="font-size: var(--fs-small);color:#8A8A8A;font-family:'Inter Tight',sans-serif;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1.25rem">End of case study</p>
+            <a class="cso-next-cta" href="#work" data-next-cs="design-system" aria-label="Next case study: Scaling Design System to Support Asia Expansion">
               <span class="cso-next-cta-label">Next case study</span>
               <span class="cso-next-cta-arrow">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -2170,6 +2252,674 @@
         </div>
       </div>
     </main>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     DESIGN SYSTEM SLIDE DECK OVERLAY
+═══════════════════════════════════════ -->
+<div id="ds-overlay" style="display:none;position:fixed;inset:0;-webkit-overflow-scrolling:touch;z-index:300;background:#F9F8F6;">
+  <style>
+    #ds-overlay * { box-sizing: border-box; }
+    #ds-frame-outer {
+      position: relative; z-index: 1;
+      height: 100%; width: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch;
+      padding: 58px 12px 48px;
+      transition: padding-top 0.25s ease;
+    }
+    #ds-frame-outer.ds-nav-hidden { padding-top: 20px; }
+    @media (min-width: 768px)  { #ds-frame-outer.ds-nav-hidden { padding-top: 24px; } }
+    @media (min-width: 1024px) { #ds-frame-outer.ds-nav-hidden { padding-top: 28px; } }
+    @media (min-width: 768px)  { #ds-frame-outer { padding: 66px 20px 56px; } }
+    @media (min-width: 1024px) { #ds-frame-outer { padding: 72px 28px 64px; } }
+    #ds-topnav-group { transition: opacity 0.25s ease, transform 0.25s ease; }
+    #ds-topnav-group.ds-nav-hidden { opacity: 0; transform: translateY(-8px); pointer-events: none; }
+    .ds-next-cs {
+      position: fixed; top: 26px; right: 28px; z-index: 26;
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Geist', 'Inter', system-ui, sans-serif;
+      font-size: var(--fs-small); font-weight: 500; color: #1A1A1A;
+      cursor: pointer; user-select: none; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .ds-next-cs::before {
+      content: ''; width: 9px; height: 9px; border-radius: 2px;
+      background: #1A1A1A; transform: scale(1.2); flex-shrink: 0;
+    }
+    .ds-prev-cs {
+      position: fixed; top: 26px; left: 28px; z-index: 26;
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Geist', 'Inter', system-ui, sans-serif;
+      font-size: var(--fs-small); font-weight: 500; color: #1A1A1A;
+      cursor: pointer; user-select: none; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .ds-prev-cs::before {
+      content: ''; width: 9px; height: 9px; border-radius: 2px;
+      background: #1A1A1A; transform: scale(1.2); flex-shrink: 0;
+    }
+    @media (max-width: 1023px) { .ds-prev-cs { left: 76px; font-size: var(--fs-micro); } }
+    #ds-password-gate {
+      position: absolute; inset: 0; z-index: 5; background: #F9F8F6;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .ds-pw-card { max-width: 360px; width: 100%; text-align: center; }
+    .ds-pw-lock { width: 40px; height: 40px; border-radius: 10px; background: #1A1A1A; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+    .ds-pw-title { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-h4); font-weight: 500; color: #1A1A1A; margin-bottom: 8px; }
+    .ds-pw-sub { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-small); color: #4A4A4A; line-height: 1.5; margin-bottom: 24px; }
+    .ds-pw-input { width: 100%; padding: 12px 14px; border: 1px solid rgba(0,0,0,0.15); border-radius: 8px; font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-small); color: #1A1A1A; background: #fff; margin-bottom: 12px; outline: none; text-align: center; }
+    .ds-pw-input:focus { border-color: #1A1A1A; }
+    .ds-pw-btn { width: 100%; padding: 12px 14px; border: none; border-radius: 8px; background: #1A1A1A; color: #F9F8F6; font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-small); font-weight: 500; cursor: pointer; transition: background 0.2s; }
+    .ds-pw-btn:hover { background: #2E2A27; }
+    .ds-pw-error { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); color: #C0392B; margin-top: 10px; height: 16px; }
+    @media (max-width: 1023px) { .ds-next-cs { right: 76px; font-size: var(--fs-micro); } }
+    #ds-scroller {
+      max-width: 1560px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .ds-slide {
+      width: 100%; aspect-ratio: 16 / 9; border-radius: 8px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 4% 5%;
+      font-family: 'Geist', 'Inter Tight', system-ui, sans-serif;
+    }
+    .ds-slide.dark { background: #161412; color: #F4F1EA; }
+    .ds-slide.cream { background: #F4EFE4; color: #1A1712; }
+    .ds-kicker { font-size: var(--fs-micro); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.55; margin-bottom: 16px; }
+    .ds-slide-title { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 400; font-size: var(--fs-h2); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.4vw; color: #DDE3DF; }
+    .ds-slide-title em { font-style: normal; color: inherit; }
+    .ds-slide-sub { font-size: var(--fs-body-lg); font-weight: 400; opacity: 0.65; line-height: 1.5; max-width: 640px; color: #F4F1EA; }
+    .ds-cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: 5%; height: 100%; align-items: flex-start; padding-top: 6%; }
+    .ds-cols3 > div { position: relative; height: auto; display: flex; flex-direction: column; }
+    .ds-cols3 > div:not(:first-child)::before { content: ''; position: absolute; left: calc(-2.5%); top: 0; bottom: 0; width: 1px; background: rgba(244,241,234,0.18); }
+    .ds-col-num { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.55; color: #F4F1EA; margin-bottom: 2.2vw; }
+    .ds-col-q { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-h2); font-weight: 400; color: #DDE3DF; margin-bottom: 1.4vw; }
+    .ds-col-body { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body-lg); font-weight: 400; color: #F4F1EA; opacity: 0.65; line-height: 1.5; max-width: 90%; }
+    .ds-role-slide-title { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 400; font-size: var(--fs-h2); line-height: 1.12; letter-spacing: -0.01em; color: #1A1A1A; margin-bottom: 1.6vw; }
+    .ds-role-sub { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body-lg); font-weight: 400; color: #4A4A4A; line-height: 1.5; max-width: 640px; margin-bottom: 2.4vw; }
+    .ds-role-block { margin-bottom: 1.6vw; }
+    .ds-role-label { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #2EA1AD; margin-bottom: 0.5vw; }
+    .ds-role-value { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body-lg); font-weight: 400; color: #1A1A1A; margin-bottom: 0.5vw; }
+    .ds-role-detail { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body-lg); font-weight: 400; color: #4A4A4A; line-height: 1.6; }
+    .ds-role-video { width: 100%; max-width: clamp(90px, 18vw, 260px); max-height: 78%; border-radius: 12px; border: 0.5px solid rgba(0,0,0,0.15); display: block; background: #000; }
+    .ds-chal-item { margin-bottom: 0.55rem; }
+    .ds-chal-item:last-child { margin-bottom: 0; }
+    .ds-chal-h { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body-lg); font-weight: 600; color: #F4F1EA; margin-bottom: 0.4rem; }
+    .ds-chal-p { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body); font-weight: 400; color: rgba(244,241,234,0.75); line-height: 1.55; }
+    /* ── Back-half slide utilities (approach → outcome) ───────────── */
+    .ds-todo { background: rgba(255,193,7,0.22); border-bottom: 1px dashed rgba(180,120,0,0.6); padding: 0 3px; border-radius: 2px; }
+    .ds-statement { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-weight: 400; font-size: var(--fs-h2); line-height: 1.18; letter-spacing: -0.01em; max-width: 76%; }
+    .ds-statement em { font-style: normal; color: #2EA1AD; }
+    .ds-eyebrow { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #2EA1AD; margin-bottom: 1.2vw; }
+    .ds-slide.dark .ds-eyebrow { color: #6FD0DA; }
+
+    .ds-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3.2%; align-items: start; width: 100%; }
+    .ds-grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.6%; align-items: stretch; width: 100%; }
+    .ds-grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.2%; align-items: stretch; width: 100%; }
+
+    .ds-card { background: rgba(255,255,255,0.55); border: 1px solid rgba(0,0,0,0.07); border-radius: 10px; padding: 1.6vw 1.5vw; }
+    .ds-slide.dark .ds-card { background: rgba(244,241,234,0.06); border-color: rgba(244,241,234,0.14); }
+    .ds-card-num { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); font-weight: 600; letter-spacing: 0.12em; color: #2EA1AD; margin-bottom: 0.9vw; }
+    .ds-slide.dark .ds-card-num { color: #6FD0DA; }
+    .ds-card-h { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body-lg); font-weight: 600; color: #1A1A1A; line-height: 1.25; margin-bottom: 0.6vw; }
+    .ds-slide.dark .ds-card-h { color: #F4F1EA; }
+    .ds-card-p { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body); font-weight: 400; color: #4A4A4A; line-height: 1.5; }
+    .ds-slide.dark .ds-card-p { color: rgba(244,241,234,0.72); }
+
+    /* Problem → answer pairing */
+    .ds-pair { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.6vw; align-items: center; padding: 1vw 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .ds-pair:last-child { border-bottom: none; }
+    .ds-slide.dark .ds-pair { border-bottom-color: rgba(244,241,234,0.14); }
+    .ds-pair-from { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body); color: #8A8A8A; line-height: 1.4; }
+    .ds-slide.dark .ds-pair-from { color: rgba(244,241,234,0.5); }
+    .ds-pair-arrow { color: #2EA1AD; font-size: var(--fs-body-lg); }
+    .ds-pair-to { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body-lg); font-weight: 500; color: #1A1A1A; line-height: 1.4; }
+    .ds-slide.dark .ds-pair-to { color: #F4F1EA; }
+
+    /* Metric / outcome tiles */
+    .ds-metric-val { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-h1); font-weight: 400; letter-spacing: -0.02em; line-height: 1; color: #1A1A1A; margin-bottom: 0.7vw; }
+    .ds-slide.dark .ds-metric-val { color: #DDE3DF; }
+    .ds-metric-lbl { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body); font-weight: 400; color: #4A4A4A; line-height: 1.45; }
+    .ds-slide.dark .ds-metric-lbl { color: rgba(244,241,234,0.65); }
+    .ds-metric-rule { width: 28px; height: 2px; background: #2EA1AD; margin-bottom: 1.1vw; }
+
+    /* Token swatches */
+    .ds-swatch-row { display: flex; gap: 0.6vw; flex-wrap: wrap; }
+    .ds-swatch { width: 3.6vw; height: 3.6vw; min-width: 30px; min-height: 30px; border-radius: 6px; border: 1px solid rgba(0,0,0,0.08); }
+    .ds-type-spec { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; color: #1A1A1A; line-height: 1.15; margin-bottom: 0.5vw; }
+    .ds-type-meta { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); color: #8A8A8A; letter-spacing: 0.04em; }
+
+    /* Market rollout timeline */
+    .ds-timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; width: 100%; position: relative; margin-top: 2vw; }
+    .ds-timeline::before { content: ''; position: absolute; left: 0; right: 0; top: 7px; height: 1px; background: rgba(0,0,0,0.14); }
+    .ds-slide.dark .ds-timeline::before { background: rgba(244,241,234,0.2); }
+    .ds-tl-node { position: relative; padding-right: 1.4vw; }
+    .ds-tl-dot { width: 15px; height: 15px; border-radius: 50%; background: #2EA1AD; border: 3px solid #EAF1F3; position: relative; z-index: 1; margin-bottom: 1.1vw; }
+    .ds-slide.dark .ds-tl-dot { border-color: #161412; }
+    .ds-tl-when { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #2EA1AD; margin-bottom: 0.5vw; }
+    .ds-tl-what { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-body-lg); font-weight: 500; color: #1A1A1A; margin-bottom: 0.4vw; line-height: 1.2; }
+    .ds-slide.dark .ds-tl-what { color: #F4F1EA; }
+    .ds-tl-note { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-small); color: #4A4A4A; line-height: 1.45; }
+    .ds-slide.dark .ds-tl-note { color: rgba(244,241,234,0.65); }
+
+    /* Image slot placeholder — replace src with a real asset */
+    .ds-slot { border: 1.5px dashed rgba(46,161,173,0.55); border-radius: 8px; background: rgba(46,161,173,0.13); display: flex; align-items: center; justify-content: center; text-align: center; padding: 1.4vw; }
+    .ds-slot span { font-family: 'Geist', 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-small); color: #2A7B85; line-height: 1.5; max-width: 80%; }
+
+    .ds-close { position: fixed; top: 24px; right: 28px; z-index: 10; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #F4F1EA; border: none; }
+    .ds-close:hover { background: rgba(255,255,255,0.16); }
+    .ds-counter { position: fixed; bottom: 24px; right: 28px; z-index: 10; font-family: 'Inter Tight', system-ui, sans-serif; font-size: var(--fs-micro); letter-spacing: 0.05em; color: rgba(255,255,255,0.5); }
+    .ds-slide.cream ~ .ds-counter, #ds-overlay .ds-counter { color: rgba(255,255,255,0.55); }
+    .ds-byline { position: absolute; top: 48px; right: 56px; text-align: right; font-size: var(--fs-micro); line-height: 1.6; opacity: 0.6; }
+    @media (max-width: 767px) { .ds-byline { display: none; } }
+  
+    /* Navigation — same size as the rest of the site */
+    .ds-prev-cs.ds-prev-cs,
+    .ds-next-cs.ds-next-cs { font-size: var(--fs-nav); }
+
+  
+    /* Scrolled state: hide the nav itself, keep the close control reachable */
+    #ds-topnav-group.ds-nav-hidden { opacity: 1; transform: none; pointer-events: auto; }
+    #ds-overlay .cso-desktop-nav,
+    #ds-overlay .cso-hamburger { transition: opacity 0.25s ease, transform 0.25s ease; }
+    #ds-topnav-group.ds-nav-hidden .cso-desktop-nav,
+    #ds-topnav-group.ds-nav-hidden .cso-hamburger {
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+    }
+
+  
+    /* End-of-deck next case study block */
+    .ds-end {
+      width: 100%;
+      margin: 4vw 0 2vw;
+      padding: var(--space-8) 12px 0;
+      border-top: 1px solid #E0DDD5;
+    }
+    .ds-end-label {
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: var(--fs-small);
+      color: #8A8A8A;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 0 0 1.25rem;
+    }
+    @media (min-width: 768px) { .ds-end { padding-left: 20px; padding-right: 20px; } }
+    @media (min-width: 1024px) { .ds-end { padding-left: 28px; padding-right: 28px; } }
+
+  </style>
+
+  <div id="ds-topnav-group">
+    <button class="ds-close" id="ds-close-default" onclick="closeDS()" aria-label="Close case study">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+
+    <button class="cso-hamburger" onclick="openDsMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Desktop centered pill-chain nav — Home / LinkedIn / Email, 1024px+ -->
+    <nav class="cso-desktop-nav" aria-label="Primary">
+      <span class="cso-dn-item" onclick="closeDS()">Home</span>
+      <span class="cso-dn-item" onclick="window.open('https://www.linkedin.com/in/shierlydc/','_blank','noopener')">LinkedIn</span>
+      <span class="cso-dn-item" onclick="window.location.href='mailto:shierlydewi@gmail.com'">Email</span>
+    </nav>
+
+    <!-- Previous / Next case study removed for now -->
+  </div>
+  <div class="ds-counter" id="ds-counter">01 / 06</div>
+
+  <button class="fab-top" id="ds-fab-top" onclick="document.getElementById('ds-frame-outer').scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M8 12.5V3.5M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- Mobile bottom-sheet menu -->
+  <div class="cso-menu-overlay" id="ds-menu-overlay">
+    <div class="cso-menu-top">
+      <span class="cso-menu-mark">s_d</span>
+      <button class="cso-menu-close" onclick="closeDsMenu()" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M4 4l10 10M14 4 4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="cso-menu-list">
+      <div class="cso-menu-item" onclick="closeDsMenu(); closeDS();">
+        <span class="cso-menu-num">001</span>
+        <span class="cso-menu-label">Home</span>
+      </div>
+      <div class="cso-menu-item" onclick="window.open('https://www.linkedin.com/in/shierlydc/','_blank','noopener')">
+        <span class="cso-menu-num">002</span>
+        <span class="cso-menu-label">LinkedIn</span>
+      </div>
+      <div class="cso-menu-item" onclick="window.location.href='mailto:shierlydewi@gmail.com'">
+        <span class="cso-menu-num">003</span>
+        <span class="cso-menu-label">Email</span>
+      </div>
+    </nav>
+  </div>
+
+  <div id="ds-password-gate">
+    <div class="ds-pw-card">
+      <div class="ds-pw-lock">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <rect x="4" y="8" width="10" height="7" rx="1.5" stroke="#F9F8F6" stroke-width="1.4"/>
+          <path d="M6 8V5.5a3 3 0 0 1 6 0V8" stroke="#F9F8F6" stroke-width="1.4"/>
+        </svg>
+      </div>
+      <div class="ds-pw-title">This case study is password-protected</div>
+      <div class="ds-pw-sub">If you've received my CV, the password was included with it. Otherwise, feel free to reach out and I'll be happy to share access.</div>
+      <form onsubmit="return dsCheckPassword(event)">
+        <input type="password" id="ds-password-input" class="ds-pw-input" placeholder="Enter password" autocomplete="off">
+        <button type="submit" class="ds-pw-btn">View case study</button>
+        <div class="ds-pw-error" id="ds-pw-error"></div>
+      </form>
+    </div>
+  </div>
+
+  <div id="ds-frame-outer">
+  <div id="ds-scroller">
+
+    <!-- Slide 1 — Cover -->
+    <section class="ds-slide dark" style="background-image:url('assets/images/ds_img_1.jpg');background-size:cover;background-position:center;justify-content:flex-end;">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(22,20,18,0.1) 0%, rgba(22,20,18,0.02) 45%, rgba(22,20,18,0.35) 100%);"></div>
+      <div style="position:absolute;top:20%;left:8.6%;right:8.6%;z-index:1">
+        <h1 class="ds-slide-title" style="font-size: var(--fs-h2);margin-bottom:1.6vw">Scaling Design System<br>to support Asia Expansion</h1>
+        <p class="ds-slide-sub">Driving consistency across products and streamlining operations</p>
+      </div>
+    </section>
+
+    <!-- Slide 2 — Who / How / Why -->
+    <section class="ds-slide dark" style="background-image:url('assets/images/ds_img_2.jpg');background-size:cover;background-position:center;">
+      <div class="ds-cols3">
+        <div>
+          <div class="ds-col-num">01</div>
+          <div class="ds-col-q">Who?</div>
+          <p class="ds-col-body">MetLife in Asia has adopted a nimble approach to each market across the region and has successfully established a diversified geographical footprint in Asia that spans across nine markets Australia, Bangladesh, China, Japan, Korea, India, Malaysia, Nepal and Vietnam.</p>
+        </div>
+        <div>
+          <div class="ds-col-num">02</div>
+          <div class="ds-col-q">How?</div>
+          <p class="ds-col-body">Local teams have faced challenges shipping products where the UI interface did not meet the necessary user experience.</p>
+        </div>
+        <div>
+          <div class="ds-col-num">03</div>
+          <div class="ds-col-q">Why?</div>
+          <p class="ds-col-body">Our mission is to ensure a unified design language across mobile app products and web portals. The Regional CX team aims to enable local teams by setting up Design System library to host components and interface.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3 — Scaling and Unifying Asia Design System -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:4%;height:100%">
+        <div style="max-width:52%">
+          <h1 class="ds-role-slide-title">Scaling and Unifying<br>Asia Design System</h1>
+          <p class="ds-role-sub">Building a design system that drives design adoption, minimizing tech debt, and enhancing user experience across products.</p>
+
+          <div class="ds-role-block">
+            <div class="ds-role-label">My Role</div>
+            <div class="ds-role-value">Design System Lead, Product Owner</div>
+            <div class="ds-role-detail">
+              Responsible for standardization of design assets and their implementation quality<br>
+              Facilitate organizational/culture change and mindset shift for design system adoption<br>
+              Partner with tech lead to plan, coordinate and deploy new releases
+            </div>
+          </div>
+
+          <div class="ds-role-block">
+            <div class="ds-role-label">Duration</div>
+            <div class="ds-role-value">2023 - 2024</div>
+          </div>
+
+          <div class="ds-role-block" style="margin-bottom:0">
+            <div class="ds-role-label">Scope</div>
+            <div class="ds-role-value">Steered product outcome, implemented across markets in Australia, Bangladesh, Nepal, and South Korea.</div>
+          </div>
+        </div>
+
+        <div style="flex-shrink:0;transform:translateX(-40%)">
+          <video class="ds-role-video" controls loop controlsList="nodownload noplaybackrate" disablePictureInPicture muted playsinline preload="auto" poster="assets/images/ds_img_3.jpg">
+            <source src="assets/videos/ds_video_1.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4 — Situation -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);padding:0;">
+      <img src="assets/images/ds_img_4.jpg" alt="Grid of UI bug annotations and QA screenshots across the MetLife design system audit" alt="Grid of UI bug annotations and QA screenshots across the MetLife design system audit" style="position:absolute;top:0;right:0;height:100%;width:52%;object-fit:cover;display:block">
+      <div style="position:relative;z-index:1;max-width:44%;height:100%;padding:4% 5%;display:flex;flex-direction:column;justify-content:center">
+        <h1 class="ds-role-slide-title" style="margin-bottom:0.8vw">Situation</h1>
+        <p class="ds-role-sub" style="margin-bottom:1.2vw;line-height:1.35">The MetLife Design System emerged from a fragmented and diverse digital ecosystem, spread across local design teams and various web and mobile platforms.</p>
+
+        <div class="ds-role-block" style="margin-bottom:0">
+          <div style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:600;color:#1A1A1A;margin-bottom:0.4rem">UI Bugs</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem">
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:#4A4A4A;line-height:1.35;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Components were not ready to be reused</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:#4A4A4A;line-height:1.35;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Snowball effect of issues unresolved</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:#4A4A4A;line-height:1.35;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>QA team faced repeating tasks</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:#4A4A4A;line-height:1.35;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Caused from insufficient handover brief to developers</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5 — Challenges (text) -->
+    <section class="ds-slide dark" style="background-image:url('assets/images/ds_img_5.jpg');background-size:cover;background-position:center;">
+      <h1 class="ds-slide-title" style="margin-bottom:0.75rem;flex-shrink:0">Challenges</h1>
+      <div style="flex:1;min-height:0;overflow:hidden;width:100%;">
+          <div class="ds-chal-item">
+            <div class="ds-chal-h">Components are fixed, inflexible</div>
+            <p class="ds-chal-p">Legacy files and coded components did not meet the urgent need to cater dynamic content. The components were not built to scale for different teams.</p>
+          </div>
+          <div class="ds-chal-item">
+            <div class="ds-chal-h">Duplicates of Design Components</div>
+            <p class="ds-chal-p">As design and product teams continue their tasks, the interface designed by local teams grew and so did the minor variants. Small increments in design foundations such as colours, spacing, and UI continue to grow in variants.</p>
+          </div>
+          <div class="ds-chal-item">
+            <div class="ds-chal-h">Longer Development Time</div>
+            <p class="ds-chal-p">Components required high effort from development due to a lack of documentation and communication to design team. This contributed to more delay during testing as there were many repeated tasks.</p>
+          </div>
+          <div class="ds-chal-item">
+            <div class="ds-chal-h">Different Dev Environment for Different teams</div>
+            <p class="ds-chal-p">There was no single unifying language that was used across each dev teams. (Flutter/ React JS/ Native / Web Components). Alignment was an ongoing process.</p>
+          </div>
+          <div class="ds-chal-item">
+            <div class="ds-chal-h">Poor Readability for Users</div>
+            <p class="ds-chal-p">Several of the designs have faced feedback of not meeting legibility needs for users (font size and font colour issues). A more stringent governance on quality control was needed in design teams.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- Slide 6 — Challenges (product screenshots) -->
+    <section class="ds-slide" style="padding:3.5% 4%;background:linear-gradient(144deg, #ECF3F5, #C3D5D8);overflow:hidden;display:flex;align-items:center;justify-content:center;">
+      <img src="assets/images/ds_img_6.png" alt="Screenshots of Nepal One by MetLife (Q1 2023), Bangladesh 360Health (Q4 2023), and Korea One by MetLife (Q4 2024) mobile apps" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;margin:auto;">
+    </section>
+
+    <!-- Slide 7 — Design System Roadmap -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);padding:0;">
+      <div style="position:absolute;top:0;right:0;height:100%;width:62%;display:flex;align-items:center;justify-content:flex-end;padding:5% 0 5% 4%">
+        <img src="assets/images/ds_img_7.jpg" alt="Design system roadmap table: five phases — Preparation, Design Audit, Product Backlog and Roadmap, Execution and Monitoring, Post-implementation Maintenance — each listing activities, descriptions and the reasoning behind them" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;border-radius:4px 0 0 4px;box-shadow:-2px 2px 24px rgba(20,40,45,0.18)">
+      </div>
+      <div style="position:relative;z-index:1;max-width:38%;height:100%;padding:4% 4.5%;display:flex;flex-direction:column;justify-content:center">
+        <div class="ds-eyebrow" style="margin-bottom:1.2vw">Part 2 — From Must-haves, to Good-to-Have</div>
+        <h1 class="ds-role-slide-title" style="margin-bottom:1vw">Design System<br>Roadmap</h1>
+        <p class="ds-role-sub" style="margin-bottom:1.6vw;line-height:1.35">Through collaboration with co-creators, a scalable, best-in-class design system was developed, documented, and implemented, empowering every touch point. I led the MetLife UX and engineering teams through the process of building a cohesive design system across all platforms.</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin:0;padding:0">
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Steering the product direction amongst Marketing, Developers, and CX Teams</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Auditing components from their design variants, positive/negative permutations, and interaction patterns</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Setting up documentation operations</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Identifying gaps in accessibility, establishing consensus on naming conventions</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Implementing the Figma Library to React JS and a Storybook showcase</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Slide 8 — Workflow Optimizing (sprint process, before) -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);padding:0;">
+      <img src="assets/images/ds_img_8.jpg" alt="Sprint process before the design system: Design, Sprint, Demo, Fixes and Done stages showing which roles took part at each point, with the designer involved only at Design and Fixes" style="position:absolute;top:0;right:0;height:100%;width:62%;object-fit:cover;display:block">
+      <div style="position:relative;z-index:1;max-width:38%;height:100%;padding:4% 4.5%;display:flex;flex-direction:column;justify-content:center">
+        <div class="ds-eyebrow" style="margin-bottom:1.4vw">Part 2 — How Work Moved</div>
+        <h1 class="ds-role-slide-title" style="margin-bottom:2vw">Workflow<br>Optimizing</h1>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;margin:0;padding:0">
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Design team was not involved in Sprint rituals, only towards the final demo</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Handover of design assets did not cover all scenarios, design team was unaware of all the missing items</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Developers were not briefed with the accurate requirements</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Testing team faced issues tracking bugs due to its high volume and inconsistent documentation from design and Azure site.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- Slide 9 — Workflow Optimizing (sprint process, after) -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);padding:0;">
+      <img src="assets/images/ds_img_9.jpg" alt="Sprint process after the design system: Design, Sprint, Demo, Iteration Plan and Done stages, with design, development and testing roles present across every stage" style="position:absolute;top:0;right:0;height:100%;width:62%;object-fit:cover;display:block">
+      <div style="position:relative;z-index:1;max-width:38%;height:100%;padding:4% 4.5%;display:flex;flex-direction:column;justify-content:center">
+        <div class="ds-eyebrow" style="margin-bottom:1.2vw">Part 2 — How Work Transitioned</div>
+        <h1 class="ds-role-slide-title" style="margin-bottom:1vw">Workflow<br>Optimizing</h1>
+        <p class="ds-role-sub" style="margin-bottom:1.6vw;line-height:1.35">Fostering mutual understanding, and cultivating a culture of agile and lightweight collaboration.</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin:0;padding:0">
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Collaborate with developers proactively and adjust design as we go</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Finalise design requirements with developers and local design teams to prepare UI accordingly</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Constantly push for more understanding from each side, bringing Dev and Design together</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Involve design and testing teams in the Sprint rituals that matter</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Retrospectives created a closer, more intimate setup to constructively improve each other</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.4;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Evolve from handing over a design to genuine collaboration</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Slide 10 — WSJF prioritisation -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);padding:6% 6% 5%;justify-content:flex-start">
+      <div class="ds-eyebrow" style="margin-bottom:1.2vw">Part 3 — Prioritising Weighted Shortest Jobs First</div>
+      <h1 class="ds-role-slide-title" style="margin-bottom:0">Build What Matters Most</h1>
+      <img src="assets/images/ds_img_10.png" alt="WSJF formula: Value (weight) plus Urgency (deadline), divided by Size (effort), equals WSJF" style="width:100%;max-height:52%;object-fit:contain;object-position:left center;display:block;margin-top:auto;margin-bottom:auto">
+    </section>
+
+
+    <!-- Slide 11 — Component usage matrix -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);padding:0;">
+      <div style="position:absolute;top:0;right:0;height:100%;width:54%;display:flex;align-items:flex-end;justify-content:flex-end;padding:2.5% 0 0">
+        <img src="assets/images/ds_img_11.jpg" alt="Component usage matrix: foundations, atoms, molecules and organisms listed against adoption in Korea, Bangladesh, Nepal, India and Australia" style="height:100%;width:auto;max-width:100%;object-fit:contain;object-position:right bottom;display:block;box-shadow:-2px -2px 24px rgba(20,40,45,0.14)">
+      </div>
+      <div style="position:relative;z-index:1;max-width:42%;height:100%;padding:4% 4.5%;display:flex;flex-direction:column;justify-content:center">
+        <div class="ds-eyebrow" style="margin-bottom:1.2vw">Part 3 — Prioritising Weighted Shortest Jobs First</div>
+        <h1 class="ds-role-slide-title" style="margin-bottom:2vw">Build What<br>Matters Most</h1>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;margin:0;padding:0">
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Foundations &rarr; Atoms &rarr; Molecules &rarr; Organisms</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Putting higher-used components first, and meeting product launch dates</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Through collaboration with co-creators, a scalable, best-in-class design system was developed, documented, and implemented, empowering every touchpoint</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- Slide 12 — Process 1: Design Audit -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);padding:0;">
+      <div style="position:absolute;top:0;right:0;height:100%;width:64%;display:flex;align-items:flex-end;justify-content:flex-end;padding:7% 0 0">
+        <img src="assets/images/ds_img_12.png" alt="Design audit artefacts: input field component specification with all states, beside a Japan and Global comparison table classifying each component by type and atomic level" style="height:100%;width:auto;max-width:100%;object-fit:contain;object-position:right bottom;display:block">
+      </div>
+      <div style="position:relative;z-index:1;max-width:36%;height:100%;padding:4% 4.5%;display:flex;flex-direction:column;justify-content:center">
+        <div class="ds-eyebrow" style="margin-bottom:1.2vw">Part 3 — Getting on the Same Page</div>
+        <h1 class="ds-role-slide-title" style="margin-bottom:2.4vw">Process #1<br>Design Audit</h1>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;margin:0;padding:0">
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Work with local design teams to discuss existing assets</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Gain understanding of where design decisions came from, and of local context and needs</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Get on the same page about how we reduce and simplify design variants &mdash; the use of disabled buttons, text field UI styles</li>
+            <li style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:#4A4A4A;line-height:1.45;padding-left:1rem;position:relative"><span style="position:absolute;left:0;color:#2EA1AD;font-weight:700">·</span>Trim any excess. Less is more</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- Slide 13 — Process #2: Design System Structure -->
+    <section class="ds-slide dark" style="padding:0;background:radial-gradient(115% 95% at 0% 0%, #09919D 0%, #0B3A3D 22%, #051715 52%, #020E0A 80%);">
+      <div style="position:relative;z-index:1;height:100%;padding:4.5% 4.8% 0;display:flex;flex-direction:column">
+        <div class="ds-eyebrow" style="margin-bottom:1vw">Part 3 — Design System Documentation &amp; Structure</div>
+        <h1 class="ds-slide-title" style="margin-bottom:2.2vw">Process #2 Design System Structure</h1>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3vw;align-items:start">
+          <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.55;margin:0"><strong style="font-weight:600;color:#F4F1EA">Variant Guidance</strong> &mdash; Documentation to guide designers and developers on component usage. Available as scalable mobile, tablet and desktop variants.</p>
+          <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.55;margin:0"><strong style="font-weight:600;color:#F4F1EA">Master Component</strong> &mdash; Flexible, editable components that can be resized. Icons and content update according to the product&rsquo;s content.</p>
+          <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.55;margin:0"><strong style="font-weight:600;color:#F4F1EA">Guideline</strong> &mdash; Design guideline for best practices.</p>
+        </div>
+        <img src="assets/images/ds_img_13.jpg" alt="Three documentation pages from the design system: card variant guidance, the master card component with its states, and a cards combination guideline showing correct and incorrect row layouts" style="margin-top:auto;width:100%;max-height:64%;object-fit:contain;object-position:center bottom;display:block">
+      </div>
+    </section>
+
+
+    <!-- Slide 14 — Process #3: Component Handover and Documentation -->
+    <section class="ds-slide dark" style="padding:0;background:radial-gradient(115% 95% at 0% 0%, #09919D 0%, #0B3A3D 22%, #051715 52%, #020E0A 80%);">
+
+      <!-- JIRA ticket, bottom-left -->
+      <div style="position:absolute;left:0;bottom:0;width:55%;height:72%;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 0 0 4.8%">
+        <img src="assets/images/ds_img_14.jpg" alt="A JIRA user story for the Illustration Below Card component, listing acceptance criteria, viewport rules, animation guidance, Figma branch links and testing scope" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:left bottom;display:block">
+      </div>
+
+      <!-- Heading -->
+      <div style="position:absolute;top:0;left:0;right:0;z-index:2;padding:4.5% 4.8% 0">
+        <div class="ds-eyebrow" style="margin-bottom:1vw">Part 3 — Design System Documentation &amp; Structure</div>
+        <h1 class="ds-slide-title" style="margin-bottom:0">Process #3 Component Handover<br>and Documentation</h1>
+      </div>
+
+      <!-- Requirements list, right -->
+      <div style="position:absolute;right:0;top:27%;width:42%;z-index:2;padding:0 4.8% 0 0;display:flex;flex-direction:column;gap:1.5vw">
+        <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">JIRA Requirements</p>
+          <div>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">Name &amp; Date</p>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.5;margin:0">Naming of the component is a crucial aspect that has been agreed upon by the team.</p>
+          </div>
+          <div>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">Variants</p>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.5;margin:0">The different types of variants that fall under the component &mdash; primary button, icon button.</p>
+          </div>
+          <div>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">States</p>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.5;margin:0">Disabled, Active, Focus, Hover/Pressed, Selected.</p>
+          </div>
+          <div>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">Examples</p>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.5;margin:0">Examples of how the component is used, to give developers context.</p>
+          </div>
+          <div>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">Figma Branch Link</p>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.5;margin:0">An important part of handing over the latest version. Design components are frozen so no further changes occur while development is ongoing.</p>
+          </div>
+      </div>
+
+    </section>
+
+
+    <!-- Slide 15 — Part 4: Figma Library adoption -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);padding:0;overflow:hidden">
+
+      <!-- Library artefacts, bottom-right -->
+      <img src="assets/images/ds_img_15.png" alt="Pages from the Figma library: line icon set, colour standards, avatar sizing and usage guidance, and card component specifications" style="position:absolute;right:0;bottom:0;width:82%;height:auto;display:block;z-index:0">
+
+      <!-- Text -->
+      <div style="position:relative;z-index:1;height:100%;padding:5% 5% 0;display:flex;flex-direction:column">
+        <div class="ds-eyebrow" style="margin-bottom:1vw">Part 4 — Adoption by Teams</div>
+        <h1 class="ds-role-slide-title" style="margin-bottom:2.4vw">Figma Library</h1>
+
+        <div style="max-width:47%;border-radius:12px;padding:2.6vw 2.8vw;background:linear-gradient(40deg, #010D09 0%, #054F53 55%, #0A828D 100%);box-shadow:0 8px 40px rgba(4,30,32,0.28)">
+          <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-h4);font-weight:400;line-height:1.3;color:#F4F1EA;margin:0 0 1.1vw">Improved adoption rate to 80%,<br>across design and dev teams</p>
+          <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;line-height:1.5;color:rgba(244,241,234,0.8);margin:0">Drove 80% adoption of 72 shipped components across Bangladesh and Nepal, with an estimated 30% adoption in South Korea.</p>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- Slide 16 — Part 4: Storybook Library -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);padding:0;overflow:hidden">
+
+      <!-- Storybook screens, bottom-right -->
+      <img src="assets/images/ds_img_16.png" alt="Storybook library screens: the component explorer with controls and addons panels, and sprint velocity charts comparing planned, completed, completed late and incomplete tasks across six iterations" style="position:absolute;right:0;bottom:0;width:98%;height:auto;display:block;z-index:0">
+
+      <!-- Text -->
+      <div style="position:relative;z-index:1;height:100%;padding:5% 5% 0;display:flex;flex-direction:column">
+        <div class="ds-eyebrow" style="margin-bottom:1vw">Part 4 — Sprint Planning</div>
+        <h1 class="ds-role-slide-title" style="margin-bottom:2.4vw">Storybook Library</h1>
+
+        <div style="max-width:47%;border-radius:12px;padding:2.6vw 2.8vw;background:linear-gradient(40deg, #010D09 0%, #054F53 55%, #0A828D 100%);box-shadow:0 8px 40px rgba(4,30,32,0.28)">
+          <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-h4);font-weight:400;line-height:1.3;color:#F4F1EA;margin:0 0 0.7vw">Launched over 70 components</p>
+          <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;line-height:1.5;color:rgba(244,241,234,0.8);margin:0">Actively used by design and engineering teams across every market on the system.</p>
+          <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-h4);font-weight:400;line-height:1.3;color:#F4F1EA;margin:0 0 0.7vw;margin-top:2vw">Iterating to improve team delivery</p>
+          <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;line-height:1.5;color:rgba(244,241,234,0.8);margin:0">Within three sprints, the team was completing 25% more tasks per iteration.</p>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- Slide 17 — Storybook library walkthrough (video) -->
+    <section class="ds-slide" style="padding:0;background:#0B1110;overflow:hidden">
+      <video controls loop muted playsinline preload="metadata"
+             controlsList="nodownload noplaybackrate" disablePictureInPicture
+             poster="assets/images/ds_img_17.jpg"
+             aria-label="Walkthrough of the MetLife Asia Design System Storybook library"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;background:#0B1110">
+        <source src="assets/videos/ds_video_2.mp4" type="video/mp4">
+      </video>
+    </section>
+
+
+    <!-- Slide 18 — Accounting for Brand Refresh -->
+    <section class="ds-slide" style="background:linear-gradient(144deg, #ECF3F5, #C3D5D8);padding:0;overflow:hidden">
+
+      <!-- Before / after screens, bottom centre -->
+      <img src="assets/images/ds_img_18.png" alt="Before and after of the MetLife app: the 1.0 home and Doctor Video Consultation screens beside the refreshed versions with a lighter layout and updated brand treatment" style="position:absolute;left:50%;bottom:5%;transform:translateX(-50%);width:71%;height:auto;display:block;z-index:0">
+
+      <!-- Text -->
+      <div style="position:absolute;top:0;left:0;right:0;z-index:1;padding:5% 5% 0">
+        <h1 class="ds-role-slide-title" style="margin-bottom:1.4vw">Accounting for Brand Refresh</h1>
+        <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;line-height:1.5;color:#1A1A1A;margin:0 0 0.6vw;max-width:100%">We modernised the interface in stages, without disrupting how people already used it.</p>
+        <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:400;line-height:1.5;color:#4A4A4A;margin:0;max-width:100%">Refreshed interaction patterns &nbsp;·&nbsp; Lighter, more modern visual language &nbsp;·&nbsp; Fewer elements competing for attention.</p>
+      </div>
+
+    </section>
+
+
+    <!-- Slide 19 — What's next -->
+    <section class="ds-slide dark" style="padding:0;overflow:hidden;background:radial-gradient(115% 95% at 0% 0%, #09919D 0%, #0B3A3D 22%, #051715 52%, #020E0A 80%);">
+
+      <!-- Product screens, bleeding off the right -->
+      <img src="assets/images/ds_img_19.png" alt="Two MetLife app screens shown at an angle: the refreshed home screen with quick-action icons, and a reviews card from the LifeCare section" style="position:absolute;right:-13%;top:50%;transform:translateY(-50%);height:100%;width:auto;display:block;z-index:0">
+
+      <!-- Text -->
+      <div style="position:absolute;left:0;top:0;bottom:0;width:45%;z-index:1;padding:5% 0 5% 5%;display:flex;flex-direction:column;justify-content:center">
+        <div class="ds-eyebrow" style="margin-bottom:0.8vw">Evolution of the Asia Design System</div>
+        <h1 class="ds-slide-title" style="margin-bottom:1.4vw">What&rsquo;s next</h1>
+
+        <div style="border:1px solid rgba(244,241,234,0.14);border-radius:12px;background:rgba(244,241,234,0.035);padding:1.8vw 2.2vw;display:flex;flex-direction:column;gap:1.1vw">
+          <div>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">Automated Testing</p>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.5;margin:0">Leverage the latest tools to automate manual effort, and explore design-to-code flows that reduce hand-off work.</p>
+          </div>
+          <div>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">Accessibility Expansion</p>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.5;margin:0">Address accessibility needs beyond contrast &mdash; type scaling, touch targets and assistive behaviour.</p>
+          </div>
+          <div>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">Multi-language and hyper-localisation</p>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.5;margin:0">Double-byte Japanese characters, and other unique or niche local formats.</p>
+          </div>
+          <div>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">A/B Testing</p>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.5;margin:0">Experiment and iterate on existing assets to find room for improvement, and collect ideas for future components.</p>
+          </div>
+          <div>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body-lg);font-weight:600;color:#F4F1EA;margin:0 0 0.3rem">UX/Dev Maturity</p>
+            <p style="font-family:'Geist','Inter Tight',system-ui,sans-serif;font-size: var(--fs-body);font-weight:400;color:rgba(244,241,234,0.75);line-height:1.5;margin:0">Keep growing regional and local teams toward closer collaboration, and build a framework for the system to scale with user and business needs.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- End of deck — next case study -->
+    <div class="ds-end">
+      <p class="ds-end-label">End of case study</p>
+      <a class="cso-next-cta" href="#work" data-next-cs="family-banking" aria-label="Next case study: Multigenerational Family Banking">
+        <span class="cso-next-cta-label">Next case study</span>
+        <span class="cso-next-cta-arrow">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3 9h12M11 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+
+
+
+
+    
+
+  </div>
   </div>
 </div>
 
@@ -2464,10 +3214,83 @@
     document.getElementById('cs-overlay').style.display = 'block';
     document.body.style.overflow = 'hidden';
     document.getElementById('cs-overlay').scrollTop = 0;
+    const csoHamburger = document.querySelector('#cs-overlay .cso-hamburger');
+    const csoStepper = document.querySelector('#cs-overlay .cso-mobile-stepper');
+    const csoFabTop = document.getElementById('cso-fab-top');
+    const csoDesktopNav = document.querySelector('#cs-overlay .cso-desktop-nav');
+    const csoHeadingCols = document.querySelectorAll('#cs-overlay .cso-heading-col');
+    const csoSidebar = document.querySelector('#cs-overlay .cso-sidebar');
+    if (csoHamburger) csoHamburger.classList.remove('cso-nav-hidden');
+    if (csoStepper) csoStepper.classList.remove('cso-nav-hidden');
+    if (csoFabTop) csoFabTop.classList.remove('visible');
+    if (csoDesktopNav) csoDesktopNav.classList.remove('cso-nav-hidden');
+    if (csoSidebar) csoSidebar.classList.remove('cso-nav-hidden');
+    csoHeadingCols.forEach(el => el.classList.remove('cso-nav-hidden'));
+    csoLastScroll = 0;
   }
   function closeCS() {
     document.getElementById('cs-overlay').style.display = 'none';
     document.body.style.overflow = '';
+  }
+  /* ── Design System slide-deck overlay toggle ─────── */
+  const DS_PASSWORD = 'ScalingAsiaDS';
+  function openDS() {
+    document.getElementById('ds-overlay').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    document.getElementById('ds-frame-outer').scrollTop = 0;
+    const nav = document.getElementById('ds-topnav-group');
+    if (nav) nav.classList.remove('ds-nav-hidden');
+    document.getElementById('ds-frame-outer').classList.remove('ds-nav-hidden');
+    dsLastScroll = 0;
+    const dsFabTop = document.getElementById('ds-fab-top');
+    if (dsFabTop) dsFabTop.classList.remove('visible');
+    const gate = document.getElementById('ds-password-gate');
+    const DS_PASSWORD_GATE_ENABLED = false; // TEMP: set back to true to re-enable the password gate
+    if (!DS_PASSWORD_GATE_ENABLED || sessionStorage.getItem('dsUnlocked') === '1') {
+      gate.style.display = 'none';
+    } else {
+      gate.style.display = 'flex';
+      const input = document.getElementById('ds-password-input');
+      if (input) { input.value = ''; setTimeout(() => input.focus(), 100); }
+      const err = document.getElementById('ds-pw-error');
+      if (err) err.textContent = '';
+    }
+    dsUpdateCounter();
+  }
+  function dsCheckPassword(e) {
+    e.preventDefault();
+    const val = document.getElementById('ds-password-input').value;
+    const err = document.getElementById('ds-pw-error');
+    if (val === DS_PASSWORD) {
+      sessionStorage.setItem('dsUnlocked', '1');
+      document.getElementById('ds-password-gate').style.display = 'none';
+      document.getElementById('ds-frame-outer').scrollTop = 0;
+      dsUpdateCounter();
+    } else {
+      if (err) err.textContent = 'Incorrect password. Please try again.';
+    }
+    return false;
+  }
+  function closeDS() {
+    document.getElementById('ds-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  function openDsMenu() {
+    document.getElementById('ds-menu-overlay').classList.add('open');
+  }
+  function closeDsMenu() {
+    document.getElementById('ds-menu-overlay').classList.remove('open');
+  }
+  function dsUpdateCounter() {
+    const slides = document.querySelectorAll('.ds-slide');
+    const counter = document.getElementById('ds-counter');
+    if (!slides.length || !counter) return;
+    let closestIdx = 0, closestDist = Infinity;
+    slides.forEach((s, i) => {
+      const dist = Math.abs(s.getBoundingClientRect().top);
+      if (dist < closestDist) { closestDist = dist; closestIdx = i; }
+    });
+    counter.textContent = String(closestIdx + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
   }
   function openCsoMenu() {
     document.getElementById('cso-menu-overlay').classList.add('open');
@@ -2510,10 +3333,56 @@
     csoCarouselIndex = (csoCarouselIndex + dir + total) % total;
     csoCarouselUpdate();
   }
+  const dsOverlay = document.getElementById('ds-frame-outer');
+  let dsLastScroll = 0;
+  if (dsOverlay) {
+    dsOverlay.addEventListener('scroll', dsUpdateCounter);
+    dsOverlay.addEventListener('scroll', () => {
+      const nav = document.getElementById('ds-topnav-group');
+      const dsFabTop = document.getElementById('ds-fab-top');
+      const y = dsOverlay.scrollTop;
+      if (dsFabTop) dsFabTop.classList.toggle('visible', y > dsOverlay.clientHeight * 2);
+      // Hidden whenever the deck is scrolled at all — it only returns at the top,
+      // so a small upward nudge mid-read no longer brings the nav back.
+      const dsHide = y > 4;
+      if (nav) nav.classList.toggle('ds-nav-hidden', dsHide);
+      dsOverlay.classList.toggle('ds-nav-hidden', dsHide);
+      dsLastScroll = y;
+    });
+  }
   const csoOverlay = document.getElementById('cs-overlay');
-  const csoScrollMask = document.getElementById('cso-scroll-mask');
+  let csoLastScroll = 0;
   csoOverlay.addEventListener('scroll', () => {
-    if (csoScrollMask) csoScrollMask.classList.toggle('visible', csoOverlay.scrollTop > 4);
+    const csoHamburger = document.querySelector('#cs-overlay .cso-hamburger');
+    const csoStepper = document.querySelector('#cs-overlay .cso-mobile-stepper');
+    const csoFabTop = document.getElementById('cso-fab-top');
+    const csoDesktopNav = document.querySelector('#cs-overlay .cso-desktop-nav');
+    const csoHeadingCols = document.querySelectorAll('#cs-overlay .cso-heading-col');
+    const csoSidebar = document.querySelector('#cs-overlay .cso-sidebar');
+    const csoY = csoOverlay.scrollTop;
+    const csoShowNav = () => {
+      if (csoHamburger) csoHamburger.classList.remove('cso-nav-hidden');
+      if (csoStepper) csoStepper.classList.remove('cso-nav-hidden');
+      if (csoDesktopNav) csoDesktopNav.classList.remove('cso-nav-hidden');
+      if (csoSidebar) csoSidebar.classList.remove('cso-nav-hidden');
+      csoHeadingCols.forEach(el => el.classList.remove('cso-nav-hidden'));
+    };
+    const csoHideNav = () => {
+      if (csoHamburger) csoHamburger.classList.add('cso-nav-hidden');
+      if (csoStepper) csoStepper.classList.add('cso-nav-hidden');
+      if (csoDesktopNav) csoDesktopNav.classList.add('cso-nav-hidden');
+      if (csoSidebar) csoSidebar.classList.add('cso-nav-hidden');
+      csoHeadingCols.forEach(el => el.classList.add('cso-nav-hidden'));
+    };
+    if (csoY <= 4) {
+      csoShowNav();
+    } else if (csoY > csoLastScroll) {
+      csoHideNav();
+    } else if (csoY < csoLastScroll) {
+      csoShowNav();
+    }
+    csoLastScroll = csoY;
+    if (csoFabTop) csoFabTop.classList.toggle('visible', csoOverlay.scrollTop > csoOverlay.clientHeight * 2);
 
     const ids = ['cso-intro','cso-scope','cso-research','cso-insight','cso-ideation','cso-prototype'];
     let current = ids[0];
@@ -2535,12 +3404,11 @@
 
   window.addEventListener('scroll', () => {
     const y          = window.scrollY;
-    const docH       = document.documentElement.scrollHeight;
     const winH       = window.innerHeight;
-    const nearBottom = y + winH >= docH - 200;
+    const pastTwoFolds = y > winH * 2;
 
     nav.classList.toggle('scrolled', y > 60);
-    if (fabTop) fabTop.classList.toggle('visible', nearBottom);
+    if (fabTop) fabTop.classList.toggle('visible', pastTwoFolds);
   }, { passive: true });
 
   /* ── Scroll reveal ──────────────────────── */
@@ -2567,6 +3435,117 @@
     });
   }, { threshold: 0.1 });
   workObs.observe(workSection);
+</script>
+
+  <script>
+    // Disable right-click context menu on all images and videos
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO' || e.target.tagName === 'SOURCE') {
+        e.preventDefault();
+      }
+    });
+    // Prevent dragging images/videos out to save them
+    document.addEventListener('dragstart', function(e) {
+      if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+        e.preventDefault();
+      }
+    });
+    // Deterrent only: block common devtools/view-source shortcuts.
+    // This cannot stop a determined visitor (disabling JS, a different
+    // browser, or curl bypass it instantly) — it just raises friction
+    // for casual right-clickers.
+    document.addEventListener('keydown', function(e) {
+      const k = e.key;
+      const blockedCombo =
+        k === 'F12' ||
+        ((e.ctrlKey || e.metaKey) && e.shiftKey && ['I','J','C','i','j','c'].includes(k)) ||
+        ((e.ctrlKey || e.metaKey) && (k === 'u' || k === 'U')) ||
+        (e.altKey && e.metaKey && ['I','J','C','i','j','c'].includes(k)); // Cmd+Option+I/J/C on Mac
+      if (blockedCombo) {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+<!-- Card opening — deliberately in its own script block so a failure anywhere
+     else on the page cannot stop the work cards from opening. -->
+<script>
+(function () {
+  var moved = false, startX = 0, startY = 0, startT = 0;
+
+  function overlayFor(which) {
+    return which === 'design-system' ? 'ds-overlay' : 'cs-overlay';
+  }
+
+  function open(which) {
+    var ov = document.getElementById(overlayFor(which));
+    if (!ov) return;
+    ov.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    try { ov.scrollTop = 0; } catch (e) {}
+    /* let the richer opener do its extra setup when it is available */
+    try {
+      if (which === 'design-system') { if (typeof openDS === 'function') openDS(); }
+      else if (typeof openCS === 'function') { openCS(which); }
+    } catch (e) {}
+  }
+
+  function cardFrom(node) {
+    while (node && node !== document) {
+      if (node.classList && node.classList.contains('cs-card')) return node;
+      node = node.parentNode || node.parentElement;
+    }
+    return null;
+  }
+
+  function activate(e) {
+    var card = cardFrom(e.target);
+    if (!card) return;
+    var which = card.getAttribute('data-cs');
+    if (!which) return;            /* cards with a real href navigate normally */
+    if (e.preventDefault) e.preventDefault();
+    if (e.stopPropagation) e.stopPropagation();
+    open(which);
+  }
+
+  document.addEventListener('click', activate, false);
+
+  /* "Next case study" links: close whichever overlay is open, open the target */
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest && e.target.closest('[data-next-cs]');
+    if (!el) return;
+    e.preventDefault();
+    var next = el.getAttribute('data-next-cs');
+    try { if (typeof closeDS === 'function') closeDS(); } catch (err) {}
+    try { if (typeof closeCS === 'function') closeCS(); } catch (err) {}
+    try {
+      if (next === 'design-system') { if (typeof openDS === 'function') openDS(); }
+      else if (typeof openCS === 'function') { openCS(next); }
+    } catch (err) {}
+  }, false);
+
+
+  /* Touch fallback: some mobile browsers swallow the synthetic click on a
+     link whose content is not itself interactive. Only fire on a real tap. */
+  document.addEventListener('touchstart', function (e) {
+    var t = e.touches && e.touches[0];
+    moved = false;
+    startX = t ? t.clientX : 0;
+    startY = t ? t.clientY : 0;
+    startT = Date.now();
+  }, { passive: true });
+
+  document.addEventListener('touchmove', function (e) {
+    var t = e.touches && e.touches[0];
+    if (!t) return;
+    if (Math.abs(t.clientX - startX) > 10 || Math.abs(t.clientY - startY) > 10) moved = true;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function (e) {
+    if (moved || Date.now() - startT > 600) return;
+    activate(e);
+  }, false);
+})();
 </script>
 
 </body>
