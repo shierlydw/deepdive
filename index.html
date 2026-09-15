@@ -640,6 +640,8 @@
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-top: 1rem;
+      /* guarantees breathing room above the CTA now the rule is gone */
+      margin-bottom: 1.5rem;
     }
 
     .cs-exp-outcome {
@@ -655,17 +657,11 @@
       border-radius: 6px;
     }
 
-    .cs-exp-divider {
-      height: 1px;
-      background: #D8D4CC;
-      margin: 1.5rem 0 1.25rem;
-      flex-shrink: 0;
-      margin-top: auto;   /* pin the divider + CTA to the card floor so the
-                             three cards line up whatever the title length */
-    }
-
     /* Split button — two segments divided by a vertical hairline, like "GET YOUR MATCHDAY BOX | €19,99" */
     .cs-exp-cta {
+      /* was on the divider: pins the CTA to the card floor so the three cards
+         line up whatever the title length */
+      margin-top: auto;
       display: flex;
       align-items: stretch;
       border: 1px solid #222222;
@@ -1224,7 +1220,6 @@
               <span class="cs-exp-outcome">72 components shipped</span>
               <span class="cs-exp-outcome">80% adoption rate</span>
             </div>
-            <div class="cs-exp-divider"></div>
             <div class="cs-exp-cta">
               <span class="cs-exp-cta-label">View case study</span>
               <span class="cs-exp-arrow">
@@ -1250,7 +1245,6 @@
               <span class="cs-exp-outcome">Shipped &middot; Q3 2024</span>
               <span class="cs-exp-outcome">20 usability testers</span>
             </div>
-            <div class="cs-exp-divider"></div>
             <div class="cs-exp-cta">
               <span class="cs-exp-cta-label">View case study</span>
               <span class="cs-exp-arrow">
@@ -1278,7 +1272,6 @@
               <span class="cs-exp-outcome">Design challenge · Banking</span>
               <span class="cs-exp-outcome">1 week sprint</span>
             </div>
-            <div class="cs-exp-divider"></div>
             <div class="cs-exp-cta">
               <span class="cs-exp-cta-label">View case study</span>
               <span class="cs-exp-arrow">
