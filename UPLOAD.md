@@ -1,12 +1,14 @@
-# Uploading to GitHub without deleting the old assets
+# Uploading to GitHub
 
-Placement comes from `index.html`, not from the filenames — every image and
-video path in this `index.html` points at a file in this package.
+This package is self-contained and carries no leftovers: every file in
+`assets/` is referenced by `index.html`, and every path in `index.html` has a
+file here. Nothing from an earlier version is needed.
 
-> **Upload `index.html` and the `assets/` folder together, in the same commit.**
+> **Replace `index.html` and the whole `assets/` folder in the same commit.**
+> Delete the old `assets/` folder rather than merging into it, so files that
+> were dropped from the page do not linger in the repo.
 
-If you upload the assets but keep the old `index.html`, the pages will point at
-the old numbering and images will land in the wrong slots.
+Placement comes from `index.html`, not from the filenames.
 
 ## Naming
 
