@@ -1776,7 +1776,9 @@
     .cso-mobile-close { display: none; }
     @media (max-width: 767px) {
       .cso-hamburger {
-        display: flex;
+        /* Off on phones. The stepper is pinned flush to the top now, so a
+           floating icon can only land on top of it. */
+        display: none;
         flex-direction: column;
         justify-content: center;
         gap: 5px;
@@ -2243,7 +2245,10 @@
     }
     .cso-next-cta:hover .cso-next-cta-label,
     .cso-next-cta:hover .cso-next-cta-arrow { background: #626262; }
-    @media (max-width:767px) { .cso-sidebar { display:none; } .cso-heading-col { padding:24px var(--margin) 12px; } .cso-body { padding:12px var(--margin) 32px; } .cso-roles, .cso-grid2, .cso-exec, .cso-persona-grid, .cso-sol-grid, .cso-ideas, .cso-theme-hdr { grid-template-columns:1fr; } }
+    @media (max-width:767px) { .cso-sidebar { display:none; }
+      /* The stepper is the wayfinding on a phone. Leaving the section title
+         sticky as well pinned it to the same spot and overlaid the body copy. */
+      .cso-heading-col { padding:24px var(--margin) 12px; position: static; } .cso-body { padding:12px var(--margin) 32px; } .cso-roles, .cso-grid2, .cso-exec, .cso-persona-grid, .cso-sol-grid, .cso-ideas, .cso-theme-hdr { grid-template-columns:1fr; } }
 
     /* ── Mobile horizontal stepper — desktop timeline rotated 90° ── */
     .cso-mobile-stepper {
@@ -2259,18 +2264,21 @@
         scrollbar-width: none;
         padding: var(--space-4) var(--margin) var(--space-3);
         position: sticky;
-        top: 76px;
+        /* Pinned to the very top. It used to sit at 76px and move to 0 as the
+           nav hid, so scrolling back up dropped the bar and let the page show
+           through the band above it. */
+        top: 0;
         z-index: 20;
         background: #F9F8F6;
         border-bottom: 1px solid #E0DDD5;
-        transition: top 0.25s ease;
       }
-      .cso-mobile-stepper.cso-nav-hidden { top: 0; }
       .cso-mobile-stepper::-webkit-scrollbar { display: none; }
 
       .cso-mstep {
         position: relative;
-        flex-shrink: 0;
+        /* Grow to share the bar's width so the steps span it evenly instead of
+           bunching at the left. Never shrink, so a longer chain still scrolls. */
+        flex: 1 0 auto;
         padding: 20px var(--space-4) 0 0;
         font-size: var(--fs-small);
         color: #6F6A61;
@@ -2279,7 +2287,9 @@
         white-space: nowrap;
         min-width: 68px;
       }
-      .cso-mstep:last-child { padding-right: 0; }
+      /* The last step sizes to its label, so the growth lands in the gaps
+         between steps and the chain finishes at the right margin. */
+      .cso-mstep:last-child { flex: 0 0 auto; padding-right: 0; }
 
       /* Dot */
       .cso-mstep::before {
@@ -4784,7 +4794,7 @@
       const csoSidebar = document.querySelector(sel + '.cso-sidebar');
       const csoY = host.scrollTop;
       const toggle = (add) => {
-        [csoHamburger, csoStepper, csoDesktopNav, csoSidebar].forEach(el => {
+        [csoStepper, csoDesktopNav, csoSidebar].forEach(el => {
           if (el) el.classList.toggle('cso-nav-hidden', add);
         });
         csoHeadingCols.forEach(el => el.classList.toggle('cso-nav-hidden', add));
@@ -4792,6 +4802,9 @@
       if (csoY <= 4) toggle(false);
       else if (csoY > csoLastScroll) toggle(true);
       else if (csoY < csoLastScroll) toggle(false);
+      /* The menu icon shows only at the very top. Anywhere else it sits over the
+         body text, and re-showing it on every scroll-up was what flickered. */
+      if (csoHamburger) csoHamburger.classList.toggle('cso-nav-hidden', csoY > 4);
       csoLastScroll = csoY;
       if (csoFabTop) csoFabTop.classList.toggle('visible', host.scrollTop > host.clientHeight * 2);
 
