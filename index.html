@@ -1092,9 +1092,13 @@
     #lr-lightbox.open { display: block; }
     #lr-lightbox img {
       display: block; margin: 0 auto;
-      max-width: none; height: auto;
+      max-width: 100%; height: auto;
       background: #FFFFFF; border-radius: 6px;
     }
+    /* A flow map can be several thousand pixels wide, so opening at natural size
+       drops the reader into one corner of it. Fit the width first; a click or tap
+       switches to full size when the labels need reading. */
+    #lr-lightbox.lr-lb-full img { max-width: none; }
     .lr-lb-close {
       position: fixed; top: 20px; right: 24px; z-index: 2;
       width: 44px; height: 44px; border-radius: 50%;
@@ -1112,11 +1116,6 @@
     @media (max-width: 640px) {
       .lr-zoom-btn { top: 8px; right: 8px; padding: 7px 10px; }
       #lr-lightbox { padding: 64px 12px 12px; }
-      /* A flow map is ~1900px wide, so opening at natural size drops the reader
-         into the middle of it with no edges in sight. Fit the width first and
-         let a tap switch to full size for the labels. */
-      #lr-lightbox img { max-width: 100%; }
-      #lr-lightbox.lr-lb-full img { max-width: none; }
       .lr-lb-hint {
         display: block; top: auto; bottom: 18px; left: 50%;
         transform: translateX(-50%); white-space: nowrap;
@@ -3266,7 +3265,7 @@
 
             <!-- PLACEHOLDER — new user flow diagram -->
             <div class="cso-diagram-wrap lr-zoomable" style="margin-top:2rem">
-              <img src="assets/images/lr_img_14.jpg" alt="The redesigned flow: identify the user type first, then a single shared OTP verification and an optional account creation step before a personalised or general home" style="width:100%;height:auto;display:block" />
+              <img src="assets/images/lr_img_14.webp" alt="The redesigned flow: identify the user type first, then a single shared OTP verification and an optional account creation step before a personalised or general home" style="width:100%;height:auto;display:block" />
               <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the new user flow at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
             </div>
             <p class="cso-text" style="margin-top:1rem;font-size:var(--fs-small);color:#6B6B6B">The new flow asks who you are first, then shows only the steps that apply to you.</p>
@@ -3280,7 +3279,7 @@
                   <li>Allowing users to choose their verification channel was explored, but set aside. The majority of users only had a mobile number on record, making the selection step unnecessary for most.</li>
                   <li>We looked at using mobile number as the main way to log in, but the existing data could not tell us which type of user someone was from their number alone.</li>
                 </ul>
-                <p class="cso-text">We went with email or policy number as the username. Both are things people are more likely to already know.</p>
+                <p class="cso-text">We went with policy number and email as a login method, as they are the credentials that would match correctly with the user.</p>
               </div>
             </div>
 
@@ -3322,7 +3321,6 @@
                     <span class="lr-ba-pair"><span class="lr-ba-was">OTP every time</span><span class="lr-ba-arrow">&rarr;</span>No OTP for 6 months on the same device, biometrics offered</span>
                   </div>
                 </div>
-                <p class="cso-text" style="margin-top:1.5rem">Email became the username. For policyholders we fill it in from their policy record, so there is nothing to type. OTP moved to the end, because before this people were asked to verify before they had entered anything.</p>
               </div>
             </div>
 
@@ -3332,27 +3330,33 @@
                 <h3 class="cso-heading-md" style="margin:0 0 0.75rem">User journeys</h3>
                 <div class="lr-jcar" role="region" aria-roledescription="carousel" aria-label="Journey maps">
                   <div class="lr-car-track" id="lr-jcar-track" tabindex="0" aria-label="Journey maps, scrollable">
-                    <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="1 of 3: Registration user journey">
-                      <img src="assets/images/lr_img_22.jpg" alt="The registration journey map: language select and intro carousel, then three paths &mdash; non-policy, personal policy and corporate policy &mdash; each running through OTP verification, optional account creation and a success screen, with the register error scenarios mapped underneath" loading="lazy" />
-                      <span class="lr-jcar-cap">Registration user journey</span>
-                      <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the registration user journey at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
+                    <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="1 of 4: Registration journey, non-policyholder">
+                      <img src="assets/images/lr_img_22.webp" alt="The non-policyholder registration journey, reduced to its key steps: entry point, choosing which kind of policy you hold, mobile number, OTP verification, email address, password, an optional name step, and the registration success screen" loading="lazy" />
+                      <span class="lr-jcar-cap">Registration journey, non-policyholder</span>
+                      <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the non-policyholder registration journey at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
                     </div>
-                    <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="2 of 3: Login first time journey">
-                      <img src="assets/images/lr_img_23.jpg" alt="The first-time login journey for all three user types: username and password, OTP, the Face ID setup prompt with skip and error paths, the onboarding questionnaire, and the home dashboard, with the forgot-username and forgot-password branches below" loading="lazy" />
+                    <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="2 of 4: Registration journey, policyholder">
+                      <img src="assets/images/lr_img_29.webp" alt="The policyholder registration journey, reduced to its key steps: entry point, choosing which kind of policy you hold, policy number and date of birth, OTP verification, then a username and account creation step that can be skipped, email, password, and the registration success screen" loading="lazy" />
+                      <span class="lr-jcar-cap">Registration journey, policyholder</span>
+                      <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the policyholder registration journey at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
+                    </div>
+                    <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="3 of 4: Login first time journey">
+                      <img src="assets/images/lr_img_23.webp" alt="The first-time login journey for both segments: a non-policyholder signs in with email and password, a policyholder with policy number and date of birth, both then verify by OTP and join a shared path through an optional enable-biometric prompt and an optional onboarding questionnaire before the home dashboard" loading="lazy" />
                       <span class="lr-jcar-cap">Login first time journey</span>
                       <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the first-time login journey at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
                     </div>
-                    <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="3 of 3: Login subsequent journey">
-                      <img src="assets/images/lr_img_24.jpg" alt="The subsequent login journey: returning with a saved email and password, Face ID first and second attempts, and the create-account reminder for personal and corporate policyholders who skipped account creation the first time" loading="lazy" />
+                    <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="4 of 4: Login subsequent journey">
+                      <img src="assets/images/lr_img_24.webp" alt="The returning login journey in two versions: without biometric login, the user signs in with email and password, verifies by OTP, and passes optional biometric setup and onboarding steps before the dashboard; with biometric login enabled, launching the app and a Face ID check go straight to the dashboard" loading="lazy" />
                       <span class="lr-jcar-cap">Login subsequent journey</span>
                       <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the subsequent login journey at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
                     </div>
                   </div>
                   <div class="lr-car-bar">
                     <div class="lr-car-dots" id="lr-jcar-dots" role="tablist" aria-label="Choose a journey map">
-                      <button class="lr-car-dot" type="button" data-i="0" aria-current="true" aria-label="Show the registration user journey"></button>
-                      <button class="lr-car-dot" type="button" data-i="1" aria-current="false" aria-label="Show the first-time login journey"></button>
-                      <button class="lr-car-dot" type="button" data-i="2" aria-current="false" aria-label="Show the subsequent login journey"></button>
+                      <button class="lr-car-dot" type="button" data-i="0" aria-current="true" aria-label="Show the non-policyholder registration journey"></button>
+                      <button class="lr-car-dot" type="button" data-i="1" aria-current="false" aria-label="Show the policyholder registration journey"></button>
+                      <button class="lr-car-dot" type="button" data-i="2" aria-current="false" aria-label="Show the first-time login journey"></button>
+                      <button class="lr-car-dot" type="button" data-i="3" aria-current="false" aria-label="Show the subsequent login journey"></button>
                     </div>
                     <div class="lr-car-btns">
                       <button class="lr-car-btn" type="button" id="lr-jcar-prev" aria-label="Previous journey map" disabled>
@@ -3374,7 +3378,6 @@
           <div class="cso-heading-col"><h2 class="cso-heading">Findings</h2></div>
           <div class="cso-body">
             <p class="cso-text">The redesigned experience showed measurable improvement across all three user types. Non-customer registration steps were reduced from 10 to 6, with account creation placed as an optional step after key credentials were collected rather than a decision point upfront.</p>
-            <p class="cso-text">Completion rates improved across the board, and the migration also resolved a backend data conflict that had previously prevented certain policyholders from completing registration.</p>
 
             <div class="lr-impact">
               <div class="lr-impact-card">
@@ -3395,49 +3398,6 @@
               </div>
             </div>
 
-            <div class="lr-carousel" role="region" aria-roledescription="carousel" aria-label="Registration journeys, shipped">
-              <p class="lr-car-label">The shipped journeys</p>
-              <div class="lr-car-track" id="lr-car-track" tabindex="0" aria-label="Registration journeys, scrollable">
-                <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="1 of 5: Non-customer registration">
-                  <img src="assets/images/lr_img_16.jpg" alt="The non-customer registration journey: select customer type, enter mobile number, OTP, then an optional account creation step with name, email and password, or skip straight to success" loading="eager" fetchpriority="low" />
-                  <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the non-customer registration journey at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
-                </div>
-                <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="2 of 5: Customer registration">
-                  <img src="assets/images/lr_img_17.jpg" alt="The customer registration journey: select customer type, enter policy number and date of birth, OTP, email, create password, then success" loading="lazy" />
-                  <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the customer registration journey at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
-                </div>
-                <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="3 of 5: Corporate registration">
-                  <img src="assets/images/lr_img_18.jpg" alt="The corporate registration journey: policy number, date of birth and employee ID, then mobile number, OTP, and an optional account creation step before success" loading="lazy" />
-                  <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the corporate registration journey at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
-                </div>
-                              <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="4 of 5: Corporate login, first time">
-                  <img src="assets/images/lr_img_19.jpg" alt="The corporate first-time login journey: enter username, then corporate details and password, OTP, enable biometric login, and an onboarding questionnaire" loading="lazy" />
-                  <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the corporate login, first time journey at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
-                </div>
-                <div class="lr-car-slide lr-zoomable" role="group" aria-roledescription="slide" aria-label="5 of 5: Password login, subsequent">
-                  <img src="assets/images/lr_img_20.jpg" alt="The subsequent password login journey: enter username, enter password, enable biometric login, then the home dashboard" loading="lazy" />
-                  <button class="lr-zoom-btn" onclick="lrZoom(this)" aria-label="View the password login, subsequent journey at full size"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.4"/><path d="M9.2 9.2 12.5 12.5M6 4.2v3.6M4.2 6h3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Zoom</button>
-                </div>
-</div>
-              <div class="lr-car-bar">
-                <div class="lr-car-dots" id="lr-car-dots" role="tablist" aria-label="Choose a journey">
-                  <button class="lr-car-dot" type="button" data-i="0" aria-current="true" aria-label="Show non-customer registration"></button>
-                  <button class="lr-car-dot" type="button" data-i="1" aria-current="false" aria-label="Show customer registration"></button>
-                  <button class="lr-car-dot" type="button" data-i="2" aria-current="false" aria-label="Show corporate registration"></button>
-                  <button class="lr-car-dot" type="button" data-i="3" aria-current="false" aria-label="Show corporate login, first time"></button>
-                  <button class="lr-car-dot" type="button" data-i="4" aria-current="false" aria-label="Show password login, subsequent"></button>
-                </div>
-                <div class="lr-car-btns">
-                  <button class="lr-car-btn" type="button" id="lr-car-prev" aria-label="Previous journey" disabled>
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 3 4.5 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                  <button class="lr-car-btn" type="button" id="lr-car-next" aria-label="Next journey">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5.5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-
             <h3 class="cso-heading-md" style="margin:2.5rem 0 1rem">Results against target</h3>
             <p class="lr-mt-hint">Scroll the table sideways to see the results &rarr;</p>
             <div class="lr-mt-wrap" tabindex="0" role="region" aria-label="Completion rate and task duration against target, before and after the 16 August fix">
@@ -3453,9 +3413,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><th scope="rowgroup" rowspan="10" class="g1">Registration</th><th scope="rowgroup" rowspan="4" class="g2">Non-Customer</th><td rowspan="2" class="g3">Full (7 steps)</td><td rowspan="4" class="g4">3.8K</td><th scope="row" class="tgt">&gt;70% completion rate</th><td class="rate missed">35%</td><td class="rate missed">42%</td></tr>
+                  <tr><th scope="rowgroup" rowspan="10" class="g1">Registration</th><th scope="rowgroup" rowspan="4" class="g2">Non-Customer</th><td rowspan="2" class="g3">Full (6 steps)</td><td rowspan="4" class="g4">3.8K</td><th scope="row" class="tgt">&gt;70% completion rate</th><td class="rate missed">35%</td><td class="rate missed">42%</td></tr>
                   <tr><th scope="row" class="tgt">&lt;3 mins</th><td class="val met">1:59</td><td class="val met">2:15</td></tr>
-                  <tr><td rowspan="2" class="g3">Skip (4 steps)</td><th scope="row" class="tgt">&gt;70% completion rate</th><td class="rate met">77%</td><td class="rate met">84%</td></tr>
+                  <tr><td rowspan="2" class="g3">Skip (5 steps)</td><th scope="row" class="tgt">&gt;70% completion rate</th><td class="rate met">77%</td><td class="rate met">84%</td></tr>
                   <tr><th scope="row" class="tgt">&lt;1.5 mins</th><td class="val met">0:30</td><td class="val met">0:52</td></tr>
                   <tr><th scope="rowgroup" rowspan="2" class="g2">Customer</th><td rowspan="2" class="g3">5 steps</td><td rowspan="2" class="g4">3.5K</td><th scope="row" class="tgt">&gt;70% completion rate</th><td class="rate missed">20%</td><td class="rate near">63%</td></tr>
                   <tr><th scope="row" class="tgt">&lt;3 mins</th><td class="val met">2:23</td><td class="val met">2:27</td></tr>
@@ -4676,7 +4636,6 @@
     }, { root: track, threshold: [0.55, 0.9] });
     slides.forEach(s => obs.observe(s));
   }
-  lrBindCarousel('lr-car');
   lrBindCarousel('lr-jcar');
 
   function lrCloseZoom() {
@@ -4695,15 +4654,15 @@
   document.querySelectorAll('.lr-zoomable img').forEach(function (im) {
     im.addEventListener('click', function () { lrZoom(im); });
   });
-  /* On a phone the enlarged image opens fit to width; tapping it toggles to
-     natural size so the labels can be read, and back again. */
-  function lrZoomFits() { return window.matchMedia('(max-width: 640px)').matches; }
+  /* The enlarged image opens fit to width at every size; clicking or tapping it
+     toggles to natural size so the labels can be read, and back again. */
+  function lrZoomFits() { return true; }
   function lrPaintZoomHint() {
     const hint = document.querySelector('.lr-lb-hint');
     if (!hint) return;
-    if (!lrZoomFits()) { hint.textContent = 'Scroll to explore'; return; }
+    const verb = window.matchMedia('(hover: hover) and (pointer: fine)').matches ? 'Click' : 'Tap';
     hint.textContent = document.getElementById('lr-lightbox').classList.contains('lr-lb-full')
-      ? 'Tap the image to fit' : 'Tap the image for full size';
+      ? verb + ' the image to fit' : verb + ' the image for full size';
   }
   document.getElementById('lr-lightbox-img').addEventListener('click', function () {
     if (!lrZoomFits()) return;
